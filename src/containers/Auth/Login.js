@@ -63,25 +63,20 @@ class Login extends Component {
                   this.handleOnChangeInput(event, "password")
                 }
               />
-              {this.state.showPassword ? (
-                <div
-                  onClick={() => this.handleShowPassword()}
-                  className="mt-2"
-                  style={{ cursor: "pointer" }}
-                >
-                  <i className="fas fa-eye-slash mx-2"></i>
-                  Hide password
-                </div>
-              ) : (
-                <div
-                  onClick={() => this.handleShowPassword()}
-                  className="mt-2"
-                  style={{ cursor: "pointer" }}
-                >
-                  <i className="fas fa-eye mx-2"></i>
-                  Show password
-                </div>
-              )}
+              <div
+                onClick={() => this.handleShowPassword()}
+                className="mt-2"
+                style={{ cursor: "pointer" }}
+              >
+                <i
+                  className={
+                    this.state.showPassword
+                      ? "fas fa-eye-slash mx-2"
+                      : "fas fa-eye mx-2"
+                  }
+                ></i>
+                {this.state.showPassword ? "Hide password" : "Show password"}
+              </div>
             </div>
             <div className="col-12 form-group my-2">
               <span>Forgot your password?</span>
