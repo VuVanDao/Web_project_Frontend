@@ -13,8 +13,21 @@ import adminService from "../../services/adminService";
 class Login extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      username: "",
+      password: "",
+      showPassword: false,
+    };
   }
-
+  handleOnChangeInput = (event, target) => {
+    this.setState({ [target]: event.target.value });
+  };
+  handleLogin = () => {
+    console.log("state", this.state);
+  };
+  handleShowPassword = () => {
+    this.setState({ showPassword: !this.state.showPassword });
+  };
   render() {
     return (
       <div className="login-background">
@@ -30,6 +43,10 @@ class Login extends Component {
                 className="form-control"
                 id="userName"
                 placeholder="Your UserName"
+                value={this.state.username}
+                onChange={(event) =>
+                  this.handleOnChangeInput(event, "username")
+                }
               />
             </div>
             <div className="col-12 form-group">
@@ -37,17 +54,45 @@ class Login extends Component {
                 Password:
               </label>
               <input
-                type="password"
+                type={this.state.showPassword ? "text" : "password"}
                 className="form-control"
                 id="password"
                 placeholder="Your Password"
+                value={this.state.password}
+                onChange={(event) =>
+                  this.handleOnChangeInput(event, "password")
+                }
               />
+              {this.state.showPassword ? (
+                <div
+                  onClick={() => this.handleShowPassword()}
+                  className="mt-2"
+                  style={{ cursor: "pointer" }}
+                >
+                  <i className="fas fa-eye-slash mx-2"></i>
+                  Hide password
+                </div>
+              ) : (
+                <div
+                  onClick={() => this.handleShowPassword()}
+                  className="mt-2"
+                  style={{ cursor: "pointer" }}
+                >
+                  <i className="fas fa-eye mx-2"></i>
+                  Show password
+                </div>
+              )}
             </div>
             <div className="col-12 form-group my-2">
               <span>Forgot your password?</span>
             </div>
             <div className="col-12 text-center mt-3">
-              <button className="btn btn-primary form-control ">Login</button>
+              <button
+                className="btn btn-primary form-control "
+                onClick={() => this.handleLogin()}
+              >
+                Login
+              </button>
             </div>
             <div className="col-12">
               <hr />
@@ -55,8 +100,8 @@ class Login extends Component {
             <div className="col-12 text-center">
               <span>Or login with</span>
               <div className="social-login">
-                <i class="fab fa-facebook"></i>
-                <i class="fab fa-google"></i>
+                <i className="fab fa-facebook"></i>
+                <i className="fab fa-google"></i>
               </div>
             </div>
           </div>
