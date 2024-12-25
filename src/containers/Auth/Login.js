@@ -8,25 +8,49 @@ import passIcon from "../../assets/images/pass.svg";
 import "./Login.scss";
 import { FormattedMessage } from "react-intl";
 import adminService from "../../services/adminService";
-// import { animated } from "@react-spring/web";
-
+import { userService } from "../../services";
+import { toast } from "react-toastify";
 class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: "",
+      email: "",
       password: "",
       showPassword: false,
+      errMassage: "",
     };
   }
   handleOnChangeInput = (event, target) => {
+    if (this.state.email || this.state.password) {
+      this.setState({ errMassage: "" });
+    }
     this.setState({ [target]: event.target.value });
   };
-  handleLogin = () => {
-    console.log("state", this.state);
+  handleLogin = async () => {
+    if (this.state.email && this.state.password) {
+      let result = await userService.handleLogin(
+        this.state.email,
+        this.state.password
+      );
+      if (result && result.errCode === 1) {
+        this.setState({ errMassage: result.errMessage });
+        toast.error(result.errMessage);
+      } else {
+        toast.success("Login success");
+        this.props.userLoginSuccess(result.userData);
+      }
+    } else {
+      this.setState({ errMassage: "Please fill in all fields !!!!" });
+      toast.error("Please fill in all fields !!!!");
+    }
   };
   handleShowPassword = () => {
     this.setState({ showPassword: !this.state.showPassword });
+  };
+  handleKeyDown = (event) => {
+    if (event.keyCode == 13) {
+      this.handleLogin();
+    }
   };
   render() {
     return (
@@ -36,17 +60,16 @@ class Login extends Component {
             <div className="col-12 text-center text-login pt-3">Login</div>
             <div className="col-12 form-group">
               <label className="my-2" htmlFor="userName">
-                UserName:
+                Email:
               </label>
               <input
-                type="text"
+                type="email"
                 className="form-control"
                 id="userName"
-                placeholder="Your UserName"
-                value={this.state.username}
-                onChange={(event) =>
-                  this.handleOnChangeInput(event, "username")
-                }
+                placeholder="Your Email"
+                value={this.state.email}
+                onChange={(event) => this.handleOnChangeInput(event, "email")}
+                onKeyDown={(event) => this.handleKeyDown(event)}
               />
             </div>
             <div className="col-12 form-group">
@@ -62,6 +85,7 @@ class Login extends Component {
                 onChange={(event) =>
                   this.handleOnChangeInput(event, "password")
                 }
+                onKeyDown={(event) => this.handleKeyDown(event)}
               />
               <div
                 onClick={() => this.handleShowPassword()}
@@ -78,8 +102,8 @@ class Login extends Component {
                 {this.state.showPassword ? "Hide password" : "Show password"}
               </div>
             </div>
-            <div className="col-12 form-group my-2">
-              <span>Forgot your password?</span>
+            <div className="col-12">
+              <span style={{ color: "red" }}>{this.state.errMassage}</span>
             </div>
             <div className="col-12 text-center mt-3">
               <button
@@ -88,6 +112,9 @@ class Login extends Component {
               >
                 Login
               </button>
+            </div>
+            <div className="col-12  mt-2" style={{ cursor: "pointer" }}>
+              <span>Forgot your password?</span>
             </div>
             <div className="col-12">
               <hr />
@@ -101,6 +128,7 @@ class Login extends Component {
             </div>
           </div>
         </div>
+        {/* <ToastContainer /> */}
       </div>
     );
   }
@@ -115,9 +143,10 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     navigate: (path) => dispatch(push(path)),
-    adminLoginSuccess: (adminInfo) =>
-      dispatch(actions.adminLoginSuccess(adminInfo)),
-    adminLoginFail: () => dispatch(actions.adminLoginFail()),
+
+    // userLoginFail: () => dispatch(actions.adminLoginFail()),
+    userLoginSuccess: (userInfo) =>
+      dispatch(actions.userLoginSuccess(userInfo)),
   };
 };
 
