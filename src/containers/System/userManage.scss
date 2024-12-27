@@ -1,12 +1,20 @@
 .btn-update,
-.btn-Delete {
+.btn-Delete,
+.btn-create {
   padding: 5px 10px;
   border-radius: 5px;
   outline: none;
   border: none;
 }
+.btn-create {
+  background-color: rgb(9, 246, 9);
+  color: white;
+  &:hover {
+    opacity: 0.8;
+  }
+}
 .btn-update {
-  background-color: rgb(0, 166, 255);
+  background-color: #0071ba;
   color: white;
   &:hover {
     opacity: 0.8;
