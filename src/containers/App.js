@@ -16,9 +16,7 @@ import Home from "../routes/Home";
 import Login from "./Auth/Login";
 import Header from "./Header/Header";
 import System from "../routes/System";
-
-import { CustomToastCloseButton } from "../components/CustomToast";
-import ConfirmModal from "../components/ConfirmModal";
+import HomePage from "./HomePage/HomePage";
 
 import { ToastContainer, toast } from "react-toastify";
 
@@ -46,7 +44,6 @@ class App extends Component {
       <Fragment>
         <Router history={history}>
           <div className="main-container">
-            <ConfirmModal />
             {this.props.isLoggedIn && <Header />}
 
             <span className="content-container">
@@ -60,6 +57,7 @@ class App extends Component {
                   path={path.SYSTEM}
                   component={userIsAuthenticated(System)}
                 />
+                <Route path={path.HOME_PAGE} component={HomePage} />
               </Switch>
             </span>
 
