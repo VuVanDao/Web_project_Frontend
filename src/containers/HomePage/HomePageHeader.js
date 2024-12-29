@@ -6,6 +6,7 @@ import { KeyCodeUtils, LanguageUtils } from "../../utils";
 import { FormattedMessage } from "react-intl";
 import { toast } from "react-toastify";
 import "./HomePageHeader.scss";
+import Banner from "./Banner";
 class HomePageHeader extends Component {
   constructor(props) {
     super(props);
@@ -41,8 +42,10 @@ class HomePageHeader extends Component {
           <div className="right">
             <i className="fas fa-question-circle"></i>
             <span>Hỗ trợ</span>
+            <span>VN</span>
           </div>
         </div>
+        <Banner />
       </div>
     );
   }

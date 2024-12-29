@@ -1,6 +1,5 @@
 .HomePageHeader-container {
   height: 100px;
-  border: 1px solid red;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -35,6 +34,9 @@
     }
     p {
       cursor: pointer;
+      &:hover {
+        text-decoration: underline;
+      }
     }
   }
   .right {
