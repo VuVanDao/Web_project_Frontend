@@ -13,13 +13,17 @@ class Banner extends Component {
   }
 
   render() {
+    console.log("props", this.props);
+
     return (
       <>
         <div className="banner-container">
           <div className="banner-content">
-            <div className="banner-content-title">Nền tảng y tế</div>
             <div className="banner-content-title">
-              Chăm sóc sức khoẻ toàn diện
+              <FormattedMessage id="Banner.HealthcareEcosystem" />
+            </div>
+            <div className="banner-content-title">
+              <FormattedMessage id="Banner.ComprehensiveHealthcare" />
             </div>
             <div className="banner-content-search ">
               <label htmlFor="search">
@@ -30,27 +34,39 @@ class Banner extends Component {
             <div className="banner-content-feature">
               <div className="feature-item">
                 <i className="fas fa-hospital"></i>
-                <a href="#!">Khám chuyên khoa</a>
+                <a href="#!">
+                  <FormattedMessage id="Banner.SpecializedExamination" />
+                </a>
               </div>
               <div className="feature-item">
                 <i className="fas fa-mobile-alt"></i>
-                <a href="#!">Khám từ xa</a>
+                <a href="#!">
+                  <FormattedMessage id="Banner.TelehealthAssessment" />
+                </a>
               </div>
               <div className="feature-item">
                 <i className="fas fa-procedures"></i>
-                <a href="#!">Khám tổng quát</a>
+                <a href="#!">
+                  <FormattedMessage id="Banner.GeneralExamination" />
+                </a>
               </div>
               <div className="feature-item">
                 <i className="fas fa-stethoscope"></i>
-                <a href="#!">Xét nghiệm y học</a>
+                <a href="#!">
+                  <FormattedMessage id="Banner.MedicalTests" />
+                </a>
               </div>
               <div className="feature-item">
                 <i className="fas fa-user-md"></i>
-                <a href="#!">Sức khoẻ tinh thần</a>
+                <a href="#!">
+                  <FormattedMessage id="Banner.MentalHealth" />
+                </a>
               </div>
               <div className="feature-item">
                 <i className="fas fa-smile"></i>
-                <a href="#!"> Khám nha khoa</a>
+                <a href="#!">
+                  <FormattedMessage id="Banner.DentalExamination" />
+                </a>
               </div>
             </div>
           </div>

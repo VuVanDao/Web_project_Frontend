@@ -23,26 +23,44 @@ class HomePageHeader extends Component {
           </div>
           <div className="center">
             <div>
-              <span>Chuyên khoa</span>
-              <p>Tìm các bác sĩ theo chuyên khoa</p>
+              <span>
+                <FormattedMessage id="HomePage.Specialties" />
+              </span>
+              <p>
+                <FormattedMessage id="HomePage.FindDoctor" />
+              </p>
             </div>
             <div>
-              <span>Cơ sở y tế</span>
-              <p>Chọn phòng bệnh, phòng khám</p>
+              <span>
+                <FormattedMessage id="HomePage.MedicalFacility" />
+              </span>
+              <p>
+                <FormattedMessage id="HomePage.ChooseHospitalRoom" />
+              </p>
             </div>
             <div>
-              <span>Bác sĩ</span>
-              <p>Chọn bác sĩ giỏi</p>
+              <span>
+                <FormattedMessage id="HomePage.ChooseDoctor" />
+              </span>
+              <p>
+                <FormattedMessage id="HomePage.ChooseGoodDoctor" />
+              </p>
             </div>
             <div>
-              <span>Gói khám</span>
-              <p>Khám sức khoẻ tổng quát</p>
+              <span>
+                <FormattedMessage id="HomePage.ExaminationPackage" />
+              </span>
+              <p>
+                <FormattedMessage id="HomePage.GeneralHealthCheck" />
+              </p>
             </div>
           </div>
           <div className="right">
             <i className="fas fa-question-circle"></i>
-            <span>Hỗ trợ</span>
-            <span>VN</span>
+            <span>
+              <FormattedMessage id="HomePage.help" />
+            </span>
+            <span className="change-language">VN</span>
           </div>
         </div>
         <Banner />
