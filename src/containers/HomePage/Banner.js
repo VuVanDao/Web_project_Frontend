@@ -6,6 +6,10 @@ import { KeyCodeUtils, LanguageUtils } from "../../utils";
 import { FormattedMessage } from "react-intl";
 import { toast } from "react-toastify";
 import "./Banner.scss";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 class Banner extends Component {
   constructor(props) {
     super(props);

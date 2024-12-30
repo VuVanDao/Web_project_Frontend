@@ -6,6 +6,8 @@ import { KeyCodeUtils, LanguageUtils } from "../../utils";
 import { FormattedMessage } from "react-intl";
 import { toast } from "react-toastify";
 import HomePageHeader from "./HomePageHeader";
+import Banner from "./Banner";
+import Specialty from "./section/specialty";
 class HomePage extends Component {
   constructor(props) {
     super(props);
@@ -17,6 +19,8 @@ class HomePage extends Component {
       <>
         <div>
           <HomePageHeader />
+          <Banner />
+          <Specialty />
         </div>
       </>
     );

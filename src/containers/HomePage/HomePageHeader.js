@@ -17,7 +17,7 @@ class HomePageHeader extends Component {
     this.state = {};
   }
   handleChangeLanguage = (language) => {
-    this.props.changeLanguageApp(language);
+    this.props.changeLanguageAppRedux(language);
   };
   render() {
     return (
@@ -101,7 +101,7 @@ class HomePageHeader extends Component {
             )}
           </div>
         </div>
-        <Banner />
+        {/* <Banner /> */}
       </div>
     );
   }
@@ -116,7 +116,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     navigate: (path) => dispatch(push(path)),
-    changeLanguageApp: (language) => dispatch(changeLanguageApp(language)), //->appAction->appReducer
+    changeLanguageAppRedux: (language) => dispatch(changeLanguageApp(language)), //->appAction->appReducer
     // userLoginFail: () => dispatch(actions.adminLoginFail()),
     userLoginSuccess: (userInfo) =>
       dispatch(actions.userLoginSuccess(userInfo)),
