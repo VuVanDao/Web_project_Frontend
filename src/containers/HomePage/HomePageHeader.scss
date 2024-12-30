@@ -55,5 +55,13 @@
     .change-language:hover {
       text-decoration: underline;
     }
+    .img-changeLanguage {
+      width: 45px;
+      cursor: pointer;
+      transition: 0.5s;
+      &:hover {
+        scale: 1.25;
+      }
+    }
   }
 }
