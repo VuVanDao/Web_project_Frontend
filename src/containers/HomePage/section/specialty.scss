@@ -2,32 +2,29 @@
   margin: 0 120px;
 
   .slick-list {
-    height: 200px !important;
-    // background-color: rgb(220, 220, 246);
-    text-align: center;
-    margin: 0 5px;
+    height: 250px !important;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    & {
-      height: 100px;
-    }
-    div:nth-child(even),
-    div:nth-child(odd) {
+
+    div {
       border-radius: 10px;
       height: 100px !important;
       display: flex !important;
       justify-content: center;
-      align-items: center;
-      height: 500px !important;
       gap: 15px;
-      //   border: 1px solid;
     }
     .div {
-      background-color: red;
+      display: flex;
+      flex-direction: column;
       img {
-        width: 350px;
+        width: 300px;
+        height: 200px;
+        cursor: pointer;
+      }
+      p {
+        font-size: 17px;
+        font-weight: 600;
       }
     }
   }
@@ -36,22 +33,53 @@
   }
   .slick-prev::before,
   .slick-next::before {
+    // color: red !important;
     opacity: 1;
-    // border: 1px solid;
     font-size: 40px;
   }
   .slick-prev {
-    transform: translate(-150%, -85%) !important;
+    transform: translate(-250%, -85%) !important;
   }
   .slick-next {
     transform: translate(150%, -85%) !important;
   }
 }
-.specialty-container {
-  background-color: rgb(220, 216, 216);
+.specialty-container,
+.Outstanding-doctor-container {
+  background-color: rgb(235, 229, 229) !important;
+}
+.specialty-container,
+.Medical-facility-container,
+.Outstanding-doctor-container,
+.HandBook-container {
+  background-color: white;
   padding: 5px;
-  height: 300px;
+  height: 350px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  .slick-prev::before,
+  .slick-next::before {
+    color: #a1c4fd !important;
+    opacity: 1;
+    font-size: 40px;
+  }
+  .specialty-title,
+  .Medical-facility-title,
+  .Outstanding-doctor-title,
+  .HandBook-title {
+    margin: 0px 135px;
+    font-size: 30px;
+    font-weight: 700;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    button {
+      font-size: 15px;
+      padding: 5px 10px !important;
+      background-color: orange;
+      border: none;
+      border-radius: 5px;
+    }
+  }
 }

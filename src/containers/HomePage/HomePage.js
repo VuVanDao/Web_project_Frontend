@@ -8,19 +8,35 @@ import { toast } from "react-toastify";
 import HomePageHeader from "./HomePageHeader";
 import Banner from "./Banner";
 import Specialty from "./section/specialty";
+import MedicalFacility from "./section/MedicalFacility";
+import OutstandingDoctor from "./section/OutstandingDoctor";
+import HandBook from "./section/HandBook";
+
 class HomePage extends Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
-
+  settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    autoplay: false,
+    speed: 1000,
+    autoplaySpeed: 5000,
+  };
   render() {
     return (
       <>
         <div>
           <HomePageHeader />
           <Banner />
-          <Specialty />
+          <Specialty settings={this.settings} />
+          <MedicalFacility settings={this.settings} />
+          <OutstandingDoctor settings={this.settings} />
+          <HandBook settings={this.settings} />
         </div>
       </>
     );

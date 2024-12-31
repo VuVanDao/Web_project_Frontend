@@ -8,7 +8,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-class Specialties extends Component {
+class MedicalFacility extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -16,35 +16,35 @@ class Specialties extends Component {
 
   render() {
     return (
-      <div className="specialty-container ">
-        <div className="specialty-title mb-3">
-          <span>Chuyên khoa phổ biến</span>
+      <div className="Medical-facility-container">
+        <div className="Medical-facility-title mb-3">
+          <span>Cơ sở y tế</span>
           <button>Xem thêm</button>
         </div>
         <div>
           <Slider {...this.props.settings}>
             <div className="div">
-              <img src="https://i.pinimg.com/originals/64/97/50/649750b6a1d69822a2a3f1e92429e69e.gif" />
+              <img src="https://i.pinimg.com/originals/c6/c0/09/c6c009dc350e388818ff4f61a0f06c74.gif" />
               <p>1sdasdasdasdasdasdas</p>
             </div>
             <div className="div">
-              <img src="https://i.pinimg.com/originals/3e/9b/25/3e9b25811c481fb8a3d6c87f8ac7a857.gif" />
+              <img src="https://i.pinimg.com/originals/56/a6/14/56a614261d423da1825452363174c685.gif" />
               <p>1sdasdasdasdasdasdas</p>
             </div>
             <div className="div">
-              <img src="https://i.pinimg.com/originals/34/1c/af/341caf7e590b927f95b08084db05b8ef.gif" />
+              <img src="https://i.pinimg.com/originals/cf/1e/b5/cf1eb5ae90533c39b6b5bba02b247506.gif" />
               <p>1sdasdasdasdasdasdas</p>
             </div>
             <div className="div">
-              <img src="https://i.pinimg.com/originals/b1/03/6e/b1036e5b4dee3ed79d1023983c0f111f.gif" />
+              <img src="https://i.pinimg.com/originals/0d/c4/b3/0dc4b38ee54a0169f5730bcbe4f94d3a.gif" />
               <p>1sdasdasdasdasdasdas</p>
             </div>
             <div className="div">
-              <img src="https://i.pinimg.com/originals/f3/db/91/f3db9196a224ce07667f3a9fa4f52af6.gif" />
+              <img src="https://i.pinimg.com/originals/28/2f/e1/282fe1d7e40e216c723740b0af255952.gif" />
               <p>1sdasdasdasdasdasdas</p>
             </div>
             <div className="div">
-              <img src="https://i.pinimg.com/originals/f5/29/f4/f529f4991a8ed95972b12bdb349f71a0.gif" />
+              <img src="https://i.pinimg.com/originals/6a/d0/7b/6ad07bc7872b7f4cafc7f14ad7638306.gif" />
               <p>1sdasdasdasdasdasdas</p>
             </div>
           </Slider>
@@ -64,4 +64,4 @@ const mapDispatchToProps = (dispatch) => {
   return {};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Specialties);
+export default connect(mapStateToProps, mapDispatchToProps)(MedicalFacility);
