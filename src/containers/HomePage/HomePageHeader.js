@@ -25,7 +25,9 @@ class HomePageHeader extends Component {
         <div className="HomePageHeader-container">
           <div className="left">
             <i className="fas fa-bars"></i>
-            <img src="https://cf-sparkai-live.s3.amazonaws.com/users/2qqwVX7WxKwrLfu1L0wf530U2U8/spark_ai/o_bg-remover-gen_2qqwzHpFhVHt1gKwJW7phiQHUFO.png" />
+            <a href="/home">
+              <img src="https://cf-sparkai-live.s3.amazonaws.com/users/2qqwVX7WxKwrLfu1L0wf530U2U8/spark_ai/o_bg-remover-gen_2qqwzHpFhVHt1gKwJW7phiQHUFO.png" />
+            </a>
           </div>
           <div className="center">
             <div>
@@ -101,7 +103,6 @@ class HomePageHeader extends Component {
             )}
           </div>
         </div>
-        {/* <Banner /> */}
       </div>
     );
   }

@@ -11,6 +11,8 @@ import Specialty from "./section/specialty";
 import MedicalFacility from "./section/MedicalFacility";
 import OutstandingDoctor from "./section/OutstandingDoctor";
 import HandBook from "./section/HandBook";
+import AboutUs from "./section/AboutUs";
+import HomePageFooter from "./HomePageFooter";
 
 class HomePage extends Component {
   constructor(props) {
@@ -23,7 +25,7 @@ class HomePage extends Component {
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
-    autoplay: false,
+    autoplay: true,
     speed: 1000,
     autoplaySpeed: 5000,
   };
@@ -37,6 +39,8 @@ class HomePage extends Component {
           <MedicalFacility settings={this.settings} />
           <OutstandingDoctor settings={this.settings} />
           <HandBook settings={this.settings} />
+          <AboutUs />
+          <HomePageFooter />
         </div>
       </>
     );

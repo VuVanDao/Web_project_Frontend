@@ -33,7 +33,6 @@
   }
   .slick-prev::before,
   .slick-next::before {
-    // color: red !important;
     opacity: 1;
     font-size: 40px;
   }
@@ -44,9 +43,9 @@
     transform: translate(150%, -85%) !important;
   }
 }
-.specialty-container,
-.Outstanding-doctor-container {
-  background-color: rgb(235, 229, 229) !important;
+.Medical-facility-container,
+.HandBook-container {
+  background-color: #a3d7f9 !important;
 }
 .specialty-container,
 .Medical-facility-container,

@@ -24,27 +24,27 @@ class HandBook extends Component {
         <div>
           <Slider {...this.props.settings}>
             <div className="div">
-              <img src="https://i.pinimg.com/originals/fb/0e/a2/fb0ea2d516788e45e4b3f31436cf3a1d.gif" />
+              <img src="https://i.pinimg.com/originals/c7/2f/df/c72fdf076d94fffbaa09b5b9db530acd.gif" />
               <p>1sdasdasdasdasdasdas</p>
             </div>
             <div className="div">
-              <img src="https://i.pinimg.com/originals/9c/25/15/9c25153327abed01aa1b67595d081b49.gif" />
+              <img src="https://i.pinimg.com/originals/3a/ff/62/3aff6214859a8f7d403ac7a2eda74829.gif" />
               <p>1sdasdasdasdasdasdas</p>
             </div>
             <div className="div">
-              <img src="https://i.pinimg.com/originals/bb/6a/a5/bb6aa5121851f1b57a2cb50f73005c66.gif" />
+              <img src="https://i.pinimg.com/originals/18/a2/75/18a27584f11a5ef10b4ab7dd148052ce.gif" />
               <p>1sdasdasdasdasdasdas</p>
             </div>
             <div className="div">
-              <img src="https://i.pinimg.com/originals/68/c9/97/68c9974bb7453834819fe8c7622f82f9.gif" />
+              <img src="https://i.pinimg.com/originals/b7/33/7f/b7337f803eb8ec93fefe2247331783a6.gif" />
               <p>1sdasdasdasdasdasdas</p>
             </div>
             <div className="div">
-              <img src="https://i.pinimg.com/originals/02/68/87/0268871f55ef32809b9f02c83ab1dc23.gif" />
+              <img src="https://i.pinimg.com/originals/f5/3f/6c/f53f6c8aad6b3df514c608249378b550.gif" />
               <p>1sdasdasdasdasdasdas</p>
             </div>
             <div className="div">
-              <img src="https://i.pinimg.com/originals/5f/f3/e1/5ff3e15a8cac489fa779a3dabd2ceacc.gif" />
+              <img src="https://i.pinimg.com/originals/78/01/e8/7801e8c3976a91489510a5f7850bc1a0.gif" />
               <p>1sdasdasdasdasdasdas</p>
             </div>
           </Slider>
