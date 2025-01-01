@@ -8,6 +8,7 @@ import ModalUpdate from "./ModalUpdate";
 import { toast } from "react-toastify";
 import ModalDelete from "./ModalDelete";
 import { emitter } from "../../utils/emiter";
+import { LANGUAGES } from "../../utils";
 class UserManage extends Component {
   constructor(props) {
     super(props);
@@ -64,7 +65,7 @@ class UserManage extends Component {
       <>
         <div className="text-center p-3">
           <h3 style={{ fontWeight: "700", color: "#0071ba" }}>
-            Manage users hehehe
+            <FormattedMessage id="manage-user.title" />
           </h3>
         </div>
         <div className="text-center" style={{ margin: "10px" }}>
@@ -72,7 +73,8 @@ class UserManage extends Component {
             className="btn-create"
             onClick={() => this.ShowModalCreateUser()}
           >
-            Add new user <i className="fas fa-user-plus"></i>
+            <FormattedMessage id="system.user-manage.add-user" />
+            <i className="fas fa-user-plus"></i>
           </button>
         </div>
         <div className="container">
@@ -80,13 +82,27 @@ class UserManage extends Component {
             <thead>
               <tr style={{ textAlign: "center" }}>
                 <th scope="col">Id</th>
-                <th scope="col">FirstName</th>
-                <th scope="col">LastName</th>
-                <th scope="col">Email</th>
-                <th scope="col">Address</th>
-                <th scope="col">Gender</th>
-                <th scope="col">PhoneNumber</th>
-                <th scope="col">Handle</th>
+                <th scope="col">
+                  <FormattedMessage id="system.user-manage.firstName" />
+                </th>
+                <th scope="col">
+                  <FormattedMessage id="system.user-manage.lastName" />
+                </th>
+                <th scope="col">
+                  <FormattedMessage id="system.user-manage.email" />
+                </th>
+                <th scope="col">
+                  <FormattedMessage id="system.user-manage.address" />
+                </th>
+                <th scope="col">
+                  <FormattedMessage id="system.user-manage.gender" />
+                </th>
+                <th scope="col">
+                  <FormattedMessage id="system.user-manage.mobile" />
+                </th>
+                <th scope="col">
+                  <FormattedMessage id="system.user-manage.feature" />
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -96,11 +112,17 @@ class UserManage extends Component {
                   return (
                     <tr style={{ textAlign: "center" }} key={index}>
                       <th scope="row">{item.id}</th>
-                      <td>{item.firstName}</td>
                       <td>{item.lastName}</td>
+                      <td>{item.firstName}</td>
                       <td>{item.email}</td>
                       <td>{item.address}</td>
-                      <td>{item.gender === 1 ? "Male" : "Female"}</td>
+                      <td>
+                        {item.gender === 1 ? (
+                          <FormattedMessage id="system.user-manage.male" />
+                        ) : (
+                          <FormattedMessage id="system.user-manage.female" />
+                        )}
+                      </td>
                       <td>{item.phoneNumber}</td>
                       <td>
                         <div
@@ -114,13 +136,15 @@ class UserManage extends Component {
                             className="btn-update"
                             onClick={() => this.ShowModalUpdateUser(item.id)}
                           >
-                            Update <i className="fas fa-user-edit"></i>
+                            <FormattedMessage id="system.user-manage.edit-user" />
+                            <i className="fas fa-user-edit"></i>
                           </button>
                           <button
                             className="btn-Delete"
                             onClick={() => this.ShowModalDeleteUser(item.id)}
                           >
-                            Delete <i className="fas fa-user-times"></i>
+                            <FormattedMessage id="system.user-manage.del-user" />
+                            <i className="fas fa-user-times"></i>
                           </button>
                         </div>
                       </td>

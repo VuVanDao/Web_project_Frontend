@@ -1,23 +1,42 @@
 @import "../../styles/common.scss";
 
 .header-container {
-    z-index: 99;
+  z-index: 99;
+  display: flex;
+  justify-content: space-between;
+  background-color: $colormain;
+  color: $common-text-color;
+  height: 40px;
+  position: relative;
+  .header-feature {
     display: flex;
-    justify-content: space-between;
-    background-color: $colormain;
-    color: $common-text-color;
-    height: 40px;
-    position: relative;
-    .btn-logout {
-        color: $common-text-color;
-        line-height: 40px;
-        height: 40px;
-        padding: 0 10px;
-        &:hover {
-            background-color: darken($colormain, 5);
-        }
-        i {
-            font-size: $base-size + 1px;
-        }
+    align-items: center;
+    gap: 20px;
+    .change-language {
+      cursor: pointer;
     }
+    .change-language:hover {
+      text-decoration: underline;
+    }
+    .img-changeLanguage {
+      width: 45px;
+      cursor: pointer;
+      transition: 0.5s;
+      &:hover {
+        scale: 1.25;
+      }
+    }
+    .btn-logout {
+      color: $common-text-color;
+      line-height: 40px;
+      height: 40px;
+      padding: 0 10px;
+      &:hover {
+        background-color: darken($colormain, 5);
+      }
+      i {
+        font-size: $base-size + 1px;
+      }
+    }
+  }
 }

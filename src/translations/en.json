@@ -32,7 +32,7 @@
         "header": "System Administrator",
         "user-manage": "User manage",
         "product-manage": "Package manage",
-        "register-package-group-or-account": "Register service package for group/account"
+        "user-redux": "User redux"
       },
       "system-parameter": {
         "header": "System-parameter"
@@ -44,13 +44,20 @@
       "fail-to-load-fouser": "Fail to load system users list",
       "user-id": "User ID",
       "usertype": "User type",
-      "username": "Username",
+      "firstName": "firstName",
+      "lastName": "lastName",
       "fullname": "Fullname",
+      "address": "address",
       "mobile": "Phone",
       "email": "Email",
-      "status": "Status",
-      "add-user": "Add user",
-      "edit-user": "Edit user information",
+      "gender": "Gender",
+      "role": "role",
+      "male": "male",
+      "female": "female",
+      "feature": "Feature",
+      "add-user": "Add new user ",
+      "edit-user": "Edit user ",
+      "del-user": "Delete user ",
       "password": "Password",
       "retype-password": "Retype password",
       "add-user-success": "Add user successfully",
@@ -137,5 +144,28 @@
     "MedicalTests": "Medical tests",
     "MentalHealth": "Mental health",
     "DentalExamination": "Dental examination"
+  },
+  "section": {
+    "Specialty": "Specialty",
+    "OutstandingDoctor": "Outstanding doctor",
+    "MedicalFacility": "Medical facility",
+    "Handbook": "Handbook",
+    "AboutUs": "About Us",
+    "more": "More",
+    "title": {
+      "description": "Self-assessment shows that our hospital is quite reputable, so just leave your life to us, with a team of extremely good doctors, graduated with a chatGPT , so it's okay, live is fine, die is in another life, ok? Watch the video on the left, although it has no effect, it's fun to watch..."
+    }
+  },
+  "manage-user": {
+    "title": "Manage user"
+  },
+  "create-user": {
+    "title": "Create new user"
+  },
+  "delete-user": {
+    "title": "Delete a user"
+  },
+  "update-user": {
+    "title": "Update a user"
   }
 }

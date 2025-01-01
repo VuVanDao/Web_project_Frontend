@@ -18,8 +18,12 @@ class MedicalFacility extends Component {
     return (
       <div className="Medical-facility-container">
         <div className="Medical-facility-title mb-3">
-          <span>Cơ sở y tế</span>
-          <button>Xem thêm</button>
+          <span>
+            <FormattedMessage id="section.MedicalFacility" />
+          </span>
+          <button>
+            <FormattedMessage id="section.more" />
+          </button>
         </div>
         <div>
           <Slider {...this.props.settings}>

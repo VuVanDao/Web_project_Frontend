@@ -18,8 +18,12 @@ class OutstandingDoctor extends Component {
     return (
       <div className="Outstanding-doctor-container">
         <div className="Outstanding-doctor-title mb-3">
-          <span>Bác sĩ nổi bật</span>
-          <button>Xem thêm</button>
+          <span>
+            <FormattedMessage id="section.OutstandingDoctor" />
+          </span>
+          <button>
+            <FormattedMessage id="section.more" />
+          </button>
         </div>
         <div>
           <Slider {...this.props.settings}>

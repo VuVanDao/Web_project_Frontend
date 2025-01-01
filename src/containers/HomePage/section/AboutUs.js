@@ -27,14 +27,12 @@ class AboutUs extends Component {
             ></iframe>
           </div>
           <div className="right content">
-            <div className="right-title">Về chúng tôi</div>
+            <div className="right-title">
+              <FormattedMessage id="section.AboutUs" />
+            </div>
             <div className="right-description">
               <span>
-                Tự đánh giá thì bệnh viện chúng tôi khá là uy tín , nên cứ giao
-                cái mạng của bạn cho chúng tôi,với dàn bác sĩ giỏi vcl, tốt
-                nghiệp bằng chatGPT nên cứ là oke, sống thì thôi, chết thì sáng
-                kiếp khác, ok không? Xem cái video bên trái đi, tuy không có tác
-                dụng gì nhưng xem hay lắm ...
+                <FormattedMessage id="section.title.description" />
               </span>
             </div>
           </div>

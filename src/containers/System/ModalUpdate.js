@@ -74,6 +74,8 @@ class ModalUpdate extends Component {
   };
   handleUpdateAUser = async () => {
     let checkState = this.handleValidate();
+    console.log("state", this.state);
+
     if (!checkState) {
       toast.error("Please fill in the information completely");
     } else {
@@ -95,13 +97,17 @@ class ModalUpdate extends Component {
           centered
         >
           <Modal.Header>
-            <Modal.Title>Update a user</Modal.Title>
+            <Modal.Title>
+              <FormattedMessage id="update-user.title" />
+            </Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <div className="container">
               <div className="row">
                 <div className="col-6">
-                  <label htmlFor="email">Email:</label>
+                  <label htmlFor="email">
+                    <FormattedMessage id="system.user-manage.email" />:
+                  </label>
                   <input
                     type="text"
                     className="form-control"
@@ -115,7 +121,9 @@ class ModalUpdate extends Component {
                   />
                 </div>
                 <div className="col-6">
-                  <label htmlFor="password">Password:</label>
+                  <label htmlFor="password">
+                    <FormattedMessage id="system.user-manage.password" />:
+                  </label>
                   <input
                     type="text"
                     className="form-control"
@@ -131,7 +139,9 @@ class ModalUpdate extends Component {
               </div>
               <div className="row mt-3">
                 <div className="col-6">
-                  <label htmlFor="firstName">FirstName:</label>
+                  <label htmlFor="firstName">
+                    <FormattedMessage id="system.user-manage.firstName" />:
+                  </label>
                   <input
                     type="text"
                     className="form-control"
@@ -144,7 +154,9 @@ class ModalUpdate extends Component {
                   />
                 </div>
                 <div className="col-6">
-                  <label htmlFor="lastName">LastName:</label>
+                  <label htmlFor="lastName">
+                    <FormattedMessage id="system.user-manage.lastName" />:
+                  </label>
                   <input
                     type="text"
                     className="form-control"
@@ -159,7 +171,9 @@ class ModalUpdate extends Component {
               </div>
               <div className="row mt-3">
                 <div className="col-6">
-                  <label htmlFor="address">Address:</label>
+                  <label htmlFor="address">
+                    <FormattedMessage id="system.user-manage.address" />:
+                  </label>
                   <input
                     type="text"
                     className="form-control"
@@ -172,7 +186,9 @@ class ModalUpdate extends Component {
                   />
                 </div>
                 <div className="col-6">
-                  <label htmlFor="phoneNumber">PhoneNumber:</label>
+                  <label htmlFor="phoneNumber">
+                    <FormattedMessage id="system.user-manage.mobile" />:
+                  </label>
                   <input
                     type="text"
                     className="form-control"
@@ -187,7 +203,9 @@ class ModalUpdate extends Component {
               </div>
               <div className="row mt-3">
                 <div className="col-6">
-                  <label htmlFor="inputState">Gender</label>
+                  <label htmlFor="inputState">
+                    <FormattedMessage id="system.user-manage.gender" />
+                  </label>
                   <select
                     id="inputState"
                     className="form-control"
@@ -202,7 +220,9 @@ class ModalUpdate extends Component {
                   </select>
                 </div>
                 <div className="col-6">
-                  <label htmlFor="inputZip">Role</label>
+                  <label htmlFor="inputZip">
+                    <FormattedMessage id="system.user-manage.role" />
+                  </label>
                   <select
                     id="inputZip"
                     className="form-control"
@@ -226,14 +246,14 @@ class ModalUpdate extends Component {
               onClick={() => this.toggle()}
               style={{ padding: "0px 10px" }}
             >
-              Close
+              <FormattedMessage id="common.close" />
             </Button>
             <Button
               variant="primary"
               onClick={() => this.handleUpdateAUser()}
               style={{ padding: "0px 10px" }}
             >
-              Save Changes
+              <FormattedMessage id="common.confirm" />
             </Button>
           </Modal.Footer>
         </Modal>

@@ -18,8 +18,12 @@ class Specialties extends Component {
     return (
       <div className="specialty-container ">
         <div className="specialty-title mb-3">
-          <span>Chuyên khoa phổ biến</span>
-          <button>Xem thêm</button>
+          <span>
+            <FormattedMessage id="section.Specialty" />
+          </span>
+          <button>
+            <FormattedMessage id="section.more" />
+          </button>
         </div>
         <div>
           <Slider {...this.props.settings}>

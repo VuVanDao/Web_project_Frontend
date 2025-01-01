@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { push } from "connected-react-router";
-// import * as actions from "../../store/actions";
 import { FormattedMessage } from "react-intl";
 import "./specialty.scss";
 import Slider from "react-slick";
@@ -18,8 +17,12 @@ class HandBook extends Component {
     return (
       <div className="HandBook-container">
         <div className="HandBook-title mb-3">
-          <span>Cẩm nang</span>
-          <button>Xem thêm</button>
+          <span>
+            <FormattedMessage id="section.Handbook" />
+          </span>
+          <button>
+            <FormattedMessage id="section.more" />
+          </button>
         </div>
         <div>
           <Slider {...this.props.settings}>

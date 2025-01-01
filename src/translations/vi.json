@@ -32,7 +32,7 @@
         "header": "Quản trị hệ thống",
         "user-manage": "Quản lý người sử dụng",
         "product-manage": "Quản lý gói",
-        "register-package-group-or-account": "Đăng ký gói dịch vụ cho nhóm/tài khoản"
+        "user-redux": "Quản lý người dùng với redux"
       },
       "system-parameter": {
         "header": "Tham số hệ thống"
@@ -44,13 +44,20 @@
       "fail-to-load-fouser": "Không thể tải về danh sách người dùng",
       "user-id": "Mã người sử dụng",
       "usertype": "Loại người dùng",
-      "username": "Tên người dùng",
+      "firstName": "Tên người dùng",
+      "lastName": "Họ",
       "fullname": "Tên đầy đủ",
+      "address": "Địa chỉ",
       "mobile": "Số điện thoại",
       "email": "Email",
-      "status": "Trạng thái",
-      "add-user": "Thêm người dùng",
-      "edit-user": "Sửa thông tin người dùng",
+      "gender": "Giới tính",
+      "role": "Quyền",
+      "male": "nam",
+      "female": "nữ",
+      "feature": "Chức năng",
+      "add-user": "Thêm người dùng ",
+      "edit-user": "Sửa thông tin ",
+      "del-user": "Xoá người dùng",
       "password": "Mật khẩu",
       "retype-password": "Nhập lại mật khẩu",
       "add-user-success": "Thêm người dùng thành công",
@@ -137,5 +144,28 @@
     "MedicalTests": "Xét nghiệm y học",
     "MentalHealth": "Sức khoẻ tinh thần",
     "DentalExamination": "Khám nha khoa"
+  },
+  "section": {
+    "Specialty": "Chuyên khoa phổ biến",
+    "OutstandingDoctor": "Bác sĩ nổi bật",
+    "MedicalFacility": "Cơ sở y tế",
+    "Handbook": "Cẩm nang",
+    "more": "Xem thêm",
+    "AboutUs": "Về chúng tôi",
+    "title": {
+      "description": "Tự đánh giá thì bệnh viện chúng tôi khá là uy tín , nên cứ giao cái mạng của bạn cho chúng tôi,với dàn bác sĩ giỏi vcl, tốt nghiệp bằng chatGPT nên cứ là oke, sống thì thôi, chết thì sáng kiếp khác, ok không? Xem cái video bên trái đi, tuy không có tác dụng gì nhưng xem hay lắm ..."
+    }
+  },
+  "manage-user": {
+    "title": "Quản lí người dùng"
+  },
+  "create-user": {
+    "title": "Tạo người dùng"
+  },
+  "delete-user": {
+    "title": "Có chắc là muốn xoá không?"
+  },
+  "update-user": {
+    "title": "Chỉnh sửa người dùng"
   }
 }
