@@ -96,7 +96,7 @@ class ModalUpdate extends Component {
           size="xl"
           centered
         >
-          <Modal.Header>
+          <Modal.Header closeButton>
             <Modal.Title>
               <FormattedMessage id="update-user.title" />
             </Modal.Title>
@@ -241,18 +241,10 @@ class ModalUpdate extends Component {
             </div>
           </Modal.Body>
           <Modal.Footer>
-            <Button
-              variant="secondary"
-              onClick={() => this.toggle()}
-              style={{ padding: "0px 10px" }}
-            >
+            <Button variant="secondary" onClick={() => this.toggle()}>
               <FormattedMessage id="common.close" />
             </Button>
-            <Button
-              variant="primary"
-              onClick={() => this.handleUpdateAUser()}
-              style={{ padding: "0px 10px" }}
-            >
+            <Button variant="primary" onClick={() => this.handleUpdateAUser()}>
               <FormattedMessage id="common.confirm" />
             </Button>
           </Modal.Footer>

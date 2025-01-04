@@ -69,6 +69,8 @@
       "role": "Quyền",
       "male": "nam",
       "female": "nữ",
+      "image": "Hình ảnh",
+      "level": "Trình độ",
       "feature": "Chức năng",
       "add-user": "Thêm người dùng ",
       "edit-user": "Sửa thông tin ",

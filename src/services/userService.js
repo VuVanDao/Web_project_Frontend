@@ -15,10 +15,14 @@ const updateAUser = (data) => {
 const deleteAUser = (userId) => {
   return axios.delete(`/api/delete-a-users?id=${userId}`);
 };
+const getAllCode = (data) => {
+  return axios.get(`/allCode?type=${data}`);
+};
 export default {
   handleLogin,
   getAllUser,
   createNewUser,
   updateAUser,
   deleteAUser,
+  getAllCode,
 };

@@ -87,14 +87,14 @@ class ModalCreate extends Component {
           size="xl"
           centered
         >
-          <Modal.Header>
+          <Modal.Header closeButton>
             <Modal.Title>
               <FormattedMessage id="create-user.title" />
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <div className="container">
-              <div className="row">
+              <div className="">
                 <div className="col-6">
                   <label htmlFor="email">
                     <FormattedMessage id="system.user-manage.email" />:
@@ -209,7 +209,9 @@ class ModalCreate extends Component {
                   </select>
                 </div>
                 <div className="col-6">
-                  <label htmlFor="inputZip">Role</label>
+                  <label htmlFor="inputZip">
+                    <FormattedMessage id="system.user-manage.role" />
+                  </label>
                   <select
                     id="inputZip"
                     className="form-control"
@@ -228,18 +230,10 @@ class ModalCreate extends Component {
             </div>
           </Modal.Body>
           <Modal.Footer>
-            <Button
-              variant="secondary"
-              onClick={() => this.toggle()}
-              style={{ padding: "0px 10px" }}
-            >
+            <Button variant="secondary" onClick={() => this.toggle()}>
               <FormattedMessage id="common.close" />
             </Button>
-            <Button
-              variant="primary"
-              onClick={() => this.handleAddNewUser()}
-              style={{ padding: "0px 10px" }}
-            >
+            <Button variant="primary" onClick={() => this.handleAddNewUser()}>
               <FormattedMessage id="common.confirm" />
             </Button>
           </Modal.Footer>

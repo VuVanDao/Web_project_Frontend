@@ -63,6 +63,8 @@
       "role": "role",
       "male": "male",
       "female": "female",
+      "image": "image",
+      "level": "level",
       "feature": "Feature",
       "add-user": "Add new user ",
       "edit-user": "Edit user ",

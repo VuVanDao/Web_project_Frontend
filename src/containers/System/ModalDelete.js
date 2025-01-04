@@ -3,7 +3,6 @@ import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import { first } from "lodash";
 import { toast } from "react-toastify";
 import { userService } from "../../services";
 import { emitter } from "../../utils/emiter";
@@ -81,7 +80,7 @@ class ModalDelete extends Component {
           size="xl"
           centered
         >
-          <Modal.Header>
+          <Modal.Header closeButton>
             <Modal.Title>
               <FormattedMessage id="delete-user.title" />
             </Modal.Title>
@@ -232,18 +231,10 @@ class ModalDelete extends Component {
             </div>
           </Modal.Body>
           <Modal.Footer>
-            <Button
-              variant="secondary"
-              onClick={() => this.toggle()}
-              style={{ padding: "0px 10px" }}
-            >
+            <Button variant="secondary" onClick={() => this.toggle()}>
               <FormattedMessage id="common.close" />
             </Button>
-            <Button
-              variant="primary"
-              onClick={() => this.handleDeleteAUser()}
-              style={{ padding: "0px 10px" }}
-            >
+            <Button variant="primary" onClick={() => this.handleDeleteAUser()}>
               <FormattedMessage id="common.confirm" />
             </Button>
           </Modal.Footer>
