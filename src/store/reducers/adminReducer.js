@@ -7,22 +7,48 @@ const initialState = {
 };
 
 const adminReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case actionTypes.FETCH_GENDER_START:
-      console.log("test reduxxx", action);
+  let copyState = { ...state };
 
+  switch (action.type) {
+    //gender
+    case actionTypes.FETCH_GENDER_START:
       return {
         ...state,
       };
     case actionTypes.FETCH_GENDER_SUCCESS:
-      let copyState = { ...state };
       copyState.genderArr = action.data;
       return {
         ...copyState,
       };
     case actionTypes.FETCH_GENDER_FAIL:
-      console.log("test reduxxx", action);
-
+      return {
+        ...state,
+      };
+    //position
+    case actionTypes.FETCH_POSITION_START:
+      return {
+        ...state,
+      };
+    case actionTypes.FETCH_POSITION_SUCCESS:
+      copyState.positionArr = action.data;
+      return {
+        ...copyState,
+      };
+    case actionTypes.FETCH_POSITION_FAIL:
+      return {
+        ...state,
+      };
+    //role
+    case actionTypes.FETCH_ROLE_START:
+      return {
+        ...state,
+      };
+    case actionTypes.FETCH_ROLE_SUCCESS:
+      copyState.roleArr = action.data;
+      return {
+        ...copyState,
+      };
+    case actionTypes.FETCH_ROLE_FAIL:
       return {
         ...state,
       };

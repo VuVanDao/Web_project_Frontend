@@ -40,6 +40,8 @@ class UserRedux extends Component {
   // }
   async componentDidMount() {
     await this.props.getGenderStart();
+    await this.props.getPositionStart();
+    await this.props.getRoleStart();
   }
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.genderArr !== this.props.genderArr) {
@@ -47,12 +49,20 @@ class UserRedux extends Component {
         genderArr: this.props.genderArr,
       });
     }
+    if (prevProps.positionArr !== this.props.positionArr) {
+      this.setState({
+        positionArr: this.props.positionArr,
+      });
+    }
+    if (prevProps.roleArr !== this.props.roleArr) {
+      this.setState({
+        roleArr: this.props.roleArr,
+      });
+    }
   }
   render() {
     let { userInfo, language } = this.props;
     let { genderArr, positionArr, roleArr } = this.state;
-    console.log("genderArr", genderArr);
-
     return (
       <>
         <div className="text-center title">
@@ -180,12 +190,16 @@ const mapStateToProps = (state) => {
     userInfo: state.user.userInfo,
     language: state.app.language,
     genderArr: state.admin.genderArr,
+    positionArr: state.admin.positionArr,
+    roleArr: state.admin.roleArr,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     getGenderStart: () => dispatch(actions.fetchGenderStart()),
+    getPositionStart: () => dispatch(actions.fetchPositionStart()),
+    getRoleStart: () => dispatch(actions.fetchRoleStart()),
   };
 };
 
