@@ -20,6 +20,8 @@ class HomePageHeader extends Component {
     this.props.changeLanguageAppRedux(language);
   };
   render() {
+    console.log("props", this.props.userInfo);
+
     return (
       <div>
         <div className="HomePageHeader-container">
@@ -111,6 +113,7 @@ class HomePageHeader extends Component {
 const mapStateToProps = (state) => {
   return {
     language: state.app.language,
+    userInfo: state.user.userInfo,
   };
 };
 
@@ -119,8 +122,8 @@ const mapDispatchToProps = (dispatch) => {
     navigate: (path) => dispatch(push(path)),
     changeLanguageAppRedux: (language) => dispatch(changeLanguageApp(language)), //->appAction->appReducer
     // userLoginFail: () => dispatch(actions.adminLoginFail()),
-    userLoginSuccess: (userInfo) =>
-      dispatch(actions.userLoginSuccess(userInfo)),
+    // userLoginSuccess: (userInfo) =>
+    //   dispatch(actions.userLoginSuccess(userInfo)),
   };
 };
 

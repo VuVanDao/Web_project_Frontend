@@ -27,16 +27,31 @@
   },
   "menu": {
     "system": {
-      "header": "Hệ thống",
+      "header": "Quản lý hệ thống",
       "system-administrator": {
-        "header": "Quản trị hệ thống",
+        "header": "Người dùng",
         "user-manage": "Quản lý người sử dụng",
-        "product-manage": "Quản lý gói",
         "user-redux": "Quản lý người dùng với redux"
       },
-      "system-parameter": {
-        "header": "Tham số hệ thống"
+      "doctor": {
+        "header": "Bác sĩ",
+        "doctor-redux": "Quản lí bác sĩ với redux"
       }
+    },
+    "clinic": {
+      "header": "Phòng khám",
+      "clinic-manage": "Quản lý phòng khám",
+      "clinic-redux": "Quản lý phòng khám redux"
+    },
+    "specialties": {
+      "header": "Chuyên khoa",
+      "specialties-manage": "Quản lý chuyên khoa",
+      "specialties-redux": "Quản lý chuyên khoa redux"
+    },
+    "Handbook": {
+      "header": "Cẩm nang",
+      "Handbook-manage": "Quản lý cẩm nang",
+      "Handbook-redux": "Quản lý cẩm nang redux"
     }
   },
   "system": {

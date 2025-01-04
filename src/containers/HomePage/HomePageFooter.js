@@ -32,7 +32,7 @@ class HomePageFooter extends Component {
               GitHub
             </a>
             <a href="https://www.linkedin.com/in/%C4%91%E1%BA%A1o-v%C5%A9-v%C4%83n-617a782a7/">
-              <i class="fab fa-linkedin"></i>
+              <i className="fab fa-linkedin"></i>
               Linkedin
             </a>
           </div>

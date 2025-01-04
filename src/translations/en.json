@@ -19,24 +19,33 @@
     "sum": "Sum",
     "date-range-invalid": "Date range invalid"
   },
-  "login": {
-    "login": "Login",
-    "username": "Username",
-    "password": "Password",
-    "userpass-wrong": "Invalid username or password!"
-  },
   "menu": {
     "system": {
-      "header": "System",
+      "header": "Manage system",
       "system-administrator": {
-        "header": "System Administrator",
+        "header": "User",
         "user-manage": "User manage",
-        "product-manage": "Package manage",
         "user-redux": "User redux"
       },
-      "system-parameter": {
-        "header": "System-parameter"
+      "doctor": {
+        "header": "Doctor",
+        "doctor-redux": "Doctor redux"
       }
+    },
+    "clinic": {
+      "header": "Clinic",
+      "clinic-manage": "Clinic manage",
+      "clinic-redux": "Clinic redux"
+    },
+    "specialties": {
+      "header": "Specialties",
+      "specialties-manage": "Specialties manage",
+      "specialties-redux": "Specialties redux"
+    },
+    "Handbook": {
+      "header": "Handbook",
+      "Handbook-manage": "Handbook manage",
+      "Handbook-redux": "Handbook redux"
     }
   },
   "system": {
@@ -59,18 +68,6 @@
       "edit-user": "Edit user ",
       "del-user": "Delete user ",
       "password": "Password",
-      "retype-password": "Retype password",
-      "add-user-success": "Add user successfully",
-      "edit-user-success": "Change user information successfully",
-      "add-user-fail": "Fail to add user",
-      "edit-user-fail": "Fail to change user information",
-      "del-user-success": "Delete user successfully",
-      "del-user-fail": "Fail to delete user",
-      "invalid-input": {
-        "username": "Please fill in username",
-        "fullname": "Please fill in fullname",
-        "password": "Please fill in password"
-      },
       "sure-delete-user": "Are you sure to delete this user?"
     },
     "product-manage": {

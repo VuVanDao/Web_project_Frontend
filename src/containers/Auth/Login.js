@@ -137,6 +137,8 @@ class Login extends Component {
 const mapStateToProps = (state) => {
   return {
     language: state.app.language,
+    userInfo: state.user.userInfo,
+    IsLoggedIn: state.user.isLoggedIn,
   };
 };
 

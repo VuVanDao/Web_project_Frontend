@@ -13,7 +13,7 @@ class Header extends Component {
     this.props.changeLanguageAppRedux(language);
   };
   render() {
-    const { processLogout } = this.props;
+    const { processLogout, userInfo } = this.props;
 
     return (
       <div className="header-container">
@@ -27,6 +27,8 @@ class Header extends Component {
               <div
                 style={{ display: "flex", alignItems: "center", gap: "10px" }}
               >
+                Xin chào:
+                {userInfo && userInfo.firstName ? userInfo.firstName : ""}!
                 <span
                   className="change-language"
                   onClick={() => this.handleChangeLanguage(LANGUAGES.EN)}
@@ -43,6 +45,8 @@ class Header extends Component {
               <div
                 style={{ display: "flex", alignItems: "center", gap: "10px" }}
               >
+                Welcome:
+                {userInfo && userInfo.firstName ? userInfo.firstName : ""}!
                 <span
                   className="change-language"
                   onClick={() => this.handleChangeLanguage(LANGUAGES.VI)}
@@ -71,6 +75,7 @@ const mapStateToProps = (state) => {
   return {
     isLoggedIn: state.user.isLoggedIn,
     language: state.app.language,
+    userInfo: state.user.userInfo,
   };
 };
 

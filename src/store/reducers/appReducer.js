@@ -17,6 +17,7 @@ const initialState = {
 };
 
 const appReducer = (state = initialState, action) => {
+  // console.log(">>>>>Redux", action);
   switch (action.type) {
     case actionTypes.APP_START_UP_COMPLETE:
       return {

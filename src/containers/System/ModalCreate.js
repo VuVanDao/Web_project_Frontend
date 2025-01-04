@@ -37,7 +37,7 @@ class ModalCreate extends Component {
   };
   handleKeyDown = (event) => {
     if (event.keyCode == 13) {
-      this.handleLogin();
+      this.handleAddNewUser();
     }
   };
   handleInfoUser = (data, id) => {
@@ -73,6 +73,8 @@ class ModalCreate extends Component {
         this.toggle();
         this.props.handleGetAllUser();
         toast.success(data.errMessage);
+      } else {
+        toast.error(data.errMessage);
       }
     }
   };

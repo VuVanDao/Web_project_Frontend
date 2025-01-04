@@ -11,12 +11,17 @@ class UserRedux extends Component {
   componentDidMount() {}
 
   render() {
-    return <div className="text-center">UserRedux</div>;
+    // console.log("props", this.props.userInfo);
+    let { userInfo } = this.props;
+    return <div className="text-center title">{userInfo.firstName}</div>;
   }
 }
 
 const mapStateToProps = (state) => {
-  return { UserRedux };
+  // return { UserRedux };
+  return {
+    userInfo: state.user.userInfo,
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {
