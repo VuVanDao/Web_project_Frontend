@@ -94,7 +94,7 @@ class ModalCreate extends Component {
           </Modal.Header>
           <Modal.Body>
             <div className="container">
-              <div className="">
+              <div className="row">
                 <div className="col-6">
                   <label htmlFor="email">
                     <FormattedMessage id="system.user-manage.email" />:

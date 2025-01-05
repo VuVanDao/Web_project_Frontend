@@ -117,7 +117,7 @@ class UserManage extends Component {
                       <td>{item.email}</td>
                       <td>{item.address}</td>
                       <td>
-                        {item.gender === 1 ? (
+                        {item.gender === "M" ? (
                           <FormattedMessage id="system.user-manage.male" />
                         ) : (
                           <FormattedMessage id="system.user-manage.female" />

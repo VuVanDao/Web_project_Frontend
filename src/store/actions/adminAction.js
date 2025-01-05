@@ -26,7 +26,6 @@ export const fetchGenderSuccess = (gender) => ({
 export const fetchGenderFail = () => ({
   type: actionTypes.FETCH_GENDER_FAIL,
 });
-
 export const fetchPositionStart = () => {
   return async (dispatch, getState) => {
     try {
@@ -76,4 +75,30 @@ export const fetchRoleSuccess = (role) => ({
 });
 export const fetchRoleFail = () => ({
   type: actionTypes.FETCH_ROLE_FAIL,
+});
+//user
+export const createUserReduxStart = (data) => {
+  return async (dispatch, getState) => {
+    try {
+      dispatch({
+        type: actionTypes.CREATE_USER_REDUX_START,
+      });
+      let res = await userService.createNewUser(data);
+      if (res && res.errCode === 0) {
+        dispatch(createUserReduxSuccess(res.data));
+      } else {
+        dispatch(createUserReduxFail());
+      }
+    } catch (error) {
+      dispatch(createUserReduxFail());
+      console.log("error", error);
+    }
+  };
+};
+export const createUserReduxSuccess = (data) => ({
+  type: actionTypes.CREATE_USER_REDUX_SUCCESS,
+  data,
+});
+export const createUserReduxFail = () => ({
+  type: actionTypes.CREATE_USER_REDUX_FAIL,
 });
