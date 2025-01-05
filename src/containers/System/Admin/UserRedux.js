@@ -3,6 +3,9 @@ import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 import userService from "../../../services/userService";
 import * as actions from "../../../store/actions";
+import LoadingData from "./LoadingData";
+import Lightbox from "react-image-lightbox";
+import "react-image-lightbox/style.css";
 //menuApp
 class UserRedux extends Component {
   constructor(props) {
@@ -11,6 +14,8 @@ class UserRedux extends Component {
       genderArr: [],
       positionArr: [],
       roleArr: [],
+      previewImageURL: "",
+      isOpen: false,
     };
   }
 
@@ -60,125 +65,178 @@ class UserRedux extends Component {
       });
     }
   }
+  handleOnChangeImage = (event) => {
+    let file = event.target.files[0];
+    if (file) {
+      const objectUrl = URL.createObjectURL(file);
+      this.setState({
+        previewImageURL: objectUrl,
+      });
+    }
+  };
   render() {
-    let { userInfo, language } = this.props;
+    let {
+      userInfo,
+      language,
+      isLoadingGender,
+      isLoadingPosition,
+      isLoadingRole,
+    } = this.props;
     let { genderArr, positionArr, roleArr } = this.state;
+
     return (
       <>
-        <div className="text-center title">
-          <FormattedMessage id="create-user.title" />
-        </div>
-        <div className="container">
-          <div className="row my-3">
-            <form className="row g-3">
-              <div className="col-md-6">
-                <label htmlFor="inputEmail4" className="form-label">
-                  <FormattedMessage id="system.user-manage.email" />:
-                </label>
-                <input type="email" className="form-control" id="inputEmail4" />
-              </div>
-              <div className="col-md-6">
-                <label htmlFor="inputPassword4" className="form-label">
-                  <FormattedMessage id="system.user-manage.password" />:
-                </label>
-                <input
-                  type="password"
-                  className="form-control"
-                  id="inputPassword4"
-                />
-              </div>
-              <div className="col-md-6">
-                <label htmlFor="firstName" className="form-label">
-                  <FormattedMessage id="system.user-manage.firstName" />:
-                </label>
-                <input type="text" className="form-control" id="firstName" />
-              </div>
-              <div className="col-md-6">
-                <label htmlFor="lastName" className="form-label">
-                  <FormattedMessage id="system.user-manage.lastName" />:
-                </label>
-                <input type="text" className="form-control" id="lastName" />
-              </div>
-              <div className="col-6">
-                <label htmlFor="inputCity" className="form-label">
-                  <FormattedMessage id="system.user-manage.address" />:
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="inputCity"
-                  placeholder="1234 Main St"
-                />
-              </div>
-              <div className="col-md-6">
-                <label htmlFor="mobile" className="form-label">
-                  <FormattedMessage id="system.user-manage.mobile" />:
-                </label>
-                <input type="text" className="form-control" id="mobile" />
-              </div>
-              <div className="col-md-3">
-                <label htmlFor="inputState" className="form-label">
-                  <FormattedMessage id="system.user-manage.gender" />
-                </label>
-                <select id="inputState" className="form-select">
-                  {genderArr &&
-                    genderArr.length > 0 &&
-                    genderArr.map((item, index) => {
-                      return (
-                        <option key={index}>
-                          {language === "vi" ? item.valueVI : item.valueEN}
-                        </option>
-                      );
-                    })}
-                </select>
-              </div>
-              <div className="col-md-3">
-                <label htmlFor="inputState" className="form-label">
-                  <FormattedMessage id="system.user-manage.level" />
-                </label>
-                <select id="inputState" className="form-select">
-                  {positionArr &&
-                    positionArr.length > 0 &&
-                    positionArr.map((item, index) => {
-                      return (
-                        <option key={index}>
-                          {language === "vi" ? item.valueVI : item.valueEN}
-                        </option>
-                      );
-                    })}
-                </select>
-              </div>
-              <div className="col-md-3">
-                <label htmlFor="inputState" className="form-label">
-                  <FormattedMessage id="system.user-manage.role" />
-                </label>
-                <select id="inputState" className="form-select">
-                  {roleArr &&
-                    roleArr.length > 0 &&
-                    roleArr.map((item, index) => {
-                      return (
-                        <option key={index}>
-                          {language === "vi" ? item.valueVI : item.valueEN}
-                        </option>
-                      );
-                    })}
-                </select>
-              </div>
-              <div className="col-md-3">
-                <label htmlFor="image" className="form-label">
-                  <FormattedMessage id="system.user-manage.image" />
-                </label>
-                <input type="text" className="form-control" id="image" />
-              </div>
+        {isLoadingGender || isLoadingPosition || isLoadingRole ? (
+          <LoadingData />
+        ) : (
+          <div>
+            <div className="text-center title">
+              <FormattedMessage id="create-user.title" />
+            </div>
+            <div className="container">
+              <div className="row my-3">
+                <form className="row g-3">
+                  <div className="col-md-6">
+                    <label htmlFor="inputEmail4" className="form-label">
+                      <FormattedMessage id="system.user-manage.email" />:
+                    </label>
+                    <input
+                      type="email"
+                      className="form-control"
+                      id="inputEmail4"
+                    />
+                  </div>
+                  <div className="col-md-6">
+                    <label htmlFor="inputPassword4" className="form-label">
+                      <FormattedMessage id="system.user-manage.password" />:
+                    </label>
+                    <input
+                      type="password"
+                      className="form-control"
+                      id="inputPassword4"
+                    />
+                  </div>
+                  <div className="col-md-6">
+                    <label htmlFor="firstName" className="form-label">
+                      <FormattedMessage id="system.user-manage.firstName" />:
+                    </label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="firstName"
+                    />
+                  </div>
+                  <div className="col-md-6">
+                    <label htmlFor="lastName" className="form-label">
+                      <FormattedMessage id="system.user-manage.lastName" />:
+                    </label>
+                    <input type="text" className="form-control" id="lastName" />
+                  </div>
+                  <div className="col-6">
+                    <label htmlFor="inputCity" className="form-label">
+                      <FormattedMessage id="system.user-manage.address" />:
+                    </label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="inputCity"
+                      placeholder="1234 Main St"
+                    />
+                  </div>
+                  <div className="col-md-6">
+                    <label htmlFor="mobile" className="form-label">
+                      <FormattedMessage id="system.user-manage.mobile" />:
+                    </label>
+                    <input type="text" className="form-control" id="mobile" />
+                  </div>
+                  <div className="col-md-3">
+                    <label htmlFor="inputState" className="form-label">
+                      <FormattedMessage id="system.user-manage.gender" />
+                    </label>
+                    <select id="inputState" className="form-select">
+                      {genderArr &&
+                        genderArr.length > 0 &&
+                        genderArr.map((item, index) => {
+                          return (
+                            <option key={index}>
+                              {language === "vi" ? item.valueVI : item.valueEN}
+                            </option>
+                          );
+                        })}
+                    </select>
+                  </div>
+                  <div className="col-md-3">
+                    <label htmlFor="inputState" className="form-label">
+                      <FormattedMessage id="system.user-manage.level" />
+                    </label>
+                    <select id="inputState" className="form-select">
+                      {positionArr &&
+                        positionArr.length > 0 &&
+                        positionArr.map((item, index) => {
+                          return (
+                            <option key={index}>
+                              {language === "vi" ? item.valueVI : item.valueEN}
+                            </option>
+                          );
+                        })}
+                    </select>
+                  </div>
+                  <div className="col-md-3">
+                    <label htmlFor="inputState" className="form-label">
+                      <FormattedMessage id="system.user-manage.role" />
+                    </label>
+                    <select id="inputState" className="form-select">
+                      {roleArr &&
+                        roleArr.length > 0 &&
+                        roleArr.map((item, index) => {
+                          return (
+                            <option key={index}>
+                              {language === "vi" ? item.valueVI : item.valueEN}
+                            </option>
+                          );
+                        })}
+                    </select>
+                  </div>
+                  <div className="col-md-3">
+                    <label htmlFor="image" className="form-label">
+                      <FormattedMessage id="system.user-manage.image" />
+                    </label>
+                    <input
+                      type="file"
+                      className="form-control"
+                      id="image"
+                      onChange={(event) => this.handleOnChangeImage(event)}
+                    />
+                    <div
+                      className="preview-image"
+                      style={{
+                        backgroundImage: `url(${this.state.previewImageURL})`,
+                        width: "200px",
+                        height: "200px",
+                        backgroundPosition: "center",
+                        backgroundSize: "contain",
+                        backgroundRepeat: "no-repeat",
+                      }}
+                      onClick={() => this.setState({ isOpen: true })}
+                    ></div>
+                  </div>
 
-              <div className="col-12">
-                <button type="submit" className="btn btn-primary">
-                  <FormattedMessage id="common.confirm" />
-                </button>
+                  <div className="col-12">
+                    <button type="submit" className="btn btn-primary">
+                      <FormattedMessage id="common.confirm" />
+                    </button>
+                  </div>
+                </form>
               </div>
-            </form>
+            </div>
+            {this.state.isOpen && (
+              <Lightbox
+                mainSrc={this.state.previewImageURL}
+                onCloseRequest={() => this.setState({ isOpen: false })}
+              />
+            )}
           </div>
-        </div>
+        )}
       </>
     );
   }
@@ -192,6 +250,9 @@ const mapStateToProps = (state) => {
     genderArr: state.admin.genderArr,
     positionArr: state.admin.positionArr,
     roleArr: state.admin.roleArr,
+    isLoadingGender: state.admin.isLoadingGender,
+    isLoadingPosition: state.admin.isLoadingPosition,
+    isLoadingRole: state.admin.isLoadingRole,
   };
 };
 

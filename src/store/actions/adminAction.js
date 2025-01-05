@@ -4,6 +4,9 @@ import userService from "../../services/userService";
 export const fetchGenderStart = () => {
   return async (dispatch, getState) => {
     try {
+      dispatch({
+        type: actionTypes.FETCH_GENDER_START,
+      });
       let res = await userService.getAllCode("gender");
       if (res && res.errCode === 0) {
         dispatch(fetchGenderSuccess(res.data));
@@ -27,6 +30,9 @@ export const fetchGenderFail = () => ({
 export const fetchPositionStart = () => {
   return async (dispatch, getState) => {
     try {
+      dispatch({
+        type: actionTypes.FETCH_POSITION_START,
+      });
       let res = await userService.getAllCode("position");
       if (res && res.errCode === 0) {
         dispatch(fetchPositionSuccess(res.data));
@@ -49,6 +55,9 @@ export const fetchPositionFail = () => ({
 export const fetchRoleStart = () => {
   return async (dispatch, getState) => {
     try {
+      dispatch({
+        type: actionTypes.FETCH_ROLE_START,
+      });
       let res = await userService.getAllCode("role");
       if (res && res.errCode === 0) {
         dispatch(fetchRoleSuccess(res.data));
