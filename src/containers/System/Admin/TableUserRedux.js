@@ -37,11 +37,8 @@ class TableUserRedux extends Component {
     }
   };
 
-  ShowModalUpdateUser = async (id) => {
-    this.setState({
-      isOpenModalUpdate: !this.state.isOpenModalUpdate,
-    });
-    emitter.emit("EVENT_UPDATE_USER", { id });
+  ShowModalUpdateUser = async (user) => {
+    this.props.handleUpdateUserRedux(user);
   };
   ShowModalDeleteUser = async (id) => {
     this.props.deleteUserRedux(id);
@@ -113,7 +110,7 @@ class TableUserRedux extends Component {
                         >
                           <button
                             className="btn-update"
-                            onClick={() => this.ShowModalUpdateUser(item.id)}
+                            onClick={() => this.ShowModalUpdateUser(item)}
                           >
                             <FormattedMessage id="system.user-manage.edit-user" />
                             <i className="fas fa-user-edit"></i>
@@ -133,17 +130,6 @@ class TableUserRedux extends Component {
             </tbody>
           </table>
         </div>
-
-        {/* <ModalUpdate
-          isOpenModalUpdate={this.state.isOpenModalUpdate}
-          ShowModalUpdateUser={this.ShowModalUpdateUser}
-          handleGetAllUser={this.handleGetAllUser}
-        /> */}
-        {/* <ModalDelete
-          isOpenModalDelete={this.state.isOpenModalDelete}
-          ShowModalDeleteUser={this.ShowModalDeleteUser}
-          handleGetAllUser={this.handleGetAllUser}
-        /> */}
       </>
     );
   }

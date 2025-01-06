@@ -150,3 +150,28 @@ export const deleteUserReduxSuccess = () => ({
 export const deleteUserReduxFail = () => ({
   type: actionTypes.DELETE_USER_REDUX_FAIL,
 });
+export const updateUserReduxStart = (data) => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await userService.updateAUser(data);
+      if (res && res.errCode === 0) {
+        dispatch(updateUserReduxSuccess(res.data));
+        dispatch(getUserReduxStart("ALL"));
+        toast.success("update new user success");
+      } else {
+        dispatch(updateUserReduxFail());
+        toast.error("update new user is not complete");
+      }
+    } catch (error) {
+      dispatch(updateUserReduxFail());
+      console.log("error", error);
+    }
+  };
+};
+export const updateUserReduxSuccess = (data) => ({
+  type: actionTypes.UPDATE_USER_REDUX_SUCCESS,
+  data,
+});
+export const updateUserReduxFail = () => ({
+  type: actionTypes.UPDATE_USER_REDUX_FAIL,
+});

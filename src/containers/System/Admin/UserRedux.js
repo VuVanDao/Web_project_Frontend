@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
-import userService from "../../../services/userService";
+import { CRUD_ACTIONS } from "../../../utils/constant";
 import * as actions from "../../../store/actions";
 import LoadingData from "./LoadingData";
 import Lightbox from "react-image-lightbox";
@@ -26,36 +26,14 @@ class UserRedux extends Component {
       address: "",
       phoneNumber: "",
       gender: "",
-      position: "",
+      positionId: "",
       roleId: "",
       image: "",
+      id: "",
+      action: "CREATE",
     };
   }
 
-  // async componentDidMount() {
-  //   try {
-  //     let gender = await userService.getAllCode("gender");
-  //     let position = await userService.getAllCode("position");
-  //     let role = await userService.getAllCode("role");
-  //     if (gender && gender.data) {
-  //       this.setState({
-  //         genderArr: gender.data,
-  //       });
-  //     }
-  //     if (position && position.data) {
-  //       this.setState({
-  //         positionArr: position.data,
-  //       });
-  //     }
-  //     if (role && role.data) {
-  //       this.setState({
-  //         roleArr: role.data,
-  //       });
-  //     }
-  //   } catch (error) {
-  //     console.log("error", error);
-  //   }
-  // }
   async componentDidMount() {
     await this.props.getGenderStart();
     await this.props.getPositionStart();
@@ -71,7 +49,7 @@ class UserRedux extends Component {
     if (prevProps.positionArr !== this.props.positionArr) {
       this.setState({
         positionArr: this.props.positionArr,
-        position: this.props.positionArr[0].key,
+        positionId: this.props.positionArr[0].key,
       });
     }
     if (prevProps.roleArr !== this.props.roleArr) {
@@ -89,9 +67,10 @@ class UserRedux extends Component {
         address: "",
         phoneNumber: "",
         gender: "",
-        position: "",
+        positionId: "",
         roleId: "",
         image: "",
+        action: "CREATE",
       });
     }
   }
@@ -115,7 +94,7 @@ class UserRedux extends Component {
       "address",
       "phoneNumber",
       "gender",
-      "position",
+      "positionId",
       "roleId",
     ];
     listState.map((item, index) => {
@@ -144,10 +123,34 @@ class UserRedux extends Component {
         phoneNumber: this.state.phoneNumber,
         gender: this.state.gender,
         roleId: this.state.roleId,
-        position: this.state.position,
+        positionId: this.state.positionId,
       });
       this.props.getAllUserRedux("All");
     }
+  };
+  handleEditUserRedux = async () => {
+    let result = true;
+    if (!result) {
+      toast.error("Plz fill all information on this form");
+    } else {
+      this.props.updateUserRedux({
+        id: this.state.id,
+        firstName: this.state.firstName,
+        lastName: this.state.lastName,
+        address: this.state.address,
+        phoneNumber: this.state.phoneNumber,
+        gender: this.state.gender,
+        roleId: this.state.roleId,
+        positionId: this.state.positionId,
+      });
+      this.props.getAllUserRedux("All");
+    }
+  };
+  handleUpdateUserRedux = async (data) => {
+    this.setState({
+      ...data,
+      action: "EDIT",
+    });
   };
   render() {
     let {
@@ -175,29 +178,55 @@ class UserRedux extends Component {
                     <label htmlFor="inputEmail4" className="form-label">
                       <FormattedMessage id="system.user-manage.email" />:
                     </label>
-                    <input
-                      type="email"
-                      className="form-control"
-                      id="inputEmail4"
-                      value={this.state.email}
-                      onChange={(event) =>
-                        this.HandleOnChangeInput(event, "email")
-                      }
-                    />
+                    {this.state.action === CRUD_ACTIONS.CREATE ? (
+                      <input
+                        type="email"
+                        className="form-control"
+                        id="inputEmail4"
+                        value={this.state.email}
+                        onChange={(event) =>
+                          this.HandleOnChangeInput(event, "email")
+                        }
+                      />
+                    ) : (
+                      <input
+                        type="email"
+                        className="form-control"
+                        id="inputEmail4"
+                        value={this.state.email}
+                        onChange={(event) =>
+                          this.HandleOnChangeInput(event, "email")
+                        }
+                        disabled
+                      />
+                    )}
                   </div>
                   <div className="col-md-6">
                     <label htmlFor="inputPassword4" className="form-label">
                       <FormattedMessage id="system.user-manage.password" />:
                     </label>
-                    <input
-                      type="password"
-                      className="form-control"
-                      id="inputPassword4"
-                      value={this.state.password}
-                      onChange={(event) =>
-                        this.HandleOnChangeInput(event, "password")
-                      }
-                    />
+                    {this.state.action === CRUD_ACTIONS.CREATE ? (
+                      <input
+                        type="password"
+                        className="form-control"
+                        id="inputPassword4"
+                        value={this.state.password}
+                        onChange={(event) =>
+                          this.HandleOnChangeInput(event, "password")
+                        }
+                      />
+                    ) : (
+                      <input
+                        type="password"
+                        className="form-control"
+                        id="inputPassword4"
+                        value={this.state.password}
+                        onChange={(event) =>
+                          this.HandleOnChangeInput(event, "password")
+                        }
+                        disabled
+                      />
+                    )}
                   </div>
                   <div className="col-md-6">
                     <label htmlFor="firstName" className="form-label">
@@ -286,9 +315,9 @@ class UserRedux extends Component {
                     <select
                       id="inputState"
                       className="form-select"
-                      value={this.state.position}
+                      value={this.state.positionId}
                       onChange={(event) =>
-                        this.HandleOnChangeInput(event, "position")
+                        this.HandleOnChangeInput(event, "positionId")
                       }
                     >
                       {positionArr &&
@@ -349,19 +378,33 @@ class UserRedux extends Component {
                       onClick={() => this.setState({ isOpen: true })}
                     ></div>
                   </div>
-                  <div className="col-12">
-                    <button
-                      type="submit"
-                      className="btn btn-primary"
-                      onClick={() => this.handleCreateUserRedux()}
-                    >
-                      <FormattedMessage id="common.confirm" />
-                    </button>
-                  </div>
+                  {this.state.action === CRUD_ACTIONS.CREATE ? (
+                    <div className="col-12">
+                      <button
+                        type="submit"
+                        className="btn btn-primary"
+                        onClick={() => this.handleCreateUserRedux()}
+                      >
+                        <FormattedMessage id="common.confirm" />
+                      </button>
+                    </div>
+                  ) : (
+                    <div className="col-12">
+                      <button
+                        type="submit"
+                        className="btn btn-warning"
+                        onClick={() => this.handleEditUserRedux()}
+                      >
+                        <FormattedMessage id="common.confirm" />
+                      </button>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
-            <TableUserRedux />
+            <TableUserRedux
+              handleUpdateUserRedux={this.handleUpdateUserRedux}
+            />
             {this.state.isOpen && (
               <Lightbox
                 mainSrc={this.state.previewImageURL}
@@ -397,6 +440,7 @@ const mapDispatchToProps = (dispatch) => {
     getRoleStart: () => dispatch(actions.fetchRoleStart()),
     createUserRedux: (data) => dispatch(actions.createUserReduxStart(data)),
     getAllUserRedux: (data) => dispatch(actions.getUserReduxStart(data)),
+    updateUserRedux: (data) => dispatch(actions.updateUserReduxStart(data)),
   };
 };
 
