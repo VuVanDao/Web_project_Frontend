@@ -7,6 +7,7 @@ import LoadingData from "./LoadingData";
 import Lightbox from "react-image-lightbox";
 import "react-image-lightbox/style.css";
 import { toast } from "react-toastify";
+import TableUserRedux from "./TableUserRedux";
 //menuApp
 class UserRedux extends Component {
   constructor(props) {
@@ -79,6 +80,20 @@ class UserRedux extends Component {
         roleId: this.props.roleArr[0].key,
       });
     }
+    if (prevProps.listUserRedux !== this.props.listUserRedux) {
+      this.setState({
+        email: "",
+        password: "",
+        firstName: "",
+        lastName: "",
+        address: "",
+        phoneNumber: "",
+        gender: "",
+        position: "",
+        roleId: "",
+        image: "",
+      });
+    }
   }
   handleOnChangeImage = (event) => {
     let file = event.target.files[0];
@@ -115,7 +130,7 @@ class UserRedux extends Component {
       [id]: event.target.value,
     });
   };
-  handleCreateUserRedux = () => {
+  handleCreateUserRedux = async () => {
     let result = this.handleValidate();
     if (!result) {
       toast.error("Plz fill all information on this form");
@@ -131,7 +146,7 @@ class UserRedux extends Component {
         roleId: this.state.roleId,
         position: this.state.position,
       });
-      console.log(">>>", this.state);
+      this.props.getAllUserRedux("All");
     }
   };
   render() {
@@ -153,7 +168,7 @@ class UserRedux extends Component {
             <div className="text-center title">
               <FormattedMessage id="create-user.title" />
             </div>
-            <div className="container">
+            <div className="container ">
               <div className="row my-3">
                 <div className="row g-3">
                   <div className="col-md-6">
@@ -324,8 +339,8 @@ class UserRedux extends Component {
                       className="preview-image"
                       style={{
                         backgroundImage: `url(${this.state.previewImageURL})`,
-                        width: "200px",
-                        height: "200px",
+                        width: "150px",
+                        height: "150px",
                         backgroundPosition: "center",
                         backgroundSize: "contain",
                         backgroundRepeat: "no-repeat",
@@ -346,6 +361,7 @@ class UserRedux extends Component {
                 </div>
               </div>
             </div>
+            <TableUserRedux />
             {this.state.isOpen && (
               <Lightbox
                 mainSrc={this.state.previewImageURL}
@@ -370,6 +386,7 @@ const mapStateToProps = (state) => {
     isLoadingGender: state.admin.isLoadingGender,
     isLoadingPosition: state.admin.isLoadingPosition,
     isLoadingRole: state.admin.isLoadingRole,
+    listUserRedux: state.admin.users,
   };
 };
 
@@ -379,6 +396,7 @@ const mapDispatchToProps = (dispatch) => {
     getPositionStart: () => dispatch(actions.fetchPositionStart()),
     getRoleStart: () => dispatch(actions.fetchRoleStart()),
     createUserRedux: (data) => dispatch(actions.createUserReduxStart(data)),
+    getAllUserRedux: (data) => dispatch(actions.getUserReduxStart(data)),
   };
 };
 

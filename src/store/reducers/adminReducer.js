@@ -7,6 +7,7 @@ const initialState = {
   isLoadingGender: false,
   isLoadingPosition: false,
   isLoadingRole: false,
+  users: [],
 };
 
 const adminReducer = (state = initialState, action) => {
@@ -67,7 +68,16 @@ const adminReducer = (state = initialState, action) => {
       return {
         ...copyState,
       };
-
+    //user
+    case actionTypes.GET_USER_REDUX_SUCCESS:
+      copyState.users = action.data;
+      return {
+        ...copyState,
+      };
+    case actionTypes.GET_USER_REDUX_FAIL:
+      return {
+        ...copyState,
+      };
     default:
       return state;
   }

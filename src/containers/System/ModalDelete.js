@@ -39,11 +39,6 @@ class ModalDelete extends Component {
     });
     this.props.ShowModalDeleteUser();
   };
-  handleKeyDown = (event) => {
-    if (event.keyCode == 13) {
-      this.handleLogin();
-    }
-  };
   getInfoDeleteAUser = async () => {
     emitter.on("EVENT_DELETE_USER", async (id) => {
       let userId = id.id;
