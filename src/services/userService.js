@@ -18,6 +18,9 @@ const deleteAUser = (userId) => {
 const getAllCode = (data) => {
   return axios.get(`/allCode?type=${data}`);
 };
+const getDoctor = () => {
+  return axios.get("/api/get-doctor");
+};
 export default {
   handleLogin,
   getAllUser,
@@ -25,4 +28,5 @@ export default {
   updateAUser,
   deleteAUser,
   getAllCode,
+  getDoctor,
 };

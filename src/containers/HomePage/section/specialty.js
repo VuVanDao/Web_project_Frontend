@@ -28,28 +28,60 @@ class Specialties extends Component {
         <div>
           <Slider {...this.props.settings}>
             <div className="div">
-              <img src="https://i.pinimg.com/originals/64/97/50/649750b6a1d69822a2a3f1e92429e69e.gif" />
-              <p>1sdasdasdasdasdasdas</p>
+              <div>
+                <img src="https://i.pinimg.com/originals/64/97/50/649750b6a1d69822a2a3f1e92429e69e.gif" />
+              </div>
+              <div>
+                <p>1sdasdasdasdasdasdas</p>
+              </div>
             </div>
             <div className="div">
-              <img src="https://i.pinimg.com/originals/3e/9b/25/3e9b25811c481fb8a3d6c87f8ac7a857.gif" />
-              <p>1sdasdasdasdasdasdas</p>
+              <div>
+                <img src="https://i.pinimg.com/originals/64/97/50/649750b6a1d69822a2a3f1e92429e69e.gif" />
+              </div>
+              <div>
+                <p>1sdasdasdasdasdasdas</p>
+              </div>
             </div>
             <div className="div">
-              <img src="https://i.pinimg.com/originals/34/1c/af/341caf7e590b927f95b08084db05b8ef.gif" />
-              <p>1sdasdasdasdasdasdas</p>
+              <div>
+                <img src="https://i.pinimg.com/originals/64/97/50/649750b6a1d69822a2a3f1e92429e69e.gif" />
+              </div>
+              <div>
+                <p>1sdasdasdasdasdasdas</p>
+              </div>
             </div>
             <div className="div">
-              <img src="https://i.pinimg.com/originals/b1/03/6e/b1036e5b4dee3ed79d1023983c0f111f.gif" />
-              <p>1sdasdasdasdasdasdas</p>
+              <div>
+                <img src="https://i.pinimg.com/originals/64/97/50/649750b6a1d69822a2a3f1e92429e69e.gif" />
+              </div>
+              <div>
+                <p>1sdasdasdasdasdasdas</p>
+              </div>
             </div>
             <div className="div">
-              <img src="https://i.pinimg.com/originals/f3/db/91/f3db9196a224ce07667f3a9fa4f52af6.gif" />
-              <p>1sdasdasdasdasdasdas</p>
+              <div>
+                <img src="https://i.pinimg.com/originals/64/97/50/649750b6a1d69822a2a3f1e92429e69e.gif" />
+              </div>
+              <div>
+                <p>1sdasdasdasdasdasdas</p>
+              </div>
             </div>
             <div className="div">
-              <img src="https://i.pinimg.com/originals/f5/29/f4/f529f4991a8ed95972b12bdb349f71a0.gif" />
-              <p>1sdasdasdasdasdasdas</p>
+              <div>
+                <img src="https://i.pinimg.com/originals/64/97/50/649750b6a1d69822a2a3f1e92429e69e.gif" />
+              </div>
+              <div>
+                <p>1sdasdasdasdasdasdas</p>
+              </div>
+            </div>
+            <div className="div">
+              <div>
+                <img src="https://i.pinimg.com/originals/64/97/50/649750b6a1d69822a2a3f1e92429e69e.gif" />
+              </div>
+              <div>
+                <p>1sdasdasdasdasdasdas</p>
+              </div>
             </div>
           </Slider>
         </div>

@@ -28,28 +28,60 @@ class MedicalFacility extends Component {
         <div>
           <Slider {...this.props.settings}>
             <div className="div">
-              <img src="https://i.pinimg.com/originals/c6/c0/09/c6c009dc350e388818ff4f61a0f06c74.gif" />
-              <p>1sdasdasdasdasdasdas</p>
+              <div>
+                <img src="https://i.pinimg.com/originals/64/97/50/649750b6a1d69822a2a3f1e92429e69e.gif" />
+              </div>
+              <div>
+                <p>1sdasdasdasdasdasdas</p>
+              </div>
             </div>
             <div className="div">
-              <img src="https://i.pinimg.com/originals/56/a6/14/56a614261d423da1825452363174c685.gif" />
-              <p>1sdasdasdasdasdasdas</p>
+              <div>
+                <img src="https://i.pinimg.com/originals/64/97/50/649750b6a1d69822a2a3f1e92429e69e.gif" />
+              </div>
+              <div>
+                <p>1sdasdasdasdasdasdas</p>
+              </div>
             </div>
             <div className="div">
-              <img src="https://i.pinimg.com/originals/cf/1e/b5/cf1eb5ae90533c39b6b5bba02b247506.gif" />
-              <p>1sdasdasdasdasdasdas</p>
+              <div>
+                <img src="https://i.pinimg.com/originals/64/97/50/649750b6a1d69822a2a3f1e92429e69e.gif" />
+              </div>
+              <div>
+                <p>1sdasdasdasdasdasdas</p>
+              </div>
             </div>
             <div className="div">
-              <img src="https://i.pinimg.com/originals/0d/c4/b3/0dc4b38ee54a0169f5730bcbe4f94d3a.gif" />
-              <p>1sdasdasdasdasdasdas</p>
+              <div>
+                <img src="https://i.pinimg.com/originals/64/97/50/649750b6a1d69822a2a3f1e92429e69e.gif" />
+              </div>
+              <div>
+                <p>1sdasdasdasdasdasdas</p>
+              </div>
             </div>
             <div className="div">
-              <img src="https://i.pinimg.com/originals/28/2f/e1/282fe1d7e40e216c723740b0af255952.gif" />
-              <p>1sdasdasdasdasdasdas</p>
+              <div>
+                <img src="https://i.pinimg.com/originals/64/97/50/649750b6a1d69822a2a3f1e92429e69e.gif" />
+              </div>
+              <div>
+                <p>1sdasdasdasdasdasdas</p>
+              </div>
             </div>
             <div className="div">
-              <img src="https://i.pinimg.com/originals/6a/d0/7b/6ad07bc7872b7f4cafc7f14ad7638306.gif" />
-              <p>1sdasdasdasdasdasdas</p>
+              <div>
+                <img src="https://i.pinimg.com/originals/64/97/50/649750b6a1d69822a2a3f1e92429e69e.gif" />
+              </div>
+              <div>
+                <p>1sdasdasdasdasdasdas</p>
+              </div>
+            </div>
+            <div className="div">
+              <div>
+                <img src="https://i.pinimg.com/originals/64/97/50/649750b6a1d69822a2a3f1e92429e69e.gif" />
+              </div>
+              <div>
+                <p>1sdasdasdasdasdasdas</p>
+              </div>
             </div>
           </Slider>
         </div>

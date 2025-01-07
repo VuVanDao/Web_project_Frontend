@@ -1,10 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { push } from "connected-react-router";
-import * as actions from "../../store/actions";
-import { KeyCodeUtils, LanguageUtils } from "../../utils";
-import { FormattedMessage } from "react-intl";
-import { toast } from "react-toastify";
+import { userService } from "../../services";
 import HomePageHeader from "./HomePageHeader";
 import Banner from "./Banner";
 import Specialty from "./section/specialty";
@@ -13,11 +10,27 @@ import OutstandingDoctor from "./section/OutstandingDoctor";
 import HandBook from "./section/HandBook";
 import AboutUs from "./section/AboutUs";
 import HomePageFooter from "./HomePageFooter";
+import Loaders from "./Loaders";
+import * as actions from "../../store/actions";
 
 class HomePage extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      listDoctor: [],
+      isLoadingListDoctor: false,
+    };
+  }
+  async componentDidMount() {
+    this.props.getListDoctor();
+  }
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.listDoctor !== this.props.listDoctor) {
+      this.setState({
+        listDoctor: this.props.listDoctor,
+        isLoadingListDoctor: true,
+      });
+    }
   }
   settings = {
     dots: false,
@@ -30,18 +43,29 @@ class HomePage extends Component {
     autoplaySpeed: 5000,
   };
   render() {
+    let { isLoadingListDoctor } = this.state;
+    let { listDoctor } = this.props;
+    // console.log(">>>", listDoctor);
+
     return (
       <>
-        <div>
-          <HomePageHeader />
-          <Banner />
-          <Specialty settings={this.settings} />
-          <MedicalFacility settings={this.settings} />
-          <OutstandingDoctor settings={this.settings} />
-          <HandBook settings={this.settings} />
-          <AboutUs />
-          <HomePageFooter />
-        </div>
+        {isLoadingListDoctor ? (
+          <div>
+            <HomePageHeader />
+            <Banner />
+            <Specialty settings={this.settings} />
+            <MedicalFacility settings={this.settings} />
+            <OutstandingDoctor
+              settings={this.settings}
+              listDoctor={listDoctor}
+            />
+            <HandBook settings={this.settings} />
+            <AboutUs />
+            <HomePageFooter />
+          </div>
+        ) : (
+          <Loaders />
+        )}
       </>
     );
   }
@@ -50,15 +74,15 @@ class HomePage extends Component {
 const mapStateToProps = (state) => {
   return {
     language: state.app.language,
+    listDoctor: state.admin.listDoctor,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    navigate: (path) => dispatch(push(path)),
+    // navigate: (path) => dispatch(push(path)),
 
-    // userLoginSuccess: (userInfo) =>
-    //   dispatch(actions.userLoginSuccess(userInfo)),
+    getListDoctor: () => dispatch(actions.getListDoctor()),
   };
 };
 

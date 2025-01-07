@@ -175,3 +175,24 @@ export const updateUserReduxSuccess = (data) => ({
 export const updateUserReduxFail = () => ({
   type: actionTypes.UPDATE_USER_REDUX_FAIL,
 });
+export const getListDoctor = (data) => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await userService.getDoctor();
+      if (res && res.errCode === 0) {
+        dispatch(getListDoctorSuccess(res.listDoctor));
+      } else {
+        dispatch(getListDoctorFail());
+      }
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
+};
+export const getListDoctorSuccess = (data) => ({
+  type: actionTypes.GET_LIST_DOCTOR_REDUX_SUCCESS,
+  data,
+});
+export const getListDoctorFail = () => ({
+  type: actionTypes.GET_LIST_DOCTOR_REDUX_FAIL,
+});

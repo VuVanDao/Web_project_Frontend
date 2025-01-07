@@ -1,6 +1,5 @@
 .slick-slider {
   margin: 0 120px;
-
   .slick-list {
     height: 250px !important;
     display: flex;
@@ -9,18 +8,19 @@
 
     div {
       border-radius: 10px;
-      height: 100px !important;
       display: flex !important;
       justify-content: center;
-      gap: 15px;
     }
     .div {
-      display: flex;
+      display: flex !important;
       flex-direction: column;
-      img {
-        width: 300px;
-        height: 200px;
-        cursor: pointer;
+      gap: 5px;
+      div {
+        img {
+          width: 300px;
+          height: 200px;
+          cursor: pointer;
+        }
       }
       p {
         font-size: 17px;
@@ -37,10 +37,28 @@
     font-size: 40px;
   }
   .slick-prev {
-    transform: translate(-250%, -85%) !important;
+    transform: translate(-250%, -200%) !important;
   }
   .slick-next {
-    transform: translate(150%, -85%) !important;
+    transform: translate(150%, -200%) !important;
+  }
+}
+.Outstanding-doctor-container {
+  .div {
+    display: flex !important;
+    flex-direction: column;
+    div {
+      img {
+        height: 200px !important;
+        width: 200px !important;
+        border-radius: 50%;
+        cursor: pointer;
+      }
+    }
+    p {
+      font-size: 17px;
+      font-weight: 600;
+    }
   }
 }
 .Medical-facility-container,

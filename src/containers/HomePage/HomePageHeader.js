@@ -20,8 +20,6 @@ class HomePageHeader extends Component {
     this.props.changeLanguageAppRedux(language);
   };
   render() {
-    console.log("props", this.props.userInfo);
-
     return (
       <div>
         <div className="HomePageHeader-container">

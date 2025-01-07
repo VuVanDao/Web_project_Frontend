@@ -8,6 +8,7 @@ import Lightbox from "react-image-lightbox";
 import "react-image-lightbox/style.css";
 import { toast } from "react-toastify";
 import TableUserRedux from "./TableUserRedux";
+import CommonUtils from "../../../utils/CommonUtils";
 //menuApp
 class UserRedux extends Component {
   constructor(props) {
@@ -43,19 +44,19 @@ class UserRedux extends Component {
     if (prevProps.genderArr !== this.props.genderArr) {
       this.setState({
         genderArr: this.props.genderArr,
-        gender: this.props.genderArr[0].key,
+        gender: this.props.genderArr[0].keyMap,
       });
     }
     if (prevProps.positionArr !== this.props.positionArr) {
       this.setState({
         positionArr: this.props.positionArr,
-        positionId: this.props.positionArr[0].key,
+        positionId: this.props.positionArr[0].keyMap,
       });
     }
     if (prevProps.roleArr !== this.props.roleArr) {
       this.setState({
         roleArr: this.props.roleArr,
-        roleId: this.props.roleArr[0].key,
+        roleId: this.props.roleArr[0].keyMap,
       });
     }
     if (prevProps.listUserRedux !== this.props.listUserRedux) {
@@ -71,16 +72,19 @@ class UserRedux extends Component {
         roleId: "",
         image: "",
         action: "CREATE",
+        image: "",
+        previewImageURL: "",
       });
     }
   }
-  handleOnChangeImage = (event) => {
+  handleOnChangeImage = async (event) => {
     let file = event.target.files[0];
     if (file) {
+      let base64 = await CommonUtils.getBase64(file);
       const objectUrl = URL.createObjectURL(file);
       this.setState({
         previewImageURL: objectUrl,
-        image: file,
+        image: base64,
       });
     }
   };
@@ -124,32 +128,35 @@ class UserRedux extends Component {
         gender: this.state.gender,
         roleId: this.state.roleId,
         positionId: this.state.positionId,
+        image: this.state.image,
       });
       this.props.getAllUserRedux("All");
     }
   };
   handleEditUserRedux = async () => {
-    let result = true;
-    if (!result) {
-      toast.error("Plz fill all information on this form");
-    } else {
-      this.props.updateUserRedux({
-        id: this.state.id,
-        firstName: this.state.firstName,
-        lastName: this.state.lastName,
-        address: this.state.address,
-        phoneNumber: this.state.phoneNumber,
-        gender: this.state.gender,
-        roleId: this.state.roleId,
-        positionId: this.state.positionId,
-      });
-      this.props.getAllUserRedux("All");
-    }
+    this.props.updateUserRedux({
+      id: this.state.id,
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      address: this.state.address,
+      phoneNumber: this.state.phoneNumber,
+      gender: this.state.gender,
+      roleId: this.state.roleId,
+      positionId: this.state.positionId,
+      image: this.state.image,
+    });
+    this.props.getAllUserRedux("All");
   };
   handleUpdateUserRedux = async (data) => {
+    let url = "";
+    if (data.image) {
+      url = new Buffer(data.image, "base64").toString("binary");
+    }
     this.setState({
       ...data,
       action: "EDIT",
+      image: "",
+      previewImageURL: url,
     });
   };
   render() {
@@ -301,7 +308,7 @@ class UserRedux extends Component {
                         genderArr.length > 0 &&
                         genderArr.map((item, index) => {
                           return (
-                            <option key={index} value={item.key}>
+                            <option key={index} value={item.keyMap}>
                               {language === "vi" ? item.valueVI : item.valueEN}
                             </option>
                           );
@@ -324,7 +331,7 @@ class UserRedux extends Component {
                         positionArr.length > 0 &&
                         positionArr.map((item, index) => {
                           return (
-                            <option key={index} value={item.key}>
+                            <option key={index} value={item.keyMap}>
                               {language === "vi" ? item.valueVI : item.valueEN}
                             </option>
                           );
@@ -347,7 +354,7 @@ class UserRedux extends Component {
                         roleArr.length > 0 &&
                         roleArr.map((item, index) => {
                           return (
-                            <option key={index} value={item.key}>
+                            <option key={index} value={item.keyMap}>
                               {language === "vi" ? item.valueVI : item.valueEN}
                             </option>
                           );
