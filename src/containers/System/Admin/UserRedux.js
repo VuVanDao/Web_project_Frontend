@@ -9,6 +9,7 @@ import "react-image-lightbox/style.css";
 import { toast } from "react-toastify";
 import TableUserRedux from "./TableUserRedux";
 import CommonUtils from "../../../utils/CommonUtils";
+
 //menuApp
 class UserRedux extends Component {
   constructor(props) {
@@ -426,7 +427,6 @@ class UserRedux extends Component {
 }
 
 const mapStateToProps = (state) => {
-  // return { UserRedux };
   return {
     userInfo: state.user.userInfo,
     language: state.app.language,

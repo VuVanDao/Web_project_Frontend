@@ -8,7 +8,10 @@ import ModalDelete from "../ModalDelete";
 import { toast } from "react-toastify";
 import { emitter } from "../../../utils/emiter";
 import * as actions from "../../../store/actions";
-
+import MarkdownIt from "markdown-it";
+import MdEditor from "react-markdown-editor-lite";
+import "react-markdown-editor-lite/lib/index.css";
+const mdParser = new MarkdownIt(/* Markdown-it options */);
 class TableUserRedux extends Component {
   constructor(props) {
     super(props);
@@ -18,6 +21,9 @@ class TableUserRedux extends Component {
       isOpenModalDelete: false,
     };
   }
+  handleEditorChange = ({ html, text }) => {
+    console.log("HTML", html, "TEXT", text);
+  };
   async componentDidMount() {
     await this.props.getAllUserRedux("ALL");
   }
@@ -130,6 +136,11 @@ class TableUserRedux extends Component {
             </tbody>
           </table>
         </div>
+        <MdEditor
+          style={{ height: "500px", margin: "0 100px" }}
+          renderHTML={(text) => mdParser.render(text)}
+          onChange={this.handleEditorChange}
+        />
       </>
     );
   }
