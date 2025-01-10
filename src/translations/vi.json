@@ -35,7 +35,10 @@
       },
       "doctor": {
         "header": "Bác sĩ",
-        "doctor-redux": "Quản lí bác sĩ với redux"
+        "doctor-redux": "Quản lí bác sĩ với redux",
+        "title": "Thông tin chi tiết bác sĩ",
+        "introduce": "Giới thiệu",
+        "ChooseDoctor": "Chọn bác sĩ"
       }
     },
     "clinic": {

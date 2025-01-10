@@ -9,6 +9,7 @@ const initialState = {
   isLoadingRole: false,
   users: [],
   listDoctor: [],
+  AllDoctor: [],
 };
 
 const adminReducer = (state = initialState, action) => {
@@ -90,6 +91,17 @@ const adminReducer = (state = initialState, action) => {
       return {
         ...copyState,
       };
+    case actionTypes.GET_ALL_LIST_DOCTOR_REDUX_SUCCESS:
+      copyState.AllDoctor = action.data;
+      return {
+        ...copyState,
+      };
+    case actionTypes.GET_ALL_LIST_DOCTOR_REDUX_FAIL:
+      copyState.AllDoctor = [];
+      return {
+        ...copyState,
+      };
+
     default:
       return state;
   }

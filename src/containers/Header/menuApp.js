@@ -18,7 +18,7 @@ export const adminMenu = [
       },
       {
         name: "menu.system.doctor.header",
-        link: "/system/doctor",
+        link: "/system/manage-doctor",
       },
     ],
   },

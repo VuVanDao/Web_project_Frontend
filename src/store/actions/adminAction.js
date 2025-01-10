@@ -196,3 +196,47 @@ export const getListDoctorSuccess = (data) => ({
 export const getListDoctorFail = () => ({
   type: actionTypes.GET_LIST_DOCTOR_REDUX_FAIL,
 });
+export const getAllListDoctor = (data) => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await userService.getAllDoctor();
+      if (res && res.errCode === 0) {
+        dispatch(getAllListDoctorSuccess(res.listDoctor));
+      } else {
+        dispatch(getAllListDoctorFail());
+      }
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
+};
+export const getAllListDoctorSuccess = (data) => ({
+  type: actionTypes.GET_ALL_LIST_DOCTOR_REDUX_SUCCESS,
+  data,
+});
+export const getAllListDoctorFail = () => ({
+  type: actionTypes.GET_ALL_LIST_DOCTOR_REDUX_FAIL,
+});
+export const saveInfoDoctor = (data) => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await userService.saveInfoDoctor(data);
+      console.log(">>>", res);
+      if (res && res.errCode === 0) {
+        dispatch(saveInfoDoctorSuccess());
+        toast.success(res.errMessage);
+      } else {
+        toast.error("not success");
+        dispatch(saveInfoDoctorFail());
+      }
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
+};
+export const saveInfoDoctorSuccess = () => ({
+  type: actionTypes.SAVE_INFO_DOCTOR_SUCCESS,
+});
+export const saveInfoDoctorFail = () => ({
+  type: actionTypes.SAVE_INFO_DOCTOR_FAIL,
+});

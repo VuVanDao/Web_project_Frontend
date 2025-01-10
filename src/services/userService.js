@@ -21,6 +21,12 @@ const getAllCode = (data) => {
 const getDoctor = () => {
   return axios.get("/api/get-doctor");
 };
+const getAllDoctor = () => {
+  return axios.get("/api/get-all-doctor");
+};
+const saveInfoDoctor = (data) => {
+  return axios.post("/api/save-info-doctor", data);
+};
 export default {
   handleLogin,
   getAllUser,
@@ -29,4 +35,6 @@ export default {
   deleteAUser,
   getAllCode,
   getDoctor,
+  getAllDoctor,
+  saveInfoDoctor,
 };

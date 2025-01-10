@@ -29,7 +29,10 @@
       },
       "doctor": {
         "header": "Doctor",
-        "doctor-redux": "Doctor redux"
+        "doctor-redux": "Doctor redux",
+        "title": "Doctor's details information",
+        "introduce": "introduce",
+        "ChooseDoctor": "Choose doctor"
       }
     },
     "clinic": {
