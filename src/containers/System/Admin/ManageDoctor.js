@@ -21,11 +21,13 @@ class ManageDoctor extends Component {
       selectedOption: "",
       options: [],
       isLoading: true,
+      selectedOptionDisplay: "",
     };
   }
   handleChange = (selectedOption) => {
     this.setState({
       selectedOption: selectedOption.value,
+      selectedOptionDisplay: selectedOption,
     });
   };
   buildInputSelect = (data) => {
@@ -106,7 +108,7 @@ class ManageDoctor extends Component {
                     <FormattedMessage id="menu.system.doctor.ChooseDoctor" />
                   </label>
                   <Select
-                    value={this.state.selectedOption}
+                    value={this.state.selectedOptionDisplay}
                     onChange={this.handleChange}
                     options={options}
                   />

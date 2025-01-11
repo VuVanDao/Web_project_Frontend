@@ -6,13 +6,16 @@ import { LANGUAGES } from "../../../utils";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
+import { withRouter } from "react-router-dom";
 class OutstandingDoctor extends Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
-
+  HandleDetailDoctor = (doctor) => {
+    console.log(">>>", doctor);
+    this.props.history.push(`detail-doctor/${doctor.id}`);
+  };
   render() {
     let { listDoctor, language } = this.props;
 
@@ -36,7 +39,11 @@ class OutstandingDoctor extends Component {
                   url = new Buffer(item.image, "base64").toString("binary");
                 }
                 return (
-                  <div className="div" key={`doctor-${index}`}>
+                  <div
+                    className="div"
+                    key={`doctor-${index}`}
+                    onClick={() => this.HandleDetailDoctor(item)}
+                  >
                     <div>
                       <img src={url} />
                     </div>
@@ -73,4 +80,6 @@ const mapDispatchToProps = (dispatch) => {
   return {};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(OutstandingDoctor);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(OutstandingDoctor)
+);
