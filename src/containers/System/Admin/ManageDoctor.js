@@ -9,6 +9,7 @@ import "react-markdown-editor-lite/lib/index.css";
 import Select from "react-select";
 import LoadingData from "./LoadingData";
 import { LANGUAGES } from "../../../utils/constant";
+import userService from "../../../services/userService";
 const mdParser = new MarkdownIt();
 
 class ManageDoctor extends Component {
@@ -24,11 +25,30 @@ class ManageDoctor extends Component {
       selectedOptionDisplay: "",
     };
   }
-  handleChange = (selectedOption) => {
+  handleChange = async (selectedOption) => {
     this.setState({
       selectedOption: selectedOption.value,
       selectedOptionDisplay: selectedOption,
     });
+    let res = await userService.getDetailDoctor(selectedOption.value);
+    console.log("><><><>", res);
+    if (
+      res &&
+      res.errCode === 0 &&
+      res.data.Markdown &&
+      res.data.Markdown.contentHTML
+    ) {
+      this.setState({
+        textMarkdown: res.data.Markdown.contentMarkdown,
+        introduce: res.data.Markdown.description,
+      });
+    } else {
+      this.setState({
+        textMarkdown: "",
+        htmlMarkdown: "",
+        introduce: res.data.Markdown.description,
+      });
+    }
   };
   buildInputSelect = (data) => {
     let result = [];
@@ -77,6 +97,13 @@ class ManageDoctor extends Component {
       introduce: this.state.introduce,
       id: this.state.selectedOption,
     });
+    this.setState({
+      textMarkdown: "",
+      htmlMarkdown: "",
+      introduce: "",
+      selectedOption: "",
+      selectedOptionDisplay: "",
+    });
   };
   handleChangeTextArea = (event) => {
     this.setState({
@@ -121,6 +148,7 @@ class ManageDoctor extends Component {
                     id="introduce"
                     className="form-control"
                     style={{ height: "100px" }}
+                    value={this.state.introduce}
                     onChange={(event) => this.handleChangeTextArea(event)}
                   ></textarea>
                 </div>
@@ -130,6 +158,7 @@ class ManageDoctor extends Component {
               style={{ height: "500px", margin: "0 auto", width: "1400px" }}
               renderHTML={(text) => mdParser.render(text)}
               onChange={this.handleEditorChange}
+              value={this.state.textMarkdown}
             />
             <div className="col-12 text-center my-5">
               <button

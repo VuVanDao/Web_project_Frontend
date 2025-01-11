@@ -13,7 +13,6 @@ class OutstandingDoctor extends Component {
     this.state = {};
   }
   HandleDetailDoctor = (doctor) => {
-    console.log(">>>", doctor);
     this.props.history.push(`detail-doctor/${doctor.id}`);
   };
   render() {
@@ -53,10 +52,12 @@ class OutstandingDoctor extends Component {
                           ? item.positionData.valueVi +
                             " " +
                             item.lastName +
+                            " " +
                             item.firstName
                           : item.positionData.valueEn +
                             " " +
                             item.firstName +
+                            " " +
                             item.lastName}
                       </p>
                     </div>

@@ -1,6 +1,6 @@
-.container {
+.container-all {
   .detail-doctor-container {
-    margin-top: 100px;
+    margin: 110px 100px 0;
     display: flex;
     gap: 50px;
     .left {
@@ -14,7 +14,7 @@
       }
     }
     .right {
-      width: 30%;
+      width: 50%;
       display: flex;
       flex-direction: column;
       .title-doctor {
@@ -27,5 +27,11 @@
     }
   }
   .detail-html-doctor {
+    border-top: 2px solid;
+    .detail-html-doctor-content {
+      padding: 20px 0;
+      margin: 10px 100px;
+    }
+    background-color: #f9f9f9;
   }
 }

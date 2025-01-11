@@ -44,7 +44,7 @@ class DetailDoctor extends Component {
         ) : (
           <div>
             <HomePageHeader />
-            <div className="container">
+            <div className="container-all">
               <div className=" detail-doctor-container">
                 <div className="left">
                   <div className="img">
@@ -70,12 +70,14 @@ class DetailDoctor extends Component {
                   </span>
                 </div>
               </div>
-              <div
-                className="detail-html-doctor mt-3"
-                dangerouslySetInnerHTML={{
-                  __html: detailDoctor.Markdown.contentHTML,
-                }}
-              ></div>
+              <div className="detail-html-doctor mt-3">
+                <div
+                  className="detail-html-doctor-content"
+                  dangerouslySetInnerHTML={{
+                    __html: detailDoctor.Markdown.contentHTML,
+                  }}
+                ></div>
+              </div>
               <div className="detail-doctor-schedule"></div>
             </div>
           </div>
