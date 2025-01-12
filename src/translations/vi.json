@@ -38,7 +38,9 @@
         "doctor-redux": "Quản lí bác sĩ với redux",
         "title": "Thông tin chi tiết bác sĩ",
         "introduce": "Giới thiệu",
-        "ChooseDoctor": "Chọn bác sĩ"
+        "ChooseDoctor": "Chọn bác sĩ",
+        "schedule": "Lịch khám",
+        "manage-schedule": "Quản lí lịch khám"
       }
     },
     "clinic": {

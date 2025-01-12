@@ -20,6 +20,10 @@ export const adminMenu = [
         name: "menu.system.doctor.header",
         link: "/system/manage-doctor",
       },
+      {
+        name: "menu.system.doctor.manage-schedule",
+        link: "/doctor/doctor-schedule",
+      },
     ],
   },
   {
@@ -61,6 +65,18 @@ export const adminMenu = [
       {
         name: "menu.Handbook.Handbook-redux",
         link: "/clinic/clinic-redux",
+      },
+    ],
+  },
+];
+export const DoctorMenu = [
+  {
+    //hệ thống
+    name: "menu.system.doctor.manage-schedule",
+    menus: [
+      {
+        name: "menu.system.doctor.schedule",
+        link: "/doctor/doctor-schedule",
       },
     ],
   },

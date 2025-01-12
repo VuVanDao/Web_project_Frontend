@@ -1,0 +1,25 @@
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { Redirect, Route, Switch } from "react-router-dom";
+
+class ManageSchedule extends Component {
+  render() {
+    return (
+      <div>
+        <div className="system-container">
+          <div className="system-list title">dasdasdas</div>
+        </div>
+      </div>
+    );
+  }
+}
+
+const mapStateToProps = (state) => {
+  return {};
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ManageSchedule);

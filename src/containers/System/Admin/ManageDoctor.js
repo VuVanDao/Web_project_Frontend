@@ -31,7 +31,6 @@ class ManageDoctor extends Component {
       selectedOptionDisplay: selectedOption,
     });
     let res = await userService.getDetailDoctor(selectedOption.value);
-    console.log("><><><>", res);
     if (
       res &&
       res.errCode === 0 &&

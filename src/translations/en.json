@@ -32,7 +32,9 @@
         "doctor-redux": "Doctor redux",
         "title": "Doctor's details information",
         "introduce": "introduce",
-        "ChooseDoctor": "Choose doctor"
+        "ChooseDoctor": "Choose doctor",
+        "schedule": "Schedules",
+        "manage-schedule": "manage-schedule"
       }
     },
     "clinic": {

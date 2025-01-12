@@ -116,6 +116,7 @@ class UserRedux extends Component {
   };
   handleCreateUserRedux = async () => {
     let result = this.handleValidate();
+    // let result = true;
     if (!result) {
       toast.error("Plz fill all information on this form");
     } else {

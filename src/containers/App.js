@@ -19,6 +19,7 @@ import HomePage from "./HomePage/HomePage";
 import CustomScrollbars from "../components/CustomScrollbars";
 import { ToastContainer, toast } from "react-toastify";
 import DetailDoctor from "./Patient/Doctor/DetailDoctor";
+import Doctor from "../routes/Doctor";
 
 class App extends Component {
   handlePersistorState = () => {
@@ -58,6 +59,10 @@ class App extends Component {
                   />
                   <Route path={path.HOME_PAGE} component={HomePage} />
                   <Route path={path.DETAIL_DOCTOR} component={DetailDoctor} />
+                  <Route
+                    path={path.MANAGE_SCHEDULE}
+                    component={userIsAuthenticated(Doctor)}
+                  />
                 </Switch>
               </CustomScrollbars>
             </div>
