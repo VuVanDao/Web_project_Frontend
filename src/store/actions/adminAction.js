@@ -240,3 +240,22 @@ export const saveInfoDoctorSuccess = () => ({
 export const saveInfoDoctorFail = () => ({
   type: actionTypes.SAVE_INFO_DOCTOR_FAIL,
 });
+export const fetchAllSchedule = () => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await userService.getAllCode("TIME");
+      if (res && res.errCode === 0) {
+        dispatch({
+          type: actionTypes.GET_ALL_CODE_SCHEDULE_TIME_SUCCESS,
+          data: res.data,
+        });
+      } else {
+        dispatch({
+          type: actionTypes.GET_ALL_CODE_SCHEDULE_TIME_FAIL,
+        });
+      }
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
+};

@@ -43,7 +43,6 @@ class Header extends Component {
   }
   render() {
     const { processLogout, userInfo } = this.props;
-    console.log(">>>", this.state.menuApp);
 
     return (
       <div className="header-container">

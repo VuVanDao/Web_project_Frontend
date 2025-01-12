@@ -71,13 +71,7 @@ export const adminMenu = [
 ];
 export const DoctorMenu = [
   {
-    //hệ thống
-    name: "menu.system.doctor.manage-schedule",
-    menus: [
-      {
-        name: "menu.system.doctor.schedule",
-        link: "/doctor/doctor-schedule",
-      },
-    ],
+    name: "menu.system.doctor.schedule",
+    link: "/doctor/doctor-schedule",
   },
 ];

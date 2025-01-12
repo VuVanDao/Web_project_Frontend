@@ -189,5 +189,9 @@
   },
   "update-user": {
     "title": "Chỉnh sửa người dùng"
+  },
+  "Schedule": {
+    "title": "Đăng kí lịch khám",
+    "save": "Lưu"
   }
 }

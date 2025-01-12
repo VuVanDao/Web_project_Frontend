@@ -11,6 +11,7 @@ import Banner from "./Banner";
 import { changeLanguageApp } from "../../store/actions";
 import VietNam from "../../assets/images/VietNam2.png";
 import UK from "../../assets/images/UK.png";
+import { Link } from "react-router-dom";
 class HomePageHeader extends Component {
   constructor(props) {
     super(props);
@@ -25,9 +26,9 @@ class HomePageHeader extends Component {
         <div className="HomePageHeader-container">
           <div className="left">
             <i className="fas fa-bars"></i>
-            <a href="/home">
+            <Link to="/home">
               <img src="https://cf-sparkai-live.s3.amazonaws.com/users/2qqwVX7WxKwrLfu1L0wf530U2U8/spark_ai/o_bg-remover-gen_2qqwzHpFhVHt1gKwJW7phiQHUFO.png" />
-            </a>
+            </Link>
           </div>
           <div className="center">
             <div>

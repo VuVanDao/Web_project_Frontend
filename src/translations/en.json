@@ -171,5 +171,9 @@
   },
   "update-user": {
     "title": "Update a user"
+  },
+  "Schedule": {
+    "title": "Register for an appointment",
+    "save": "Save"
   }
 }
