@@ -10,6 +10,7 @@ import DatePicker from "../../../components/Input/DatePicker";
 import moment from "moment";
 import { toast } from "react-toastify";
 import _ from "lodash";
+import userService from "../../../services/userService";
 class ManageSchedule extends Component {
   constructor(props) {
     super(props);
@@ -91,24 +92,25 @@ class ManageSchedule extends Component {
       });
     }
   };
-  handleSaveSchedule = () => {
+  handleSaveSchedule = async () => {
     let { selectedOption, rangeTime, currentDate } = this.state;
     if (!selectedOption || !rangeTime || !currentDate) {
       toast.error("Plz select all items");
     } else {
       let result = [];
-      let formattedDate = moment(currentDate).format(dateFormat.SEND_TO_SERVER);
+      let formattedDate = new Date(currentDate).getTime();
       let rangeTimeSelected = rangeTime.filter(
         (item) => item.isSelected === true
       );
       rangeTimeSelected.map((item) => {
         let object = {};
+        object.date = formattedDate.toString();
+        object.timeType = item.keyMap;
         object.doctorId = selectedOption;
-        object.date = formattedDate;
-        object.time = item.keyMap;
         result.push(object);
       });
-      console.log("<>", result);
+      let res = await userService.saveSchedule({ arrSchedule: result });
+      console.log(">>", res);
     }
   };
   render() {
