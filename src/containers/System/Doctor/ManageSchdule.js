@@ -5,9 +5,11 @@ import "./ManageSchedule.scss";
 import { FormattedMessage } from "react-intl";
 import Select from "react-select";
 import * as actions from "../../../store/actions";
-import { LANGUAGES } from "../../../utils/constant";
+import { LANGUAGES, dateFormat } from "../../../utils/constant";
 import DatePicker from "../../../components/Input/DatePicker";
 import moment from "moment";
+import { toast } from "react-toastify";
+import _ from "lodash";
 class ManageSchedule extends Component {
   constructor(props) {
     super(props);
@@ -15,6 +17,7 @@ class ManageSchedule extends Component {
       options: [],
       currentDate: "",
       rangeTime: [],
+      selectedOption: "",
     };
   }
   componentDidMount() {
@@ -35,8 +38,13 @@ class ManageSchedule extends Component {
       });
     }
     if (prevProps.AllSchedule !== this.props.AllSchedule) {
+      let data = this.props.AllSchedule;
+      data = data.map((item) => {
+        item.isSelected = false;
+        return item;
+      });
       this.setState({
-        rangeTime: this.props.AllSchedule,
+        rangeTime: data,
       });
     }
   }
@@ -65,10 +73,47 @@ class ManageSchedule extends Component {
       currentDate: value[0],
     });
   };
+  handlePickSchedule = (item) => {
+    let { rangeTime } = this.state;
+    if (rangeTime && rangeTime.length > 0) {
+      let result = rangeTime.map((value) => {
+        if (value.id === item.id && item.isSelected === false) {
+          value.isSelected = true;
+        } else {
+          if (value.id === item.id && item.isSelected === true) {
+            value.isSelected = false;
+          }
+        }
+        return value;
+      });
+      this.setState({
+        rangeTime: result,
+      });
+    }
+  };
+  handleSaveSchedule = () => {
+    let { selectedOption, rangeTime, currentDate } = this.state;
+    if (!selectedOption || !rangeTime || !currentDate) {
+      toast.error("Plz select all items");
+    } else {
+      let result = [];
+      let formattedDate = moment(currentDate).format(dateFormat.SEND_TO_SERVER);
+      let rangeTimeSelected = rangeTime.filter(
+        (item) => item.isSelected === true
+      );
+      rangeTimeSelected.map((item) => {
+        let object = {};
+        object.doctorId = selectedOption;
+        object.date = formattedDate;
+        object.time = item.keyMap;
+        result.push(object);
+      });
+      console.log("<>", result);
+    }
+  };
   render() {
     let { options, rangeTime } = this.state;
     let { language } = this.props;
-    console.log("<><><>", this.state.rangeTime);
 
     return (
       <>
@@ -97,8 +142,14 @@ class ManageSchedule extends Component {
                 rangeTime.map((item, index) => {
                   return (
                     <div
-                      className="time-container-item"
+                      // className="time-container-item"
+                      className={
+                        item.isSelected === true
+                          ? "time-container-item active"
+                          : "time-container-item"
+                      }
                       key={`time-item-${index}`}
+                      onClick={() => this.handlePickSchedule(item)}
                     >
                       {language === LANGUAGES.VI ? item.valueVI : item.valueEN}
                     </div>
@@ -106,7 +157,10 @@ class ManageSchedule extends Component {
                 })}
             </div>
             <div className="col-12 text-center">
-              <button className="btn btn-outline-primary col-2">
+              <button
+                className="btn btn-outline-primary col-2"
+                onClick={() => this.handleSaveSchedule()}
+              >
                 <FormattedMessage id="Schedule.save" />
               </button>
             </div>
