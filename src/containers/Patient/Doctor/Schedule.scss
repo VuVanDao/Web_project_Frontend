@@ -1,0 +1,20 @@
+.doctor-schedule {
+  .all-schedule {
+  }
+  .all-schedule-available {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    .all-schedule-available-item {
+      background-color: yellow;
+      padding: 5px 10px;
+      border-radius: 5px;
+      width: 150px;
+      text-align: center;
+      cursor: pointer;
+      &:hover {
+        background-color: aqua;
+      }
+    }
+  }
+}

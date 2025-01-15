@@ -5,6 +5,7 @@ import LoadingData from "../../System/Admin/LoadingData";
 import HomePageHeader from "../../HomePage/HomePageHeader";
 import "./DetailDoctor.scss";
 import userService from "../../../services/userService";
+import DoctorSchedule from "./Schedule";
 class DetailDoctor extends Component {
   constructor(props) {
     super(props);
@@ -45,7 +46,7 @@ class DetailDoctor extends Component {
           <div>
             <HomePageHeader />
             <div className="container-all">
-              <div className=" detail-doctor-container">
+              <div className="detail-doctor-container">
                 <div className="left">
                   <div className="img">
                     <img src={detailDoctor.image} />
@@ -70,6 +71,12 @@ class DetailDoctor extends Component {
                   </span>
                 </div>
               </div>
+              <div className="detail-doctor-schedule">
+                <div className="left">
+                  <DoctorSchedule doctorId={this.state.detailDoctor.id} />
+                </div>
+                <div className="right">dasdas</div>
+              </div>
               <div className="detail-html-doctor mt-3">
                 <div
                   className="detail-html-doctor-content"
@@ -78,7 +85,6 @@ class DetailDoctor extends Component {
                   }}
                 ></div>
               </div>
-              <div className="detail-doctor-schedule"></div>
             </div>
           </div>
         )}

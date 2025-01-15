@@ -7,7 +7,6 @@ import Select from "react-select";
 import * as actions from "../../../store/actions";
 import { LANGUAGES, dateFormat } from "../../../utils/constant";
 import DatePicker from "../../../components/Input/DatePicker";
-import moment from "moment";
 import { toast } from "react-toastify";
 import _ from "lodash";
 import userService from "../../../services/userService";
@@ -70,6 +69,8 @@ class ManageSchedule extends Component {
     });
   };
   handleOnChangeDataPicker = (value) => {
+    console.log(">>>", value);
+
     this.setState({
       currentDate: value[0],
     });
@@ -135,7 +136,7 @@ class ManageSchedule extends Component {
               <DatePicker
                 onChange={(event) => this.handleOnChangeDataPicker(event)}
                 className="form-control"
-                minDate={new Date()}
+                options={{ minDate: new Date() }}
               />
             </div>
             <div className="col-12 time-container">
@@ -144,7 +145,6 @@ class ManageSchedule extends Component {
                 rangeTime.map((item, index) => {
                   return (
                     <div
-                      // className="time-container-item"
                       className={
                         item.isSelected === true
                           ? "time-container-item active"

@@ -192,6 +192,8 @@
   },
   "Schedule": {
     "title": "Đăng kí lịch khám",
-    "save": "Lưu"
+    "save": "Lưu",
+    "noSchedule": "bác sĩ không có lịch khám ngày hôm nay.",
+    "schedule": "Lịch khám"
   }
 }
