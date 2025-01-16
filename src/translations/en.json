@@ -34,7 +34,13 @@
         "introduce": "introduce",
         "ChooseDoctor": "Choose doctor",
         "schedule": "Schedules",
-        "manage-schedule": "manage-schedule"
+        "manage-schedule": "manage-schedule",
+        "payment": "payment",
+        "price": "price",
+        "province": "province",
+        "clinic": "Clinic",
+        "addressClinic": "Address Clinic",
+        "note": "note"
       }
     },
     "clinic": {

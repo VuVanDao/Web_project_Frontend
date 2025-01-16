@@ -40,7 +40,13 @@
         "introduce": "Giới thiệu",
         "ChooseDoctor": "Chọn bác sĩ",
         "schedule": "Lịch khám",
-        "manage-schedule": "Quản lí lịch khám"
+        "manage-schedule": "Quản lí lịch khám",
+        "payment": "Phương thức thanh toán",
+        "price": "Giá",
+        "province": "Tỉnh thành",
+        "clinic": "Phòng khám",
+        "addressClinic": "Địa chỉ phòng khám",
+        "note": "Ghi chú"
       }
     },
     "clinic": {

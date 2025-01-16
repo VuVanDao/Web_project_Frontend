@@ -69,8 +69,6 @@ class ManageSchedule extends Component {
     });
   };
   handleOnChangeDataPicker = (value) => {
-    console.log(">>>", value);
-
     this.setState({
       currentDate: value[0],
     });

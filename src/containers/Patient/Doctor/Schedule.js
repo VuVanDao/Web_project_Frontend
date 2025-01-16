@@ -91,6 +91,7 @@ class DoctorSchedule extends Component {
             <div className="all-schedule-available mt-3">
               {ScheduleAvailable && ScheduleAvailable.length > 0 ? (
                 ScheduleAvailable.map((item, index) => {
+                  // console.log("<<>>", new Date(item.date).getHours());
                   return (
                     <div
                       key={`schedule-${index}`}

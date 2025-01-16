@@ -11,6 +11,10 @@ const initialState = {
   listDoctor: [],
   AllDoctor: [],
   AllSchedule: [],
+  priceArr: [],
+  isLoadingPrice: false,
+  paymentArr: [],
+  provinceArr: [],
 };
 
 const adminReducer = (state = initialState, action) => {
@@ -113,7 +117,54 @@ const adminReducer = (state = initialState, action) => {
       return {
         ...copyState,
       };
-
+    //price
+    case actionTypes.FETCH_PRICE_START:
+      copyState.isLoadingPrice = true;
+      return {
+        ...copyState,
+      };
+    case actionTypes.FETCH_PRICE_SUCCESS:
+      copyState.isLoadingPrice = false;
+      copyState.priceArr = action.data;
+      return {
+        ...copyState,
+      };
+    case actionTypes.FETCH_PRICE_FAIL:
+      copyState.isLoadingPrice = false;
+      copyState.priceArr = [];
+      return {
+        ...copyState,
+      };
+    //payment
+    case actionTypes.FETCH_PAYMENT_START:
+      return {
+        ...copyState,
+      };
+    case actionTypes.FETCH_PAYMENT_SUCCESS:
+      copyState.paymentArr = action.data;
+      return {
+        ...copyState,
+      };
+    case actionTypes.FETCH_PRICE_FAIL:
+      copyState.paymentArr = [];
+      return {
+        ...copyState,
+      };
+    //province
+    case actionTypes.FETCH_PROVINCE_START:
+      return {
+        ...copyState,
+      };
+    case actionTypes.FETCH_PROVINCE_SUCCESS:
+      copyState.provinceArr = action.data;
+      return {
+        ...copyState,
+      };
+    case actionTypes.FETCH_PROVINCE_FAIL:
+      copyState.provinceArr = [];
+      return {
+        ...copyState,
+      };
     default:
       return state;
   }
