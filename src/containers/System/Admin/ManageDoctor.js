@@ -36,30 +36,71 @@ class ManageDoctor extends Component {
   }
   handleChange = async (selectedOption) => {
     this.setState({
-      selectedOption: selectedOption.value,
+      selectedOption: selectedOption,
     });
     let res = await userService.getDetailDoctor(selectedOption.value);
     if (
       res &&
       res.errCode === 0 &&
       res.data.Markdown &&
-      res.data.Markdown.contentHTML
+      res.data.Markdown.contentHTML &&
+      res.data.Doctor_info &&
+      res.data.Doctor_detail_payment &&
+      res.data.Doctor_detail_price &&
+      res.data.Doctor_detail_province &&
+      res.data.Doctor_info.nameClinic &&
+      res.data.Doctor_info.addressClinic &&
+      res.data.Doctor_info.note
     ) {
+      let checkPrice = this.state.priceArr.find((item) => {
+        return item.value === res.data.Doctor_info.priceId;
+      });
+      let checkPayment = this.state.paymentArr.find((item) => {
+        return item.value === res.data.Doctor_info.paymentId;
+      });
+      let checkProvince = this.state.provinceArr.find((item) => {
+        return item.value === res.data.Doctor_info.provinceId;
+      });
       this.setState({
         textMarkdown: res.data.Markdown.contentMarkdown,
         introduce: res.data.Markdown.description,
+        clinic: res.data.Doctor_info.nameClinic,
+        addressClinic: res.data.Doctor_info.addressClinic,
+        note: res.data.Doctor_info.note,
+        selectedPayment: checkPayment,
+        selectedPrice: checkPrice,
+        selectedProvince: checkProvince,
       });
     } else {
+      let checkPrice = this.state.priceArr.find((item) => {
+        return item.value === res.data.Doctor_info.priceId;
+      });
+      let checkPayment = this.state.paymentArr.find((item) => {
+        return item.value === res.data.Doctor_info.paymentId;
+      });
+      let checkProvince = this.state.provinceArr.find((item) => {
+        return item.value === res.data.Doctor_info.provinceId;
+      });
       this.setState({
         textMarkdown: "",
         htmlMarkdown: "",
         introduce: res.data.Markdown.description,
+        clinic: res.data.Doctor_info.nameClinic
+          ? res.data.Doctor_info.nameClinic
+          : "",
+        addressClinic: res.data.Doctor_info.addressClinic
+          ? res.data.Doctor_info.addressClinic
+          : "",
+        note: res.data.Doctor_info.note ? res.data.Doctor_info.note : "",
+        selectedPayment: checkPayment ? checkPayment : "",
+        selectedPrice: checkPrice ? checkPayment : "",
+        selectedProvince: checkProvince ? checkPayment : "",
       });
     }
   };
   handleChangeSelect = (selected, id) => {
     let stateClone = { ...this.state };
-    stateClone[id.name] = selected.value;
+    stateClone[id.name] = selected;
     this.setState({
       ...stateClone,
     });
@@ -197,8 +238,6 @@ class ManageDoctor extends Component {
     return result;
   };
   handleSaveMarkdown = () => {
-    console.log("<<>><<>>", this.state);
-
     let result = this.Validate();
     if (!result) {
       toast.error("Not complete information");
@@ -264,7 +303,7 @@ class ManageDoctor extends Component {
    */
   render() {
     // console.log(">>>", this.props.priceArr);
-    // console.log(">>>state", this.state.priceArr);
+    console.log(">>>state", this.state);
     let { options, priceArr, paymentArr, provinceArr } = this.state;
     let { language } = this.props;
 
@@ -316,6 +355,7 @@ class ManageDoctor extends Component {
                       options={paymentArr}
                       onChange={this.handleChangeSelect}
                       name="selectedPayment"
+                      value={this.state.selectedPayment}
                       placeholder={
                         <FormattedMessage id="menu.system.doctor.payment" />
                       }
@@ -330,6 +370,7 @@ class ManageDoctor extends Component {
                       options={priceArr}
                       onChange={this.handleChangeSelect}
                       name="selectedPrice"
+                      value={this.state.selectedPrice}
                       placeholder={
                         <FormattedMessage id="menu.system.doctor.price" />
                       }
@@ -344,6 +385,7 @@ class ManageDoctor extends Component {
                       options={provinceArr}
                       onChange={this.handleChangeSelect}
                       name="selectedProvince"
+                      value={this.state.selectedProvince}
                       placeholder={
                         <FormattedMessage id="menu.system.doctor.province" />
                       }
@@ -362,6 +404,7 @@ class ManageDoctor extends Component {
                       onChange={(event) =>
                         this.handleChangeText(event, "clinic")
                       }
+                      value={this.state.clinic}
                     />
                   </div>
                   <div className="col-md-4 ">
@@ -375,6 +418,7 @@ class ManageDoctor extends Component {
                       onChange={(event) =>
                         this.handleChangeText(event, "addressClinic")
                       }
+                      value={this.state.addressClinic}
                     />
                   </div>
                   <div className="col-md-4 ">
@@ -386,6 +430,7 @@ class ManageDoctor extends Component {
                       className="form-control"
                       name="note"
                       onChange={(event) => this.handleChangeText(event, "note")}
+                      value={this.state.note}
                     />
                   </div>
                 </div>
