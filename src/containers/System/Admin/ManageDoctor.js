@@ -63,6 +63,7 @@ class ManageDoctor extends Component {
       });
       this.setState({
         textMarkdown: res.data.Markdown.contentMarkdown,
+        htmlMarkdown: res.data.Markdown.contentHTML,
         introduce: res.data.Markdown.description,
         clinic: res.data.Doctor_info.nameClinic,
         addressClinic: res.data.Doctor_info.addressClinic,
@@ -72,6 +73,8 @@ class ManageDoctor extends Component {
         selectedProvince: checkProvince,
       });
     } else {
+      console.log(">>error");
+
       let checkPrice = this.state.priceArr.find((item) => {
         return item.value === res.data.Doctor_info.priceId;
       });
@@ -82,8 +85,12 @@ class ManageDoctor extends Component {
         return item.value === res.data.Doctor_info.provinceId;
       });
       this.setState({
-        textMarkdown: "",
-        htmlMarkdown: "",
+        textMarkdown: res.data.Markdown.contentMarkdown
+          ? res.data.Markdown.contentMarkdown
+          : "",
+        htmlMarkdown: res.data.Markdown.contentHTML
+          ? res.data.Markdown.contentHTML
+          : "",
         introduce: res.data.Markdown.description,
         clinic: res.data.Doctor_info.nameClinic
           ? res.data.Doctor_info.nameClinic
@@ -303,7 +310,6 @@ class ManageDoctor extends Component {
    */
   render() {
     // console.log(">>>", this.props.priceArr);
-    console.log(">>>state", this.state);
     let { options, priceArr, paymentArr, provinceArr } = this.state;
     let { language } = this.props;
 
