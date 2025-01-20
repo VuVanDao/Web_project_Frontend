@@ -9,12 +9,14 @@ import userService from "../../../services/userService";
 import { FormattedMessage } from "react-intl";
 import LoadingData from "../../System/Admin/LoadingData";
 import localization from "moment/locale/vi";
+import BookingModal from "./Modal/BookingModal";
 class DoctorSchedule extends Component {
   constructor(props) {
     super(props);
     this.state = {
       dayInWeek: [],
       ScheduleAvailable: [],
+      OpenModalBooking: false,
     };
   }
   setLanguageSchedule = () => {
@@ -49,6 +51,11 @@ class DoctorSchedule extends Component {
       });
     }
   };
+  handleOpenModalBooking = () => {
+    this.setState({
+      OpenModalBooking: !this.state.OpenModalBooking,
+    });
+  };
   async componentDidMount() {
     this.setLanguageSchedule();
   }
@@ -67,49 +74,55 @@ class DoctorSchedule extends Component {
         {!ScheduleAvailable ? (
           <LoadingData />
         ) : (
-          <div className="doctor-schedule">
-            <div className="all-schedule">
-              <select
-                className="text-capitalize"
-                onChange={(event) => this.handlePickSchedule(event)}
-              >
-                {dayInWeek &&
-                  dayInWeek.length > 0 &&
-                  dayInWeek.map((item, index) => {
+          <>
+            <div className="doctor-schedule">
+              <div className="all-schedule">
+                <select
+                  className="text-capitalize"
+                  onChange={(event) => this.handlePickSchedule(event)}
+                >
+                  {dayInWeek &&
+                    dayInWeek.length > 0 &&
+                    dayInWeek.map((item, index) => {
+                      return (
+                        <option value={item.value} key={`day-${index}`}>
+                          {item.label}
+                        </option>
+                      );
+                    })}
+                </select>
+              </div>
+              <div className="mt-2">
+                <i className="fas fa-calendar-alt mx-2"></i>
+                <FormattedMessage id="Schedule.schedule" />
+              </div>
+              <div className="all-schedule-available mt-3">
+                {ScheduleAvailable && ScheduleAvailable.length > 0 ? (
+                  ScheduleAvailable.map((item, index) => {
                     return (
-                      <option value={item.value} key={`day-${index}`}>
-                        {item.label}
-                      </option>
+                      <div
+                        key={`schedule-${index}`}
+                        className="all-schedule-available-item"
+                        onClick={() => this.handleOpenModalBooking()}
+                      >
+                        {language === LANGUAGES.VI
+                          ? item.timeTypeData.valueVi
+                          : item.timeTypeData.valueEn}
+                      </div>
                     );
-                  })}
-              </select>
+                  })
+                ) : (
+                  <span>
+                    <FormattedMessage id="Schedule.noSchedule" />
+                  </span>
+                )}
+              </div>
             </div>
-            <div className="mt-2">
-              <i className="fas fa-calendar-alt mx-2"></i>
-              <FormattedMessage id="Schedule.schedule" />
-            </div>
-            <div className="all-schedule-available mt-3">
-              {ScheduleAvailable && ScheduleAvailable.length > 0 ? (
-                ScheduleAvailable.map((item, index) => {
-                  // console.log("<<>>", new Date(item.date).getHours());
-                  return (
-                    <div
-                      key={`schedule-${index}`}
-                      className="all-schedule-available-item"
-                    >
-                      {language === LANGUAGES.VI
-                        ? item.timeTypeData.valueVi
-                        : item.timeTypeData.valueEn}
-                    </div>
-                  );
-                })
-              ) : (
-                <span>
-                  <FormattedMessage id="Schedule.noSchedule" />
-                </span>
-              )}
-            </div>
-          </div>
+            <BookingModal
+              openModalBooking={this.state.OpenModalBooking}
+              handleOpenModalBooking={this.handleOpenModalBooking}
+            />
+          </>
         )}
       </>
     );

@@ -21,7 +21,6 @@ class DoctorExtraInfo extends Component {
 
   render() {
     let { language, detailDoctor } = this.props;
-    console.log(">><<", detailDoctor);
 
     return (
       <>

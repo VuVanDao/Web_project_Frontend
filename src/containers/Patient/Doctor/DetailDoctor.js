@@ -26,7 +26,6 @@ class DetailDoctor extends Component {
           isLoading: false,
         });
       }
-      console.log(">>>>>>>", this.state);
     }
   }
   componentDidUpdate() {}
