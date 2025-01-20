@@ -67,7 +67,7 @@ class DoctorSchedule extends Component {
 
   render() {
     let { dayInWeek, ScheduleAvailable } = this.state;
-    let { language } = this.props;
+    let { language } = this.props; //trong props co doctorId
 
     return (
       <>

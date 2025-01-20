@@ -185,6 +185,7 @@
     "title": "Register for an appointment",
     "save": "Save",
     "noSchedule": "The doctor is not available today.",
-    "schedule": "Schedules"
+    "schedule": "Schedules",
+    "BookFor": "Book for:"
   }
 }

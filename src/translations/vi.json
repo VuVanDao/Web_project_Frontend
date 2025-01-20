@@ -203,6 +203,7 @@
     "title": "Đăng kí lịch khám",
     "save": "Lưu",
     "noSchedule": "bác sĩ không có lịch khám ngày hôm nay.",
-    "schedule": "Lịch khám"
+    "schedule": "Lịch khám",
+    "BookFor": "Đặt cho ai:"
   }
 }

@@ -23,13 +23,11 @@ class BookingModal extends Component {
   toggle = () => {
     this.setState({
       email: "",
-      password: "",
-      firstName: "",
-      lastName: "",
+
+      Name: "",
       address: "",
       phoneNumber: "",
       gender: "",
-      roleId: "",
     });
     this.props.handleOpenModalBooking();
   };
@@ -45,15 +43,7 @@ class BookingModal extends Component {
   };
   handleValidate = () => {
     let result = true;
-    let listState = [
-      "email",
-      "password",
-      "firstName",
-      "lastName",
-      "address",
-      "gender",
-      "roleId",
-    ];
+    let listState = ["email", "Name", "address", "gender", "phoneNumber"];
     listState.map((item, index) => {
       if (!this.state[item]) {
         result = false;
@@ -81,65 +71,33 @@ class BookingModal extends Component {
           </Modal.Header>
           <Modal.Body>
             <div className="container">
-              <div className="row">
-                <div className="col-6">
-                  <label htmlFor="email">
-                    <FormattedMessage id="system.user-manage.email" />:
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="email"
-
-                    // onChange={(event) =>
-                    //   this.handleInfoUser(event.target.value, "email")
-                    // }
-                    // onKeyDown={(event) => this.handleKeyDown(event)}
-                  />
-                </div>
-                <div className="col-6">
-                  <label htmlFor="password">
-                    <FormattedMessage id="system.user-manage.password" />:
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="password"
-
-                    // onChange={(event) =>
-                    //   this.handleInfoUser(event.target.value, "password")
-                    // }
-                    // onKeyDown={(event) => this.handleKeyDown(event)}
-                  />
-                </div>
-              </div>
               <div className="row mt-3">
                 <div className="col-6">
-                  <label htmlFor="firstName">
+                  <label htmlFor="Name">
                     <FormattedMessage id="system.user-manage.firstName" />:
                   </label>
                   <input
                     type="text"
                     className="form-control"
-                    id="firstName"
+                    id="Name"
 
                     // onChange={(event) =>
-                    //   this.handleInfoUser(event.target.value, "firstName")
+                    //   this.handleInfoUser(event.target.value, "Name")
                     // }
                     // onKeyDown={(event) => this.handleKeyDown(event)}
                   />
                 </div>
                 <div className="col-6">
-                  <label htmlFor="lastName">
-                    <FormattedMessage id="system.user-manage.lastName" />:
+                  <label htmlFor="Email">
+                    <FormattedMessage id="system.user-manage.email" />:
                   </label>
                   <input
                     type="text"
                     className="form-control"
-                    id="lastName"
+                    id="Email"
 
                     // onChange={(event) =>
-                    //   this.handleInfoUser(event.target.value, "lastName")
+                    //   this.handleInfoUser(event.target.value, "Email")
                     // }
                     // onKeyDown={(event) => this.handleKeyDown(event)}
                   />
@@ -176,6 +134,20 @@ class BookingModal extends Component {
                 </div>
               </div>
               <div className="row mt-3">
+                <div className="col-6">
+                  <label htmlFor="phoneNumber">
+                    <FormattedMessage id="Schedule.BookFor" />
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="bookFor"
+                    // onChange={(event) =>
+                    //   this.handleInfoUser(event.target.value, "phoneNumber")
+                    // }
+                    // onKeyDown={(event) => this.handleKeyDown(event)}
+                  />
+                </div>
                 <div className="col-6">
                   <label htmlFor="inputState">
                     <FormattedMessage id="system.user-manage.gender" />
