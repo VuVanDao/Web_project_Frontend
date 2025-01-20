@@ -40,7 +40,10 @@
         "province": "province",
         "clinic": "Clinic",
         "addressClinic": "Address Clinic",
-        "note": "note"
+        "note": "note",
+        "moreInfo": "More Info",
+        "HideInfo": "Hide Info",
+        "pay": "Payment can be made by (ATM card,cash): "
       }
     },
     "clinic": {

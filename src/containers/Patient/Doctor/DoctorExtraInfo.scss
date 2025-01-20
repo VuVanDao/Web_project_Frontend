@@ -1,0 +1,56 @@
+.doctor-extraInfo-container {
+  .doctor-extraInfo-title {
+    font-size: 15px;
+    color: gray;
+    text-transform: uppercase;
+  }
+  .doctor-extraInfo-nameClinic {
+    font-size: 20px;
+    font-weight: 600;
+  }
+  .doctor-extraInfo-addressClinic {
+  }
+  .doctor-extraInfo-moreInfo {
+    border-top: 1px solid;
+    font-size: 15px;
+    text-transform: uppercase;
+    color: gray;
+    display: flex;
+    gap: 10px;
+    p {
+      font-size: 15px;
+      font-weight: 0;
+      color: aqua;
+      cursor: pointer;
+    }
+  }
+  .doctor-extraInfo-detailMoreInfo {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid;
+    gap: 1px;
+    .item-1,
+    .item-2 {
+      padding: 5px 10px;
+      border: 1px solid;
+    }
+    .item-1 {
+      background-color: #f8f8f8;
+      div {
+        text-transform: uppercase;
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+    .item-2 {
+      text-transform: uppercase;
+      background-color: #eee;
+    }
+    p {
+      font-size: 15px;
+      font-weight: 0;
+      color: aqua;
+      cursor: pointer;
+    }
+  }
+}

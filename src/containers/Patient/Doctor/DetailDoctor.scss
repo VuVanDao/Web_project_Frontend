@@ -31,10 +31,11 @@
     display: flex;
     gap: 50px;
     .left {
-      width: 45%;
+      width: 50%;
+      border-right: 1px solid;
     }
     .right {
-      width: 55%;
+      width: 40%;
     }
   }
   .detail-html-doctor {

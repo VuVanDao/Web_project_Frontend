@@ -6,6 +6,7 @@ import HomePageHeader from "../../HomePage/HomePageHeader";
 import "./DetailDoctor.scss";
 import userService from "../../../services/userService";
 import DoctorSchedule from "./Schedule";
+import DoctorExtraInfo from "./DoctorExtraInfo";
 class DetailDoctor extends Component {
   constructor(props) {
     super(props);
@@ -38,6 +39,7 @@ class DetailDoctor extends Component {
   render() {
     let { detailDoctor } = this.state;
     let { language } = this.props;
+
     return (
       <>
         {this.state.isLoading ? (
@@ -75,7 +77,9 @@ class DetailDoctor extends Component {
                 <div className="left">
                   <DoctorSchedule doctorId={this.state.detailDoctor.id} />
                 </div>
-                <div className="right">dasdas</div>
+                <div className="right">
+                  <DoctorExtraInfo detailDoctor={this.state.detailDoctor} />
+                </div>
               </div>
               <div className="detail-html-doctor mt-3">
                 <div

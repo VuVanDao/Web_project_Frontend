@@ -46,7 +46,10 @@
         "province": "Tỉnh thành",
         "clinic": "Phòng khám",
         "addressClinic": "Địa chỉ phòng khám",
-        "note": "Ghi chú"
+        "note": "Ghi chú",
+        "moreInfo": "Thông tin chi tiết",
+        "HideInfo": "Ẩn chi tiết",
+        "pay": "Có thể thanh toán với hình thức (thẻ ATM, tiền mặt)"
       }
     },
     "clinic": {
