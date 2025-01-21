@@ -51,7 +51,9 @@ class DoctorSchedule extends Component {
       });
     }
   };
-  handleOpenModalBooking = () => {
+  handleOpenModalBooking = (date) => {
+    console.log(">>", date);
+
     this.setState({
       OpenModalBooking: !this.state.OpenModalBooking,
     });
@@ -103,7 +105,7 @@ class DoctorSchedule extends Component {
                       <div
                         key={`schedule-${index}`}
                         className="all-schedule-available-item"
-                        onClick={() => this.handleOpenModalBooking()}
+                        onClick={() => this.handleOpenModalBooking(item)}
                       >
                         {language === LANGUAGES.VI
                           ? item.timeTypeData.valueVi
@@ -121,6 +123,7 @@ class DoctorSchedule extends Component {
             <BookingModal
               openModalBooking={this.state.OpenModalBooking}
               handleOpenModalBooking={this.handleOpenModalBooking}
+              doctorId={this.props.doctorId}
             />
           </>
         )}
@@ -136,10 +139,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {
-    getAllListDoctor: () => dispatch(actions.getAllListDoctor()),
-    fetchAllSchedule: () => dispatch(actions.fetchAllSchedule()),
-  };
+  return {};
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(DoctorSchedule);

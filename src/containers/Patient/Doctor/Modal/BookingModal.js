@@ -3,30 +3,40 @@ import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import { toast } from "react-toastify";
-
+import "./BookingModal.scss";
+import { LANGUAGES } from "../../../../utils";
+import userService from "../../../../services/userService";
+import ProfileDoctor from "../ProfileDoctor/ProfileDoctor";
 class BookingModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      //   email: "",
-      //   password: "",
-      //   firstName: "",
-      //   lastName: "",
-      //   address: "",
-      //   phoneNumber: "",
-      //   gender: "",
-      //   roleId: "",
+      email: "",
+      userName: "",
+      address: "",
+      phoneNumber: "",
+      gender: "",
+      bookFor: "",
+      detailDoctor: "",
     };
   }
-  componentDidMount() {}
+  async componentDidMount() {
+    if (this.props.doctorId) {
+      let result = await userService.getDetailDoctor(this.props.doctorId);
+      if (result && result.errCode === 0) {
+        this.setState({
+          detailDoctor: result.data,
+        });
+      }
+    }
+  }
   toggle = () => {
     this.setState({
       email: "",
-
-      Name: "",
+      userName: "",
       address: "",
       phoneNumber: "",
+      bookFor: "",
       gender: "",
     });
     this.props.handleOpenModalBooking();
@@ -43,7 +53,14 @@ class BookingModal extends Component {
   };
   handleValidate = () => {
     let result = true;
-    let listState = ["email", "Name", "address", "gender", "phoneNumber"];
+    let listState = [
+      "email",
+      "userName",
+      "address",
+      "gender",
+      "phoneNumber",
+      "bookFor",
+    ];
     listState.map((item, index) => {
       if (!this.state[item]) {
         result = false;
@@ -53,8 +70,7 @@ class BookingModal extends Component {
   };
 
   render() {
-    let { openModalBooking } = this.props;
-    console.log(">>>>", this.props);
+    let { openModalBooking, doctorId, language } = this.props;
 
     return (
       <>
@@ -71,35 +87,34 @@ class BookingModal extends Component {
           </Modal.Header>
           <Modal.Body>
             <div className="container">
+              <ProfileDoctor doctorId={doctorId} />
               <div className="row mt-3">
                 <div className="col-6">
-                  <label htmlFor="Name">
+                  <label htmlFor="userName">
                     <FormattedMessage id="system.user-manage.firstName" />:
                   </label>
                   <input
                     type="text"
                     className="form-control"
-                    id="Name"
-
-                    // onChange={(event) =>
-                    //   this.handleInfoUser(event.target.value, "Name")
-                    // }
-                    // onKeyDown={(event) => this.handleKeyDown(event)}
+                    id="userName"
+                    onChange={(event) =>
+                      this.handleInfoUser(event.target.value, "userName")
+                    }
+                    onKeyDown={(event) => this.handleKeyDown(event)}
                   />
                 </div>
                 <div className="col-6">
-                  <label htmlFor="Email">
+                  <label htmlFor="email">
                     <FormattedMessage id="system.user-manage.email" />:
                   </label>
                   <input
                     type="text"
                     className="form-control"
-                    id="Email"
-
-                    // onChange={(event) =>
-                    //   this.handleInfoUser(event.target.value, "Email")
-                    // }
-                    // onKeyDown={(event) => this.handleKeyDown(event)}
+                    id="email"
+                    onChange={(event) =>
+                      this.handleInfoUser(event.target.value, "email")
+                    }
+                    onKeyDown={(event) => this.handleKeyDown(event)}
                   />
                 </div>
               </div>
@@ -112,10 +127,10 @@ class BookingModal extends Component {
                     type="text"
                     className="form-control"
                     id="address"
-                    // onChange={(event) =>
-                    //   this.handleInfoUser(event.target.value, "address")
-                    // }
-                    // onKeyDown={(event) => this.handleKeyDown(event)}
+                    onChange={(event) =>
+                      this.handleInfoUser(event.target.value, "address")
+                    }
+                    onKeyDown={(event) => this.handleKeyDown(event)}
                   />
                 </div>
                 <div className="col-6">
@@ -126,26 +141,26 @@ class BookingModal extends Component {
                     type="text"
                     className="form-control"
                     id="phoneNumber"
-                    // onChange={(event) =>
-                    //   this.handleInfoUser(event.target.value, "phoneNumber")
-                    // }
-                    // onKeyDown={(event) => this.handleKeyDown(event)}
+                    onChange={(event) =>
+                      this.handleInfoUser(event.target.value, "phoneNumber")
+                    }
+                    onKeyDown={(event) => this.handleKeyDown(event)}
                   />
                 </div>
               </div>
               <div className="row mt-3">
                 <div className="col-6">
-                  <label htmlFor="phoneNumber">
+                  <label htmlFor="bookFor">
                     <FormattedMessage id="Schedule.BookFor" />
                   </label>
                   <input
                     type="text"
                     className="form-control"
                     id="bookFor"
-                    // onChange={(event) =>
-                    //   this.handleInfoUser(event.target.value, "phoneNumber")
-                    // }
-                    // onKeyDown={(event) => this.handleKeyDown(event)}
+                    onChange={(event) =>
+                      this.handleInfoUser(event.target.value, "bookFor")
+                    }
+                    onKeyDown={(event) => this.handleKeyDown(event)}
                   />
                 </div>
                 <div className="col-6">
@@ -183,7 +198,9 @@ class BookingModal extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return {};
+  return {
+    language: state.app.language,
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {

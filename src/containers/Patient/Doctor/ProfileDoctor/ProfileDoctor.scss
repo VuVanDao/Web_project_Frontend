@@ -1,0 +1,26 @@
+.detail-doctor-container {
+  display: flex;
+  gap: 50px;
+  .left {
+    .img {
+      img {
+        border: 1px solid;
+        border-radius: 50%;
+        width: 150px;
+        height: 150px;
+      }
+    }
+  }
+  .right {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    .title-doctor {
+      font-size: 30px;
+      font-weight: 600;
+    }
+    .description-doctor {
+      font-size: 20px;
+    }
+  }
+}
