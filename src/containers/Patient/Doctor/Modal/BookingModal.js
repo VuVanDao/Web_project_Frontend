@@ -70,7 +70,8 @@ class BookingModal extends Component {
   };
 
   render() {
-    let { openModalBooking, doctorId, language } = this.props;
+    let { openModalBooking, doctorId, language, currentDatePicked } =
+      this.props;
 
     return (
       <>
@@ -87,7 +88,11 @@ class BookingModal extends Component {
           </Modal.Header>
           <Modal.Body>
             <div className="container">
-              <ProfileDoctor doctorId={doctorId} />
+              <ProfileDoctor
+                doctorId={doctorId}
+                currentDatePicked={currentDatePicked}
+                showDescription={false}
+              />
               <div className="row mt-3">
                 <div className="col-6">
                   <label htmlFor="userName">

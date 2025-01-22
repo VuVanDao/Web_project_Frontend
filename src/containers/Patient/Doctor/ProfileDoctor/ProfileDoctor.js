@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import "./ProfileDoctor.scss";
 import { LANGUAGES } from "../../../../utils";
 import userService from "../../../../services/userService";
+import _ from "lodash";
+import moment from "moment";
 class ProfileDoctor extends Component {
   constructor(props) {
     super(props);
@@ -22,7 +24,7 @@ class ProfileDoctor extends Component {
   }
 
   render() {
-    let { language } = this.props;
+    let { language, currentDatePicked, showDescription } = this.props;
     let { detailDoctor } = this.state;
 
     return (
@@ -35,7 +37,7 @@ class ProfileDoctor extends Component {
           </div>
           <div className="right">
             <span className="title-doctor">
-              {detailDoctor.positionData
+              {detailDoctor && detailDoctor.positionData
                 ? language === LANGUAGES.VI
                   ? detailDoctor.positionData.valueVi +
                     ": " +
@@ -50,12 +52,15 @@ class ProfileDoctor extends Component {
                 : ""}
             </span>
             <span className="description-doctor">
-              {detailDoctor.Markdown && detailDoctor.Markdown.description
+              {showDescription &&
+              detailDoctor &&
+              detailDoctor.Markdown &&
+              detailDoctor.Markdown.description
                 ? detailDoctor.Markdown.description
                 : ""}
             </span>
             <span>
-              {detailDoctor.Doctor_detail_price
+              {detailDoctor && detailDoctor.Doctor_detail_price
                 ? language === LANGUAGES.VI
                   ? "Giá khám: " +
                     detailDoctor.Doctor_detail_price.valueVi +
@@ -66,10 +71,32 @@ class ProfileDoctor extends Component {
                 : ""}
             </span>
             <span>
-              {detailDoctor.Doctor_detail_province
+              {detailDoctor && detailDoctor.Doctor_detail_province
                 ? language === LANGUAGES.VI
                   ? "Địa chỉ: " + detailDoctor.Doctor_detail_province.valueVi
                   : "Province: " + detailDoctor.Doctor_detail_province.valueEn
+                : ""}
+            </span>
+            <span>
+              {currentDatePicked && currentDatePicked.timeTypeData
+                ? language === LANGUAGES.VI
+                  ? "Thời gian: " + currentDatePicked.timeTypeData.valueVi
+                  : "Time: " + currentDatePicked.timeTypeData.valueEn
+                : ""}
+            </span>
+            <span style={{ textTransform: "capitalize" }}>
+              {currentDatePicked && currentDatePicked.timeTypeData
+                ? language === LANGUAGES.VI
+                  ? moment(+currentDatePicked.date).format("dddd") +
+                    " " +
+                    moment(+currentDatePicked.date).format("DD/MM/YYYY")
+                  : moment(+currentDatePicked.date)
+                      .locale("en")
+                      .format("dddd") +
+                    " " +
+                    moment(new Date(+currentDatePicked.date)).format(
+                      "DD/MM/YYYY"
+                    )
                 : ""}
             </span>
           </div>

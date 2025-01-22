@@ -17,6 +17,7 @@ class DoctorSchedule extends Component {
       dayInWeek: [],
       ScheduleAvailable: [],
       OpenModalBooking: false,
+      currentDatePicked: "",
     };
   }
   setLanguageSchedule = () => {
@@ -53,9 +54,9 @@ class DoctorSchedule extends Component {
   };
   handleOpenModalBooking = (date) => {
     console.log(">>", date);
-
     this.setState({
       OpenModalBooking: !this.state.OpenModalBooking,
+      currentDatePicked: date,
     });
   };
   async componentDidMount() {
@@ -124,6 +125,7 @@ class DoctorSchedule extends Component {
               openModalBooking={this.state.OpenModalBooking}
               handleOpenModalBooking={this.handleOpenModalBooking}
               doctorId={this.props.doctorId}
+              currentDatePicked={this.state.currentDatePicked}
             />
           </>
         )}

@@ -1,10 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { push } from "connected-react-router";
-import * as actions from "../../store/actions";
-import { KeyCodeUtils, LanguageUtils } from "../../utils";
 import { FormattedMessage } from "react-intl";
-import { toast } from "react-toastify";
 import { LANGUAGES } from "../../utils";
 import "./HomePageHeader.scss";
 import Banner from "./Banner";
