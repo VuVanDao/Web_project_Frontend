@@ -109,7 +109,6 @@ class ManageSchedule extends Component {
         result.push(object);
       });
       let res = await userService.saveSchedule({ arrSchedule: result });
-      console.log(">>", res);
     }
   };
   render() {

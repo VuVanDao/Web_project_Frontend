@@ -7,6 +7,10 @@ import "./BookingModal.scss";
 import { LANGUAGES } from "../../../../utils";
 import userService from "../../../../services/userService";
 import ProfileDoctor from "../ProfileDoctor/ProfileDoctor";
+import { toast } from "react-toastify";
+import _, { clone } from "lodash";
+import * as actions from "../../../../store/actions";
+
 class BookingModal extends Component {
   constructor(props) {
     super(props);
@@ -17,17 +21,18 @@ class BookingModal extends Component {
       phoneNumber: "",
       gender: "",
       bookFor: "",
-      detailDoctor: "",
+      genderArr: [],
     };
   }
   async componentDidMount() {
-    if (this.props.doctorId) {
-      let result = await userService.getDetailDoctor(this.props.doctorId);
-      if (result && result.errCode === 0) {
-        this.setState({
-          detailDoctor: result.data,
-        });
-      }
+    this.props.getGenderStart();
+  }
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.genderArr !== this.props.genderArr) {
+      this.setState({
+        genderArr: this.props.genderArr,
+        gender: this.props.genderArr[0].keyMap,
+      });
     }
   }
   toggle = () => {
@@ -68,10 +73,27 @@ class BookingModal extends Component {
     });
     return result;
   };
-
+  handleBooking = async () => {
+    let result = this.handleValidate();
+    let cloneState = _.cloneDeep(this.state);
+    cloneState.doctorId = this.props.doctorId;
+    cloneState.date = this.props.currentDatePicked.date;
+    cloneState.timeType = this.props.currentDatePicked.timeType;
+    if (!result) {
+      toast.error("Please fill in the information completely");
+    } else {
+      let res = await userService.booking(cloneState);
+      res && res.errCode === 0
+        ? toast.success("Booking success")
+        : toast.error("Booking failed");
+      this.toggle();
+      console.log("handleBooking", cloneState);
+    }
+  };
   render() {
     let { openModalBooking, doctorId, language, currentDatePicked } =
       this.props;
+    let { genderArr } = this.state;
 
     return (
       <>
@@ -138,6 +160,7 @@ class BookingModal extends Component {
                     onKeyDown={(event) => this.handleKeyDown(event)}
                   />
                 </div>
+
                 <div className="col-6">
                   <label htmlFor="phoneNumber">
                     <FormattedMessage id="system.user-manage.mobile" />:
@@ -173,16 +196,23 @@ class BookingModal extends Component {
                     <FormattedMessage id="system.user-manage.gender" />
                   </label>
                   <select
+                    name="gender"
                     id="inputState"
                     className="form-control"
-                    name="gender"
+                    value={this.state.gender}
                     onChange={(event) =>
                       this.handleInfoUser(event.target.value, "gender")
                     }
                   >
-                    <option value="">Plz choose one</option>
-                    <option value="1">Nam</option>
-                    <option value="0">Nữ</option>
+                    {genderArr &&
+                      genderArr.length > 0 &&
+                      genderArr.map((item, index) => {
+                        return (
+                          <option key={index} value={item.keyMap}>
+                            {language === "vi" ? item.valueVI : item.valueEN}
+                          </option>
+                        );
+                      })}
                   </select>
                 </div>
               </div>
@@ -192,7 +222,7 @@ class BookingModal extends Component {
             <Button variant="secondary" onClick={() => this.toggle()}>
               <FormattedMessage id="common.close" />
             </Button>
-            <Button variant="primary">
+            <Button variant="primary" onClick={() => this.handleBooking()}>
               <FormattedMessage id="common.confirm" />
             </Button>
           </Modal.Footer>
@@ -205,11 +235,14 @@ class BookingModal extends Component {
 const mapStateToProps = (state) => {
   return {
     language: state.app.language,
+    genderArr: state.admin.genderArr,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {};
+  return {
+    getGenderStart: () => dispatch(actions.fetchGenderStart()),
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(BookingModal);

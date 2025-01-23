@@ -53,7 +53,6 @@ class DoctorSchedule extends Component {
     }
   };
   handleOpenModalBooking = (date) => {
-    console.log(">>", date);
     this.setState({
       OpenModalBooking: !this.state.OpenModalBooking,
       currentDatePicked: date,
