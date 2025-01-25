@@ -10,6 +10,7 @@ import ProfileDoctor from "../ProfileDoctor/ProfileDoctor";
 import { toast } from "react-toastify";
 import _, { clone } from "lodash";
 import * as actions from "../../../../store/actions";
+import moment from "moment";
 
 class BookingModal extends Component {
   constructor(props) {
@@ -82,18 +83,52 @@ class BookingModal extends Component {
     if (!result) {
       toast.error("Please fill in the information completely");
     } else {
-      let res = await userService.booking(cloneState);
+      let { language, currentDatePicked } = this.props;
+      let res = await userService.booking({
+        email: this.state.email,
+        userName: this.state.userName,
+        address: this.state.address,
+        phoneNumber: this.state.phoneNumber,
+        gender: this.state.gender,
+        bookFor: this.state.bookFor,
+        doctorId: this.props.doctorId,
+        doctorName: currentDatePicked.doctorIdData
+          ? language === LANGUAGES.VI
+            ? currentDatePicked.doctorIdData.lastName +
+              " " +
+              currentDatePicked.doctorIdData.firstName
+            : currentDatePicked.doctorIdData.firstName +
+              " " +
+              currentDatePicked.doctorIdData.lastName
+          : "",
+        date: this.props.currentDatePicked.date
+          ? language === LANGUAGES.VI
+            ? moment(+currentDatePicked.date).format("dddd") +
+              " " +
+              moment(+currentDatePicked.date).format("DD/MM/YYYY")
+            : moment(+currentDatePicked.date).locale("en").format("dddd") +
+              " " +
+              moment(new Date(+currentDatePicked.date)).format("DD/MM/YYYY")
+          : "",
+        timeType: this.props.currentDatePicked.timeType
+          ? language === LANGUAGES.VI
+            ? currentDatePicked.timeTypeData.valueVi
+            : currentDatePicked.timeTypeData.valueEn
+          : "",
+        language: language,
+        cloneState,
+      });
       res && res.errCode === 0
         ? toast.success("Booking success")
         : toast.error("Booking failed");
       this.toggle();
-      console.log("handleBooking", cloneState);
     }
   };
   render() {
     let { openModalBooking, doctorId, language, currentDatePicked } =
       this.props;
     let { genderArr } = this.state;
+    console.log(">>>props", this.props.currentDatePicked);
 
     return (
       <>

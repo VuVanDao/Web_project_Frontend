@@ -85,7 +85,7 @@ class ProfileDoctor extends Component {
                 : ""}
             </span>
             <span style={{ textTransform: "capitalize" }}>
-              {currentDatePicked && currentDatePicked.timeTypeData
+              {currentDatePicked && currentDatePicked.date
                 ? language === LANGUAGES.VI
                   ? moment(+currentDatePicked.date).format("dddd") +
                     " " +
