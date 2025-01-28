@@ -20,6 +20,7 @@ import CustomScrollbars from "../components/CustomScrollbars";
 import { ToastContainer, toast } from "react-toastify";
 import DetailDoctor from "./Patient/Doctor/DetailDoctor";
 import Doctor from "../routes/Doctor";
+import VerifyEmail from "./Auth/VerifyEmail";
 
 class App extends Component {
   handlePersistorState = () => {
@@ -63,6 +64,7 @@ class App extends Component {
                     path={path.MANAGE_SCHEDULE}
                     component={userIsAuthenticated(Doctor)}
                   />
+                  <Route path={path.VERIFY_EMAIL} component={VerifyEmail} />
                 </Switch>
               </CustomScrollbars>
             </div>

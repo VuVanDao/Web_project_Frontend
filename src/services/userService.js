@@ -41,6 +41,9 @@ const getAllScheduleByDay = (doctorId, date) => {
 let booking = (data) => {
   return axios.post("/api/patient-booking", data);
 };
+let verifyToken = (token, doctorId) => {
+  return axios.post("/api/verify-booking", { token, doctorId });
+};
 export default {
   handleLogin,
   getAllUser,
@@ -55,4 +58,5 @@ export default {
   saveSchedule,
   getAllScheduleByDay,
   booking,
+  verifyToken,
 };
