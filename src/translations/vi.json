@@ -205,5 +205,10 @@
     "noSchedule": "bác sĩ không có lịch khám ngày hôm nay.",
     "schedule": "Lịch khám",
     "BookFor": "Đặt cho ai:"
+  },
+  "Specialty": {
+    "title": "Quản lí các chuyên khoa",
+    "Name": "Tên chuyên khoa",
+    "Image": "Ảnh"
   }
 }

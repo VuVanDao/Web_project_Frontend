@@ -187,5 +187,10 @@
     "noSchedule": "The doctor is not available today.",
     "schedule": "Schedules",
     "BookFor": "Book for:"
+  },
+  "Specialty": {
+    "title": "Manage specialty",
+    "Name": "Specialty'name",
+    "Image": "Specialty'image"
   }
 }

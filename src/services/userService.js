@@ -44,6 +44,9 @@ let booking = (data) => {
 let verifyToken = (token, doctorId) => {
   return axios.post("/api/verify-booking", { token, doctorId });
 };
+let createSpecialty = (data) => {
+  return axios.post("/api/create-new-specialty", data);
+};
 export default {
   handleLogin,
   getAllUser,
@@ -59,4 +62,5 @@ export default {
   getAllScheduleByDay,
   booking,
   verifyToken,
+  createSpecialty,
 };

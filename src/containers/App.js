@@ -21,6 +21,7 @@ import { ToastContainer, toast } from "react-toastify";
 import DetailDoctor from "./Patient/Doctor/DetailDoctor";
 import Doctor from "../routes/Doctor";
 import VerifyEmail from "./Auth/VerifyEmail";
+import Specialty from "../routes/Specialty";
 
 class App extends Component {
   handlePersistorState = () => {
@@ -60,6 +61,10 @@ class App extends Component {
                   />
                   <Route path={path.HOME_PAGE} component={HomePage} />
                   <Route path={path.DETAIL_DOCTOR} component={DetailDoctor} />
+                  <Route
+                    path={"/specialties/specialties-manage"}
+                    component={Specialty}
+                  />
                   <Route
                     path={path.MANAGE_SCHEDULE}
                     component={userIsAuthenticated(Doctor)}

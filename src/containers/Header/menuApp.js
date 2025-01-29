@@ -41,16 +41,16 @@ export const adminMenu = [
     ],
   },
   {
-    //hệ thống
+    //hệ thống chuyen khoa
     name: "menu.specialties.header",
     menus: [
       {
         name: "menu.specialties.specialties-manage",
-        link: "/clinic/clinic-manage",
+        link: "/specialties/specialties-manage",
       },
       {
         name: "menu.specialties.specialties-redux",
-        link: "/clinic/clinic-redux",
+        link: "/specialties/specialties-redux",
       },
     ],
   },
@@ -60,11 +60,11 @@ export const adminMenu = [
     menus: [
       {
         name: "menu.Handbook.Handbook-manage",
-        link: "/clinic/clinic-manage",
+        link: "/Handbook/Handbook-manage",
       },
       {
         name: "menu.Handbook.Handbook-redux",
-        link: "/clinic/clinic-redux",
+        link: "/Handbook/Handbook-redux",
       },
     ],
   },
