@@ -7,14 +7,26 @@ import "./specialty.scss";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { userService } from "../../../services";
 
 class Specialties extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      arrSpecialty: [],
+    };
   }
-
+  async componentDidMount() {
+    let res = await userService.getAllSpecialty();
+    console.log(">>>", res);
+    if (res && res.errCode === 0) {
+      this.setState({
+        arrSpecialty: res.data,
+      });
+    }
+  }
   render() {
+    let { arrSpecialty } = this.state;
     return (
       <div className="specialty-container ">
         <div className="specialty-title mb-3">
@@ -27,62 +39,24 @@ class Specialties extends Component {
         </div>
         <div>
           <Slider {...this.props.settings}>
-            <div className="div">
-              <div>
-                <img src="https://i.pinimg.com/originals/64/97/50/649750b6a1d69822a2a3f1e92429e69e.gif" />
-              </div>
-              <div>
-                <p>1sdasdasdasdasdasdas</p>
-              </div>
-            </div>
-            <div className="div">
-              <div>
-                <img src="https://i.pinimg.com/originals/64/97/50/649750b6a1d69822a2a3f1e92429e69e.gif" />
-              </div>
-              <div>
-                <p>1sdasdasdasdasdasdas</p>
-              </div>
-            </div>
-            <div className="div">
-              <div>
-                <img src="https://i.pinimg.com/originals/64/97/50/649750b6a1d69822a2a3f1e92429e69e.gif" />
-              </div>
-              <div>
-                <p>1sdasdasdasdasdasdas</p>
-              </div>
-            </div>
-            <div className="div">
-              <div>
-                <img src="https://i.pinimg.com/originals/64/97/50/649750b6a1d69822a2a3f1e92429e69e.gif" />
-              </div>
-              <div>
-                <p>1sdasdasdasdasdasdas</p>
-              </div>
-            </div>
-            <div className="div">
-              <div>
-                <img src="https://i.pinimg.com/originals/64/97/50/649750b6a1d69822a2a3f1e92429e69e.gif" />
-              </div>
-              <div>
-                <p>1sdasdasdasdasdasdas</p>
-              </div>
-            </div>
-            <div className="div">
-              <div>
-                <img src="https://i.pinimg.com/originals/64/97/50/649750b6a1d69822a2a3f1e92429e69e.gif" />
-              </div>
-              <div>
-                <p>1sdasdasdasdasdasdas</p>
-              </div>
-            </div>
-            <div className="div">
-              <div>
-                <img src="https://i.pinimg.com/originals/64/97/50/649750b6a1d69822a2a3f1e92429e69e.gif" />
-              </div>
-              <div>
-                <p>1sdasdasdasdasdasdas</p>
-              </div>
-            </div>
+            {arrSpecialty &&
+              arrSpecialty.length &&
+              arrSpecialty.map((item, index) => {
+                let url = "";
+                if (item.image) {
+                  url = new Buffer(item.image, "base64").toString("binary");
+                }
+                return (
+                  <div className="div" key={`specialty-${index}`}>
+                    <div>
+                      <img src={url} />
+                    </div>
+                    <div>
+                      <p>{item.name}</p>
+                    </div>
+                  </div>
+                );
+              })}
           </Slider>
         </div>
       </div>

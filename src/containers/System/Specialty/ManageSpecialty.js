@@ -121,7 +121,7 @@ class ManageSpecialty extends Component {
             style={{ height: "400px", margin: "100px auto 0", width: "1400px" }}
             renderHTML={(text) => mdParser.render(text)}
             onChange={this.handleEditorChange}
-            value={this.state.textMarkdown}
+            value={this.state.descriptionMarkdown}
           />
           <div className="col-12 text-center my-5">
             <button
