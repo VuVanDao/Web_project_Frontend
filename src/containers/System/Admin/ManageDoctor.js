@@ -25,10 +25,14 @@ class ManageDoctor extends Component {
       priceArr: [],
       paymentArr: [],
       provinceArr: [],
+      specialtyArr: [],
+      clinicArr: [],
       isLoading: true,
       selectedPayment: "",
       selectedPrice: "",
       selectedProvince: "",
+      selectedSpecialty: "",
+      selectedClinic: "",
       clinic: "",
       addressClinic: "",
       note: "",
@@ -48,6 +52,7 @@ class ManageDoctor extends Component {
       res.data.Doctor_detail_payment &&
       res.data.Doctor_detail_price &&
       res.data.Doctor_detail_province &&
+      res.data.Doctor_detail_specialty &&
       res.data.Doctor_info.nameClinic &&
       res.data.Doctor_info.addressClinic &&
       res.data.Doctor_info.note
@@ -61,6 +66,9 @@ class ManageDoctor extends Component {
       let checkProvince = this.state.provinceArr.find((item) => {
         return item.value === res.data.Doctor_info.provinceId;
       });
+      let checkSpecialty = this.state.specialtyArr.find((item) => {
+        return item.value === res.data.Doctor_info.specialtyId;
+      });
       this.setState({
         textMarkdown: res.data.Markdown.contentMarkdown,
         htmlMarkdown: res.data.Markdown.contentHTML,
@@ -71,6 +79,7 @@ class ManageDoctor extends Component {
         selectedPayment: checkPayment,
         selectedPrice: checkPrice,
         selectedProvince: checkProvince,
+        selectedSpecialty: checkSpecialty,
       });
     } else {
       console.log(">>error");
@@ -157,6 +166,14 @@ class ManageDoctor extends Component {
             result.push(object);
           });
           break;
+        case "specialty":
+          data.map((item, index) => {
+            let object = {};
+            object.label = item.name;
+            object.value = item.id;
+            result.push(object);
+          });
+          break;
         default:
           break;
       }
@@ -174,8 +191,9 @@ class ManageDoctor extends Component {
     this.props.fetchPriceStart();
     this.props.fetchPaymentStart();
     this.props.fetchProvinceStart();
+    this.props.fetchSpecialtyStart();
   }
-  componentDidUpdate(prevProps, prevState) {
+  async componentDidUpdate(prevProps, prevState) {
     if (prevProps.AllDoctor !== this.props.AllDoctor) {
       let result = this.buildInputSelect(this.props.AllDoctor, "allDoctor");
       this.setState({
@@ -204,12 +222,19 @@ class ManageDoctor extends Component {
         isLoading: false,
       });
     }
+    if (prevProps.specialtyArr !== this.props.specialtyArr) {
+      let result = this.buildInputSelect(this.props.specialtyArr, "specialty");
+      this.setState({
+        specialtyArr: result,
+      });
+    }
     if (prevProps.language !== this.props.language) {
       let result = this.buildInputSelect(this.props.AllDoctor, "allDoctor");
       this.setState({
         options: result,
         isLoading: false,
       });
+
       let price = this.buildInputSelect(this.props.priceArr, "price");
       this.setState({
         priceArr: price,
@@ -235,6 +260,7 @@ class ManageDoctor extends Component {
       "selectedPayment",
       "selectedPrice",
       "selectedProvince",
+      "selectedSpecialty",
       "clinic",
       "addressClinic",
       "note",
@@ -257,6 +283,8 @@ class ManageDoctor extends Component {
         paymentId: this.state.selectedPayment,
         provinceId: this.state.selectedProvince,
         priceId: this.state.selectedPrice,
+        specialtyId: this.state.selectedSpecialty,
+        clinicId: this.state.selectedClinic ? this.state.selectedClinic : "",
         nameClinic: this.state.clinic,
         addressClinic: this.state.addressClinic,
         note: this.state.note,
@@ -269,6 +297,8 @@ class ManageDoctor extends Component {
         selectedPayment: "",
         selectedPrice: "",
         selectedProvince: "",
+        selectedSpecialty: "",
+        selectedClinic: "",
         clinic: "",
         addressClinic: "",
         note: "",
@@ -310,7 +340,14 @@ class ManageDoctor extends Component {
    */
   render() {
     // console.log(">>>", this.props.priceArr);
-    let { options, priceArr, paymentArr, provinceArr } = this.state;
+    let {
+      options,
+      priceArr,
+      paymentArr,
+      provinceArr,
+      specialtyArr,
+      clinicArr,
+    } = this.state;
     let { language } = this.props;
 
     return (
@@ -351,6 +388,7 @@ class ManageDoctor extends Component {
                     name="text-area"
                   ></textarea>
                 </div>
+
                 <div className="row mt-4">
                   <div className="col-md-4 ">
                     <label htmlFor="payment">
@@ -398,6 +436,39 @@ class ManageDoctor extends Component {
                     />
                   </div>
                 </div>
+                <div className="row mt-4">
+                  <div className="col-md-4 ">
+                    <label htmlFor="specialty">
+                      <FormattedMessage id="menu.system.specialty.title" />
+                    </label>
+                    <Select
+                      id="specialty"
+                      options={specialtyArr}
+                      onChange={this.handleChangeSelect}
+                      name="selectedSpecialty"
+                      value={this.state.selectedSpecialty}
+                      placeholder={
+                        <FormattedMessage id="menu.system.specialty.title" />
+                      }
+                    />
+                  </div>
+                  <div className="col-md-4 ">
+                    <label htmlFor="specialty">
+                      <FormattedMessage id="menu.system.clinic.title" />
+                    </label>
+                    <Select
+                      id="specialty"
+                      options={clinicArr}
+                      onChange={this.handleChangeSelect}
+                      name="selectedClinic"
+                      value={this.state.selectedClinic}
+                      placeholder={
+                        <FormattedMessage id="menu.system.clinic.title" />
+                      }
+                    />
+                  </div>
+                </div>
+
                 <div className="row mt-4">
                   <div className="col-md-4 ">
                     <label htmlFor="clinic">
@@ -471,6 +542,7 @@ const mapStateToProps = (state) => {
     priceArr: state.admin.priceArr,
     paymentArr: state.admin.paymentArr,
     provinceArr: state.admin.provinceArr,
+    specialtyArr: state.admin.specialtyArr,
   };
 };
 
@@ -481,6 +553,7 @@ const mapDispatchToProps = (dispatch) => {
     fetchPriceStart: () => dispatch(actions.fetchPriceStart()),
     fetchPaymentStart: () => dispatch(actions.fetchPaymentStart()),
     fetchProvinceStart: () => dispatch(actions.fetchProvinceStart()),
+    fetchSpecialtyStart: () => dispatch(actions.fetchSpecialtyStart()),
   };
 };
 

@@ -40,10 +40,18 @@ class DoctorExtraInfo extends Component {
             <div className="doctor-extraInfo-moreInfo mt-2">
               <span>
                 <FormattedMessage id="menu.system.doctor.price" />:
-                {language === LANGUAGES.VI
-                  ? this.props.detailDoctor.Doctor_detail_price.valueVi + " VND"
-                  : this.props.detailDoctor.Doctor_detail_price.valueEn +
-                    " USD"}
+                {this.props.detailDoctor &&
+                this.props.detailDoctor.Doctor_detail_price ? (
+                  <p>
+                    {language === LANGUAGES.VI
+                      ? this.props.detailDoctor.Doctor_detail_price.valueVi +
+                        " VND"
+                      : this.props.detailDoctor.Doctor_detail_price.valueEn +
+                        " USD"}
+                  </p>
+                ) : (
+                  ""
+                )}
               </span>
               <p
                 onClick={() =>

@@ -8,6 +8,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { userService } from "../../../services";
+import { withRouter } from "react-router-dom";
 
 class Specialties extends Component {
   constructor(props) {
@@ -18,13 +19,15 @@ class Specialties extends Component {
   }
   async componentDidMount() {
     let res = await userService.getAllSpecialty();
-    console.log(">>>", res);
     if (res && res.errCode === 0) {
       this.setState({
         arrSpecialty: res.data,
       });
     }
   }
+  HandleDetailSpecialty = (specialty) => {
+    this.props.history.push(`detail-specialty/${specialty.id}`);
+  };
   render() {
     let { arrSpecialty } = this.state;
     return (
@@ -47,7 +50,11 @@ class Specialties extends Component {
                   url = new Buffer(item.image, "base64").toString("binary");
                 }
                 return (
-                  <div className="div" key={`specialty-${index}`}>
+                  <div
+                    className="div"
+                    key={`specialty-${index}`}
+                    onClick={() => this.HandleDetailSpecialty(item)}
+                  >
                     <div>
                       <img src={url} />
                     </div>
@@ -74,4 +81,6 @@ const mapDispatchToProps = (dispatch) => {
   return {};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Specialties);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(Specialties)
+);

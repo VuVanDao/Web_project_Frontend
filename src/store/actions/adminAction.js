@@ -323,7 +323,7 @@ export const fetchProvinceStart = () => {
         dispatch(fetchProvinceFail());
       }
     } catch (error) {
-      dispatch(fetchPaymentFail());
+      dispatch(fetchProvinceFail());
       console.log("error", error);
     }
   };
@@ -334,4 +334,29 @@ export const fetchProvinceSuccess = (province) => ({
 });
 export const fetchProvinceFail = () => ({
   type: actionTypes.FETCH_PROVINCE_FAIL,
+});
+export const fetchSpecialtyStart = () => {
+  return async (dispatch, getState) => {
+    try {
+      dispatch({
+        type: actionTypes.FETCH_SPECIALTY_START,
+      });
+      let res = await userService.getAllSpecialty();
+      if (res && res.errCode === 0) {
+        dispatch(fetchSpecialtySuccess(res.data));
+      } else {
+        dispatch(fetchSpecialtyFail());
+      }
+    } catch (error) {
+      dispatch(fetchSpecialtyFail());
+      console.log("error", error);
+    }
+  };
+};
+export const fetchSpecialtySuccess = (specialty) => ({
+  type: actionTypes.FETCH_SPECIALTY_SUCCESS,
+  data: specialty,
+});
+export const fetchSpecialtyFail = () => ({
+  type: actionTypes.FETCH_SPECIALTY_FAIL,
 });

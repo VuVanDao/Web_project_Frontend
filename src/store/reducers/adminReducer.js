@@ -15,6 +15,7 @@ const initialState = {
   isLoadingPrice: false,
   paymentArr: [],
   provinceArr: [],
+  specialtyArr: [],
 };
 
 const adminReducer = (state = initialState, action) => {
@@ -162,6 +163,21 @@ const adminReducer = (state = initialState, action) => {
       };
     case actionTypes.FETCH_PROVINCE_FAIL:
       copyState.provinceArr = [];
+      return {
+        ...copyState,
+      };
+    //specialty
+    case actionTypes.FETCH_SPECIALTY_START:
+      return {
+        ...copyState,
+      };
+    case actionTypes.FETCH_SPECIALTY_SUCCESS:
+      copyState.specialtyArr = action.data;
+      return {
+        ...copyState,
+      };
+    case actionTypes.FETCH_SPECIALTY_FAIL:
+      copyState.specialtyArr = [];
       return {
         ...copyState,
       };

@@ -33,6 +33,12 @@
         "user-manage": "Quản lý người sử dụng",
         "user-redux": "Quản lý người dùng với redux"
       },
+      "specialty": {
+        "title": "Chuyên khoa"
+      },
+      "clinic": {
+        "title": "Phòng khám"
+      },
       "doctor": {
         "header": "Bác sĩ",
         "doctor-redux": "Quản lí bác sĩ với redux",

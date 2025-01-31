@@ -27,6 +27,12 @@
         "user-manage": "User manage",
         "user-redux": "User redux"
       },
+      "specialty": {
+        "title": "Specialty"
+      },
+      "clinic": {
+        "title": "Clinic"
+      },
       "doctor": {
         "header": "Doctor",
         "doctor-redux": "Doctor redux",
