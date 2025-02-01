@@ -3,14 +3,16 @@ import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 import LoadingData from "../../System/Admin/LoadingData";
 import HomePageHeader from "../../HomePage/HomePageHeader";
-// import "./DetailSpecialty.scss";
+import "./DetailSpecialty.scss";
 import userService from "../../../services/userService";
-
+import DoctorSchedule from "../../Patient/Doctor/Schedule";
+import DoctorExtraInfo from "../../Patient/Doctor/DoctorExtraInfo";
+import ProfileDoctor from "../../Patient/Doctor/ProfileDoctor/ProfileDoctor";
 class DetailSpecialty extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLoading: false,
+      arrDoctor: [3, 7],
     };
   }
   async componentDidMount() {}
@@ -23,17 +25,31 @@ class DetailSpecialty extends Component {
    */
   render() {
     let { language } = this.props;
+    let { arrDoctor } = this.state;
 
     return (
       <>
-        {this.state.isLoading ? (
-          <LoadingData />
-        ) : (
-          <div>
-            <HomePageHeader />
-            <p style={{ marginTop: "100px" }}>dasdasdasdsa</p>
+        <div className="detail-specialty-container">
+          <HomePageHeader />
+          <div className="specialtyDescription">
+            <div className="container">dasdasdasdsa</div>
           </div>
-        )}
+          <div className="listDoctor">
+            {arrDoctor.map((item, index) => {
+              return (
+                <div className="container mt-2" key={`Schedule-${index}`}>
+                  <div className="left">
+                    <ProfileDoctor doctorId={item} showDescription={true} />
+                  </div>
+                  <div className="right">
+                    <DoctorSchedule doctorId={item} />
+                    <DoctorExtraInfo doctorId={item} />
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
       </>
     );
   }

@@ -1,6 +1,7 @@
 .detail-doctor-container {
   display: flex;
-  gap: 50px;
+  gap: 45px;
+  align-items: center;
   .left {
     .img {
       img {
@@ -12,11 +13,10 @@
     }
   }
   .right {
-    width: 80%;
     display: flex;
     flex-direction: column;
     .title-doctor {
-      font-size: 30px;
+      font-size: 25px;
       font-weight: 600;
     }
     .description-doctor {

@@ -128,7 +128,7 @@ class BookingModal extends Component {
     let { openModalBooking, doctorId, language, currentDatePicked } =
       this.props;
     let { genderArr } = this.state;
-    console.log(">>>props", this.props.currentDatePicked);
+    // console.log(">>>props", this.props.currentDatePicked);
 
     return (
       <>

@@ -70,7 +70,7 @@ class DoctorSchedule extends Component {
   render() {
     let { dayInWeek, ScheduleAvailable } = this.state;
     let { language } = this.props; //trong props co doctorId
-    console.log("><><", ScheduleAvailable);
+    // console.log("><><", ScheduleAvailable);
 
     return (
       <>

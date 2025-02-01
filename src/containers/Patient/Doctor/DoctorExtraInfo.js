@@ -6,21 +6,36 @@ import _ from "lodash";
 import moment from "moment";
 import { LANGUAGES } from "../../../utils";
 import { FormattedMessage } from "react-intl";
-import LoadingData from "../../System/Admin/LoadingData";
 import localization from "moment/locale/vi";
+import userService from "../../../services/userService";
 class DoctorExtraInfo extends Component {
   constructor(props) {
     super(props);
     this.state = {
       moreInfo: false,
+      detailDoctor: {},
     };
   }
 
-  async componentDidMount() {}
-  async componentDidUpdate(prevProps, prevState) {}
+  async componentDidMount() {
+    this.props.fetchDetailDoctor(this.props.doctorId);
+    let result = await userService.getDetailDoctor(this.props.doctorId);
+    if (result && result.errCode === 0) {
+      this.setState({
+        detailDoctor: result.data,
+      });
+    }
+  }
+  async componentDidUpdate(prevProps, prevState) {
+    if (prevProps.detailDoctor != this.props.detailDoctor) {
+      this.setState({
+        detailDoctor: this.props.detailDoctor,
+      });
+    }
+  }
 
   render() {
-    let { language, detailDoctor } = this.props;
+    let { language } = this.props;
 
     return (
       <>
@@ -31,22 +46,32 @@ class DoctorExtraInfo extends Component {
             </span>
           </div>
           <div className="doctor-extraInfo-nameClinic">
-            <span>{this.props.detailDoctor.Doctor_info.nameClinic}</span>
+            <span>
+              {this.state.detailDoctor.Doctor_info &&
+              this.state.detailDoctor.Doctor_info.nameClinic
+                ? this.state.detailDoctor.Doctor_info.nameClinic
+                : ""}
+            </span>
           </div>
           <div className="doctor-extraInfo-addressClinic">
-            <span>{this.props.detailDoctor.Doctor_info.addressClinic}</span>
+            <span>
+              {this.state.detailDoctor.Doctor_info &&
+              this.state.detailDoctor.Doctor_info.addressClinic
+                ? this.state.detailDoctor.Doctor_info.addressClinic
+                : ""}
+            </span>
           </div>
           {!this.state.moreInfo ? (
             <div className="doctor-extraInfo-moreInfo mt-2">
               <span>
                 <FormattedMessage id="menu.system.doctor.price" />:
-                {this.props.detailDoctor &&
-                this.props.detailDoctor.Doctor_detail_price ? (
+                {this.state.detailDoctor &&
+                this.state.detailDoctor.Doctor_detail_price ? (
                   <p>
                     {language === LANGUAGES.VI
-                      ? this.props.detailDoctor.Doctor_detail_price.valueVi +
+                      ? this.state.detailDoctor.Doctor_detail_price.valueVi +
                         " VND"
-                      : this.props.detailDoctor.Doctor_detail_price.valueEn +
+                      : this.state.detailDoctor.Doctor_detail_price.valueEn +
                         " USD"}
                   </p>
                 ) : (
@@ -70,19 +95,19 @@ class DoctorExtraInfo extends Component {
                   </span>
                   <span>
                     {language === LANGUAGES.VI
-                      ? this.props.detailDoctor.Doctor_detail_price.valueVi +
+                      ? this.state.detailDoctor.Doctor_detail_price.valueVi +
                         " VND"
-                      : this.props.detailDoctor.Doctor_detail_price.valueEn +
+                      : this.state.detailDoctor.Doctor_detail_price.valueEn +
                         " USD"}
                   </span>
                 </div>
-                <span>{this.props.detailDoctor.Doctor_info.note}</span>
+                <span>{this.state.detailDoctor.Doctor_info.note}</span>
               </div>
               <div className="item-2">
                 <FormattedMessage id="menu.system.doctor.pay" />:
                 {language === LANGUAGES.VI
-                  ? this.props.detailDoctor.Doctor_detail_payment.valueVi
-                  : this.props.detailDoctor.Doctor_detail_payment.valueEn}
+                  ? this.state.detailDoctor.Doctor_detail_payment.valueVi
+                  : this.state.detailDoctor.Doctor_detail_payment.valueEn}
               </div>
               <p
                 onClick={() =>
@@ -102,6 +127,7 @@ class DoctorExtraInfo extends Component {
 const mapStateToProps = (state) => {
   return {
     language: state.app.language,
+    detailDoctor: state.admin.detailDoctor,
   };
 };
 
@@ -109,6 +135,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getAllListDoctor: () => dispatch(actions.getAllListDoctor()),
     fetchAllSchedule: () => dispatch(actions.fetchAllSchedule()),
+    fetchDetailDoctor: (doctorId) =>
+      dispatch(actions.fetchDetailDoctorStart(doctorId)),
   };
 };
 

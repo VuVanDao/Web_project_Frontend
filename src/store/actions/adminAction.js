@@ -360,3 +360,28 @@ export const fetchSpecialtySuccess = (specialty) => ({
 export const fetchSpecialtyFail = () => ({
   type: actionTypes.FETCH_SPECIALTY_FAIL,
 });
+export const fetchDetailDoctorStart = (doctorId) => {
+  return async (dispatch, getState) => {
+    try {
+      dispatch({
+        type: actionTypes.FETCH_DETAIL_DOCTOR_START,
+      });
+      let res = await userService.getDetailDoctor(doctorId);
+      if (res && res.errCode === 0) {
+        dispatch(fetchDetailDoctorSuccess(res.data));
+      } else {
+        dispatch(fetchDetailDoctorFail());
+      }
+    } catch (error) {
+      dispatch(fetchDetailDoctorFail());
+      console.log("error", error);
+    }
+  };
+};
+export const fetchDetailDoctorSuccess = (detailDoctor) => ({
+  type: actionTypes.FETCH_DETAIL_DOCTOR_SUCCESS,
+  data: detailDoctor,
+});
+export const fetchDetailDoctorFail = () => ({
+  type: actionTypes.FETCH_DETAIL_DOCTOR_FAIL,
+});

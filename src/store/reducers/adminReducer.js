@@ -16,6 +16,7 @@ const initialState = {
   paymentArr: [],
   provinceArr: [],
   specialtyArr: [],
+  detailDoctor: {},
 };
 
 const adminReducer = (state = initialState, action) => {
@@ -178,6 +179,21 @@ const adminReducer = (state = initialState, action) => {
       };
     case actionTypes.FETCH_SPECIALTY_FAIL:
       copyState.specialtyArr = [];
+      return {
+        ...copyState,
+      };
+    //detailDoctor
+    case actionTypes.FETCH_DETAIL_DOCTOR_START:
+      return {
+        ...copyState,
+      };
+    case actionTypes.FETCH_DETAIL_DOCTOR_SUCCESS:
+      copyState.detailDoctor = action.data;
+      return {
+        ...copyState,
+      };
+    case actionTypes.FETCH_DETAIL_DOCTOR_FAIL:
+      copyState.detailDoctor = {};
       return {
         ...copyState,
       };

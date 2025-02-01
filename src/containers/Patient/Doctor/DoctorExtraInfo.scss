@@ -17,6 +17,10 @@
     color: gray;
     display: flex;
     gap: 10px;
+    span {
+      display: flex;
+      gap: 10px;
+    }
     p {
       font-size: 15px;
       font-weight: 0;
