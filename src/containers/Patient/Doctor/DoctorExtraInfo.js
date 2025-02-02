@@ -18,7 +18,7 @@ class DoctorExtraInfo extends Component {
   }
 
   async componentDidMount() {
-    this.props.fetchDetailDoctor(this.props.doctorId);
+    // this.props.fetchDetailDoctor(this.props.doctorId);
     let result = await userService.getDetailDoctor(this.props.doctorId);
     if (result && result.errCode === 0) {
       this.setState({
@@ -27,10 +27,13 @@ class DoctorExtraInfo extends Component {
     }
   }
   async componentDidUpdate(prevProps, prevState) {
-    if (prevProps.detailDoctor != this.props.detailDoctor) {
-      this.setState({
-        detailDoctor: this.props.detailDoctor,
-      });
+    if (prevProps.doctorId != this.props.doctorId) {
+      let result = await userService.getDetailDoctor(this.props.doctorId);
+      if (result && result.errCode === 0) {
+        this.setState({
+          detailDoctor: result.data,
+        });
+      }
     }
   }
 
@@ -127,7 +130,7 @@ class DoctorExtraInfo extends Component {
 const mapStateToProps = (state) => {
   return {
     language: state.app.language,
-    detailDoctor: state.admin.detailDoctor,
+    // detailDoctor: state.admin.detailDoctor,
   };
 };
 
@@ -135,8 +138,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getAllListDoctor: () => dispatch(actions.getAllListDoctor()),
     fetchAllSchedule: () => dispatch(actions.fetchAllSchedule()),
-    fetchDetailDoctor: (doctorId) =>
-      dispatch(actions.fetchDetailDoctorStart(doctorId)),
+    // fetchDetailDoctor: (doctorId) =>
+    //   dispatch(actions.fetchDetailDoctorStart(doctorId)),
   };
 };
 

@@ -50,6 +50,17 @@ let createSpecialty = (data) => {
 let getAllSpecialty = () => {
   return axios.get("/api/get-all-specialty");
 };
+const GetAllDoctorBySpecialty = (id) => {
+  return axios.get(`/api/get-all-doctor-by-specialty?id=${id}`);
+};
+const GetDetailSpecialty = (id) => {
+  return axios.get(`/api/get-detail-specialty?id=${id}`);
+};
+const GetDoctorByProvince = (specialtyId, provinceId) => {
+  return axios.get(
+    `/api/get-doctor-by-province?specialtyId=${specialtyId}&provinceId=${provinceId}`
+  );
+};
 export default {
   handleLogin,
   getAllUser,
@@ -67,4 +78,7 @@ export default {
   verifyToken,
   createSpecialty,
   getAllSpecialty,
+  GetAllDoctorBySpecialty,
+  GetDetailSpecialty,
+  GetDoctorByProvince,
 };

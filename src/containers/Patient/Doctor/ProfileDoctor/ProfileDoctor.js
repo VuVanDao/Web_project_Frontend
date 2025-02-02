@@ -22,7 +22,16 @@ class ProfileDoctor extends Component {
       }
     }
   }
-
+  async componentDidUpdate(prevProps, prevState) {
+    if (prevProps.doctorId !== this.props.doctorId) {
+      let result = await userService.getDetailDoctor(this.props.doctorId);
+      if (result && result.errCode === 0) {
+        this.setState({
+          detailDoctor: result.data,
+        });
+      }
+    }
+  }
   render() {
     let { language, currentDatePicked, showDescription } = this.props;
     let { detailDoctor } = this.state;

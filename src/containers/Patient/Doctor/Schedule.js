@@ -65,6 +65,10 @@ class DoctorSchedule extends Component {
     if (prevProps.language !== this.props.language) {
       this.setLanguageSchedule();
     }
+    if (prevProps.doctorId !== this.props.doctorId) {
+      // this.handlePickSchedule();
+      console.log("schedule");
+    }
   }
 
   render() {
