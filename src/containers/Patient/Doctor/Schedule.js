@@ -22,7 +22,7 @@ class DoctorSchedule extends Component {
   }
   setLanguageSchedule = () => {
     let arrDay = [];
-    arrDay.push({ value: 0, label: "Chọn ngày đi" });
+    // arrDay.push({ value: 0, label: "Chọn ngày đi" });
     let { language } = this.props;
     for (let i = 0; i < 7; i++) {
       let object = {};
@@ -40,6 +40,7 @@ class DoctorSchedule extends Component {
     this.setState({
       dayInWeek: arrDay,
     });
+    return arrDay;
   };
   handlePickSchedule = async (event) => {
     let res = await userService.getAllScheduleByDay(
@@ -59,15 +60,31 @@ class DoctorSchedule extends Component {
     });
   };
   async componentDidMount() {
-    this.setLanguageSchedule();
+    let arrDay = this.setLanguageSchedule();
+    let res = await userService.getAllScheduleByDay(
+      this.props.doctorId,
+      arrDay[0].value
+    );
+    if (res && res.errCode === 0) {
+      this.setState({
+        ScheduleAvailable: res.data ? res.data : [],
+      });
+    }
   }
   async componentDidUpdate(prevProps, prevState) {
     if (prevProps.language !== this.props.language) {
       this.setLanguageSchedule();
     }
     if (prevProps.doctorId !== this.props.doctorId) {
-      // this.handlePickSchedule();
-      console.log("schedule");
+      let res = await userService.getAllScheduleByDay(
+        this.props.doctorId,
+        this.state.dayInWeek[0].value
+      );
+      if (res && res.errCode === 0) {
+        this.setState({
+          ScheduleAvailable: res.data,
+        });
+      }
     }
   }
 

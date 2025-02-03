@@ -10,6 +10,7 @@ import DoctorExtraInfo from "../../Patient/Doctor/DoctorExtraInfo";
 import ProfileDoctor from "../../Patient/Doctor/ProfileDoctor/ProfileDoctor";
 import * as actions from "../../../store/actions";
 import { LANGUAGES } from "../../../utils";
+import { Link } from "react-router-dom";
 class DetailSpecialty extends Component {
   constructor(props) {
     super(props);
@@ -37,9 +38,9 @@ class DetailSpecialty extends Component {
     }
     this.setProvinceList();
   }
-  // HandleDetailDoctor = (doctor) => {
-  //   this.props.history.push(`detail-doctor/${doctor.doctorId}`);
-  // };
+  HandleDetailDoctor = (doctor) => {
+    this.props.history.push(`/detail-doctor/${doctor.doctorId}`);
+  };
   setProvinceList = () => {
     let { provinceArr, language } = this.props;
     let provinceList = [];
@@ -97,7 +98,7 @@ class DetailSpecialty extends Component {
           </div>
           <div className="container my-3">
             <select
-              className="text-capitalize "
+              className="text-capitalize p-2"
               onChange={(event) => this.handlePickProvince(event)}
             >
               {provinceList &&
@@ -117,7 +118,7 @@ class DetailSpecialty extends Component {
                 <div className="container mt-2" key={`Schedule-${index}`}>
                   <div
                     className="left"
-                    // onClick={() => this.HandleDetailDoctor(item)}
+                    onClick={() => this.HandleDetailDoctor(item)}
                   >
                     <ProfileDoctor
                       doctorId={item.doctorId}

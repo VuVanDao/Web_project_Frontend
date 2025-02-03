@@ -13,7 +13,7 @@ class OutstandingDoctor extends Component {
     this.state = {};
   }
   HandleDetailDoctor = (doctor) => {
-    this.props.history.push(`detail-doctor/${doctor.id}`);
+    this.props.history.push(`/detail-doctor/${doctor.id}`);
   };
   render() {
     let { listDoctor, language } = this.props;
