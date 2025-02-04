@@ -70,6 +70,9 @@ let GetAllClinic = () => {
 const GetAllDoctorByClinic = (id) => {
   return axios.get(`/api/get-all-doctor-by-clinic?id=${id}`);
 };
+const GetDetailClinic = (id) => {
+  return axios.get(`/api/get-detail-clinic?id=${id}`);
+};
 export default {
   handleLogin,
   getAllUser,
@@ -93,4 +96,5 @@ export default {
   createClinic,
   GetAllClinic,
   GetAllDoctorByClinic,
+  GetDetailClinic,
 };

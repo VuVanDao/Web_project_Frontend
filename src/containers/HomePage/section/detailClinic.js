@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import LoadingData from "../../System/Admin/LoadingData";
 import HomePageHeader from "../../HomePage/HomePageHeader";
 import "./DetailSpecialty.scss";
+import "./detailClinic.scss";
 import userService from "../../../services/userService";
 import DoctorSchedule from "../../Patient/Doctor/Schedule";
 import DoctorExtraInfo from "../../Patient/Doctor/DoctorExtraInfo";
@@ -16,7 +17,7 @@ class DetailSpecialty extends Component {
     super(props);
     this.state = {
       arrDoctor: [],
-      detailSpecialty: "",
+      detailClinic: "",
       provinceList: [],
     };
   }
@@ -26,11 +27,11 @@ class DetailSpecialty extends Component {
       let result = await userService.GetAllDoctorByClinic(
         this.props.match.params.id
       );
-
+      let res = await userService.GetDetailClinic(this.props.match.params.id);
       if (result && result.errCode === 0) {
         this.setState({
           arrDoctor: result.data,
-          //   detailSpecialty: res.data.descriptionHTML,
+          detailClinic: res.data.descriptionHTML,
         });
       }
     }
@@ -60,16 +61,16 @@ class DetailSpecialty extends Component {
       provinceList: provinceList,
     });
   };
-  //   handlePickProvince = async (event) => {
-  //     let provinceId = event.target.value;
-  //     let specialtyId = this.props.match.params.id;
-  //     let res = await userService.GetDoctorByProvince(specialtyId, provinceId);
-  //     if (res && res.errCode === 0) {
-  //       this.setState({
-  //         arrDoctor: res.data,
-  //       });
-  //     }
-  //   };
+  handlePickProvince = async (event) => {
+    let provinceId = event.target.value;
+    let specialtyId = this.props.match.params.id;
+    let res = await userService.GetDoctorByProvince(specialtyId, provinceId);
+    if (res && res.errCode === 0) {
+      this.setState({
+        arrDoctor: res.data,
+      });
+    }
+  };
   /* life cycle
     Run component
     1. Run constructor - init state (khoi tao state)
@@ -78,19 +79,26 @@ class DetailSpecialty extends Component {
    */
   render() {
     let { language } = this.props;
-    let { arrDoctor, detailSpecialty, provinceList } = this.state;
+    let { arrDoctor, detailClinic, provinceList } = this.state;
     // console.log(">>>", this.state.arrDoctor);
 
     return (
       <>
         <div className="detail-specialty-container">
           <HomePageHeader />
-          <div className="specialtyDescription">
+          <div className="specialtyDescription clinicDes">
             <div
               className="container "
               dangerouslySetInnerHTML={{
-                __html: detailSpecialty,
+                __html: detailClinic,
               }}
+              // style={{
+              //   backgroundImage:
+              //     "url(https://i.pinimg.com/originals/bd/0a/ee/bd0aee9eb281b917e9b9adb4421a6f5f.gif)",
+              //   backgroundRepeat: "no-repeat",
+              //   backgroundPosition: "center",
+              //   backgroundSize: "contain",
+              // }}
             ></div>
           </div>
           <div className="container my-3">
