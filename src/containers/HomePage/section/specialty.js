@@ -26,7 +26,9 @@ class Specialties extends Component {
     }
   }
   HandleDetailSpecialty = (specialty) => {
-    this.props.history.push(`detail-specialty/${specialty.id}`);
+    console.log(">>>", this.props);
+
+    this.props.history.push(`/detail-specialty/${specialty.id}`);
   };
   render() {
     let { arrSpecialty } = this.state;

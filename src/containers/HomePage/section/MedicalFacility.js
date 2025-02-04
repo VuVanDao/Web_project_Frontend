@@ -7,14 +7,31 @@ import "./specialty.scss";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { userService } from "../../../services";
+import { withRouter } from "react-router-dom";
 
 class MedicalFacility extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      arrClinic: [],
+    };
   }
-
+  async componentDidMount() {
+    let res = await userService.GetAllClinic();
+    if (res && res.errCode === 0) {
+      this.setState({
+        arrClinic: res.data,
+      });
+    }
+  }
+  HandleDetailClinic = (clinic) => {
+    console.log(">>", this.props);
+    this.props.history.push(`/detail-clinic/${clinic.id}`);
+  };
   render() {
+    let { arrClinic } = this.state;
+
     return (
       <div className="Medical-facility-container">
         <div className="Medical-facility-title mb-3">
@@ -27,62 +44,28 @@ class MedicalFacility extends Component {
         </div>
         <div>
           <Slider {...this.props.settings}>
-            <div className="div">
-              <div>
-                <img src="https://i.pinimg.com/originals/64/97/50/649750b6a1d69822a2a3f1e92429e69e.gif" />
-              </div>
-              <div>
-                <p>1sdasdasdasdasdasdas</p>
-              </div>
-            </div>
-            <div className="div">
-              <div>
-                <img src="https://i.pinimg.com/originals/64/97/50/649750b6a1d69822a2a3f1e92429e69e.gif" />
-              </div>
-              <div>
-                <p>1sdasdasdasdasdasdas</p>
-              </div>
-            </div>
-            <div className="div">
-              <div>
-                <img src="https://i.pinimg.com/originals/64/97/50/649750b6a1d69822a2a3f1e92429e69e.gif" />
-              </div>
-              <div>
-                <p>1sdasdasdasdasdasdas</p>
-              </div>
-            </div>
-            <div className="div">
-              <div>
-                <img src="https://i.pinimg.com/originals/64/97/50/649750b6a1d69822a2a3f1e92429e69e.gif" />
-              </div>
-              <div>
-                <p>1sdasdasdasdasdasdas</p>
-              </div>
-            </div>
-            <div className="div">
-              <div>
-                <img src="https://i.pinimg.com/originals/64/97/50/649750b6a1d69822a2a3f1e92429e69e.gif" />
-              </div>
-              <div>
-                <p>1sdasdasdasdasdasdas</p>
-              </div>
-            </div>
-            <div className="div">
-              <div>
-                <img src="https://i.pinimg.com/originals/64/97/50/649750b6a1d69822a2a3f1e92429e69e.gif" />
-              </div>
-              <div>
-                <p>1sdasdasdasdasdasdas</p>
-              </div>
-            </div>
-            <div className="div">
-              <div>
-                <img src="https://i.pinimg.com/originals/64/97/50/649750b6a1d69822a2a3f1e92429e69e.gif" />
-              </div>
-              <div>
-                <p>1sdasdasdasdasdasdas</p>
-              </div>
-            </div>
+            {arrClinic &&
+              arrClinic.length > 0 &&
+              arrClinic.map((item, index) => {
+                let url = "";
+                if (item.image) {
+                  url = new Buffer(item.image, "base64").toString("binary");
+                }
+                return (
+                  <div
+                    className="div"
+                    key={`clinic-${index}`}
+                    onClick={() => this.HandleDetailClinic(item)}
+                  >
+                    <div>
+                      <img src={url} />
+                    </div>
+                    <div>
+                      <p>{item.name}</p>
+                    </div>
+                  </div>
+                );
+              })}
           </Slider>
         </div>
       </div>
@@ -100,4 +83,6 @@ const mapDispatchToProps = (dispatch) => {
   return {};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(MedicalFacility);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(MedicalFacility)
+);

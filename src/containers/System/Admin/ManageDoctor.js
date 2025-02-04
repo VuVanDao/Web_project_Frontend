@@ -53,6 +53,7 @@ class ManageDoctor extends Component {
       res.data.Doctor_detail_price &&
       res.data.Doctor_detail_province &&
       res.data.Doctor_detail_specialty &&
+      res.data.Doctor_detail_clinic &&
       res.data.Doctor_info.nameClinic &&
       res.data.Doctor_info.addressClinic &&
       res.data.Doctor_info.note
@@ -69,6 +70,9 @@ class ManageDoctor extends Component {
       let checkSpecialty = this.state.specialtyArr.find((item) => {
         return item.value === res.data.Doctor_info.specialtyId;
       });
+      let checkClinic = this.state.clinicArr.find((item) => {
+        return item.value === res.data.Doctor_info.clinicId;
+      });
       this.setState({
         textMarkdown: res.data.Markdown.contentMarkdown,
         htmlMarkdown: res.data.Markdown.contentHTML,
@@ -80,6 +84,7 @@ class ManageDoctor extends Component {
         selectedPrice: checkPrice,
         selectedProvince: checkProvince,
         selectedSpecialty: checkSpecialty,
+        selectedClinic: checkClinic,
       });
     } else {
       console.log(">>error");
@@ -92,6 +97,12 @@ class ManageDoctor extends Component {
       });
       let checkProvince = this.state.provinceArr.find((item) => {
         return item.value === res.data.Doctor_info.provinceId;
+      });
+      let checkClinic = this.state.clinicArr.find((item) => {
+        return item.value === res.data.Doctor_info.clinicId;
+      });
+      let checkSpecialty = this.state.specialtyArr.find((item) => {
+        return item.value === res.data.Doctor_info.specialtyId;
       });
       this.setState({
         textMarkdown: res.data.Markdown.contentMarkdown
@@ -109,8 +120,10 @@ class ManageDoctor extends Component {
           : "",
         note: res.data.Doctor_info.note ? res.data.Doctor_info.note : "",
         selectedPayment: checkPayment ? checkPayment : "",
-        selectedPrice: checkPrice ? checkPayment : "",
-        selectedProvince: checkProvince ? checkPayment : "",
+        selectedPrice: checkPrice ? checkPrice : "",
+        selectedProvince: checkProvince ? checkProvince : "",
+        selectedSpecialty: checkSpecialty ? checkSpecialty : "",
+        selectedClinic: checkClinic ? checkClinic : "",
       });
     }
   };
@@ -174,6 +187,14 @@ class ManageDoctor extends Component {
             result.push(object);
           });
           break;
+        case "clinic":
+          data.map((item, index) => {
+            let object = {};
+            object.label = item.name;
+            object.value = item.id;
+            result.push(object);
+          });
+          break;
         default:
           break;
       }
@@ -192,6 +213,7 @@ class ManageDoctor extends Component {
     this.props.fetchPaymentStart();
     this.props.fetchProvinceStart();
     this.props.fetchSpecialtyStart();
+    this.props.fetchClinicStart();
   }
   async componentDidUpdate(prevProps, prevState) {
     if (prevProps.AllDoctor !== this.props.AllDoctor) {
@@ -226,6 +248,12 @@ class ManageDoctor extends Component {
       let result = this.buildInputSelect(this.props.specialtyArr, "specialty");
       this.setState({
         specialtyArr: result,
+      });
+    }
+    if (prevProps.clinicArr !== this.props.clinicArr) {
+      let result = this.buildInputSelect(this.props.clinicArr, "clinic");
+      this.setState({
+        clinicArr: result,
       });
     }
     if (prevProps.language !== this.props.language) {
@@ -275,6 +303,8 @@ class ManageDoctor extends Component {
     if (!result) {
       toast.error("Not complete information");
     } else {
+      console.log(">>>", this.state.selectedClinic);
+
       this.props.saveInfoDoctor({
         textMarkdown: this.state.textMarkdown,
         htmlMarkdown: this.state.htmlMarkdown,
@@ -543,6 +573,7 @@ const mapStateToProps = (state) => {
     paymentArr: state.admin.paymentArr,
     provinceArr: state.admin.provinceArr,
     specialtyArr: state.admin.specialtyArr,
+    clinicArr: state.admin.clinicArr,
   };
 };
 
@@ -554,6 +585,7 @@ const mapDispatchToProps = (dispatch) => {
     fetchPaymentStart: () => dispatch(actions.fetchPaymentStart()),
     fetchProvinceStart: () => dispatch(actions.fetchProvinceStart()),
     fetchSpecialtyStart: () => dispatch(actions.fetchSpecialtyStart()),
+    fetchClinicStart: () => dispatch(actions.fetchClinicStart()),
   };
 };
 

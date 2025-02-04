@@ -198,5 +198,10 @@
     "title": "Manage specialty",
     "Name": "Specialty'name",
     "Image": "Specialty'image"
+  },
+  "Clinic": {
+    "title": "Manage clinic",
+    "Name": "Clinic'name",
+    "Image": "Clinic'image"
   }
 }

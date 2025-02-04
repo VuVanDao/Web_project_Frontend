@@ -23,6 +23,8 @@ import Doctor from "../routes/Doctor";
 import VerifyEmail from "./Auth/VerifyEmail";
 import Specialty from "../routes/Specialty";
 import detailSpecialty from "./HomePage/section/detailSpecialty";
+import Clinic from "../routes/Clinic";
+import detailClinic from "./HomePage/section/detailClinic";
 
 class App extends Component {
   handlePersistorState = () => {
@@ -66,10 +68,12 @@ class App extends Component {
                     path={path.DETAIL_SPECIALTY}
                     component={detailSpecialty}
                   />
+                  <Route path={path.DETAIL_CLINIC} component={detailClinic} />
                   <Route
                     path={"/specialties/specialties-manage"}
                     component={Specialty}
                   />
+                  <Route path={"/clinic/clinic-manage"} component={Clinic} />
                   <Route
                     path={path.MANAGE_SCHEDULE}
                     component={userIsAuthenticated(Doctor)}

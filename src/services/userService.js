@@ -61,6 +61,15 @@ const GetDoctorByProvince = (specialtyId, provinceId) => {
     `/api/get-doctor-by-province?specialtyId=${specialtyId}&provinceId=${provinceId}`
   );
 };
+let createClinic = (data) => {
+  return axios.post("/api/create-new-clinic", data);
+};
+let GetAllClinic = () => {
+  return axios.get("/api/get-all-clinic");
+};
+const GetAllDoctorByClinic = (id) => {
+  return axios.get(`/api/get-all-doctor-by-clinic?id=${id}`);
+};
 export default {
   handleLogin,
   getAllUser,
@@ -81,4 +90,7 @@ export default {
   GetAllDoctorBySpecialty,
   GetDetailSpecialty,
   GetDoctorByProvince,
+  createClinic,
+  GetAllClinic,
+  GetAllDoctorByClinic,
 };

@@ -216,5 +216,10 @@
     "title": "Quản lí các chuyên khoa",
     "Name": "Tên chuyên khoa",
     "Image": "Ảnh"
+  },
+  "Clinic": {
+    "title": "Quản lí cơ sở y tế",
+    "Name": "Tên cơ sở",
+    "Image": "ảnh"
   }
 }
