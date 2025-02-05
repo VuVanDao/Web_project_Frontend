@@ -98,13 +98,11 @@ class UserRedux extends Component {
       "lastName",
       "address",
       "phoneNumber",
-      "gender",
-      "positionId",
-      "roleId",
     ];
     listState.map((item, index) => {
       if (!this.state[item]) {
         result = false;
+        return this.state[item];
       }
     });
     return result;
@@ -116,6 +114,8 @@ class UserRedux extends Component {
   };
   handleCreateUserRedux = async () => {
     let result = this.handleValidate();
+    console.log(">>", this.state);
+
     // let result = true;
     if (!result) {
       toast.error("Plz fill all information on this form");
@@ -127,9 +127,9 @@ class UserRedux extends Component {
         lastName: this.state.lastName,
         address: this.state.address,
         phoneNumber: this.state.phoneNumber,
-        gender: this.state.gender,
-        roleId: this.state.roleId,
-        positionId: this.state.positionId,
+        gender: this.state.gender ? this.state.gender : "M",
+        roleId: this.state.roleId ? this.state.roleId : "R3",
+        positionId: this.state.positionId ? this.state.positionId : "P0",
         image: this.state.image,
       });
       this.props.getAllUserRedux("All");

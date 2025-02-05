@@ -56,9 +56,9 @@ const GetAllDoctorBySpecialty = (id) => {
 const GetDetailSpecialty = (id) => {
   return axios.get(`/api/get-detail-specialty?id=${id}`);
 };
-const GetDoctorByProvince = (specialtyId, provinceId) => {
+const GetDoctorByProvince = (specialtyId, provinceId, actionId) => {
   return axios.get(
-    `/api/get-doctor-by-province?specialtyId=${specialtyId}&provinceId=${provinceId}`
+    `/api/get-doctor-by-province?specialtyId=${specialtyId}&provinceId=${provinceId}&actionId=${actionId}`
   );
 };
 let createClinic = (data) => {

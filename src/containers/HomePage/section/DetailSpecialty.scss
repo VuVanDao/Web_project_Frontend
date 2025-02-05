@@ -1,10 +1,20 @@
 .detail-specialty-container {
+  background-color: #eeeeee;
+  padding-bottom: 100px;
   .specialtyDescription {
+    background-color: #fff;
     margin: 110px 0 70px;
     height: 150px;
+    min-height: 300px;
+    overflow: auto;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.25);
   }
   .listDoctor {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
     .container {
+      background-color: #fff;
       display: flex;
       border-radius: 10px;
       box-shadow: 0 0 2px rgba(0, 0, 0, 0.25);

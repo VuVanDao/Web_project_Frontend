@@ -11,7 +11,6 @@ import DoctorExtraInfo from "../../Patient/Doctor/DoctorExtraInfo";
 import ProfileDoctor from "../../Patient/Doctor/ProfileDoctor/ProfileDoctor";
 import * as actions from "../../../store/actions";
 import { LANGUAGES } from "../../../utils";
-import { Link } from "react-router-dom";
 class DetailSpecialty extends Component {
   constructor(props) {
     super(props);
@@ -63,8 +62,12 @@ class DetailSpecialty extends Component {
   };
   handlePickProvince = async (event) => {
     let provinceId = event.target.value;
-    let specialtyId = this.props.match.params.id;
-    let res = await userService.GetDoctorByProvince(specialtyId, provinceId);
+    let clinicId = this.props.match.params.id;
+    let res = await userService.GetDoctorByProvince(
+      clinicId,
+      provinceId,
+      "clinic"
+    );
     if (res && res.errCode === 0) {
       this.setState({
         arrDoctor: res.data,
@@ -127,7 +130,7 @@ class DetailSpecialty extends Component {
                   >
                     <ProfileDoctor
                       doctorId={item.doctorId}
-                      showDescription={true}
+                      showDescription={false}
                     />
                   </div>
                   <div className="right">

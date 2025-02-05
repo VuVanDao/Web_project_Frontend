@@ -65,7 +65,11 @@ class DetailSpecialty extends Component {
   handlePickProvince = async (event) => {
     let provinceId = event.target.value;
     let specialtyId = this.props.match.params.id;
-    let res = await userService.GetDoctorByProvince(specialtyId, provinceId);
+    let res = await userService.GetDoctorByProvince(
+      specialtyId,
+      provinceId,
+      "specialty"
+    );
     if (res && res.errCode === 0) {
       this.setState({
         arrDoctor: res.data,
@@ -96,7 +100,7 @@ class DetailSpecialty extends Component {
               }}
             ></div>
           </div>
-          <div className="container my-3">
+          <div className="container ">
             <select
               className="text-capitalize p-2"
               onChange={(event) => this.handlePickProvince(event)}
@@ -122,7 +126,7 @@ class DetailSpecialty extends Component {
                   >
                     <ProfileDoctor
                       doctorId={item.doctorId}
-                      showDescription={true}
+                      showDescription={false}
                     />
                   </div>
                   <div className="right">
