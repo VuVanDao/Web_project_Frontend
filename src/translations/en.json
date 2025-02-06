@@ -49,7 +49,8 @@
         "note": "note",
         "moreInfo": "More Info",
         "HideInfo": "Hide Info",
-        "pay": "Payment can be made by (ATM card,cash): "
+        "pay": "Payment can be made by (ATM card,cash): ",
+        "manage-patient": "Manage patient"
       }
     },
     "clinic": {
@@ -203,5 +204,10 @@
     "title": "Manage clinic",
     "Name": "Clinic'name",
     "Image": "Clinic'image"
+  },
+  "Patient": {
+    "title": "Manage patient",
+    "ChooseDoctor": "Choose doctor",
+    "ChooseSchedule": "Choose schedule"
   }
 }

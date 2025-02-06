@@ -55,7 +55,8 @@
         "note": "Ghi chú",
         "moreInfo": "Thông tin chi tiết",
         "HideInfo": "Ẩn chi tiết",
-        "pay": "Có thể thanh toán với hình thức (thẻ ATM, tiền mặt)"
+        "pay": "Có thể thanh toán với hình thức (thẻ ATM, tiền mặt)",
+        "manage-patient": "Quản lí bệnh nhân đặt lịch"
       }
     },
     "clinic": {
@@ -221,5 +222,10 @@
     "title": "Quản lí cơ sở y tế",
     "Name": "Tên cơ sở",
     "Image": "ảnh"
+  },
+  "Patient": {
+    "title": "Quản lí bệnh nhân đặt lịch",
+    "ChooseDoctor": "Chọn bác sĩ",
+    "ChooseSchedule": "Chọn ngày"
   }
 }
