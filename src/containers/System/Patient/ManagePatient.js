@@ -11,6 +11,7 @@ import { toast } from "react-toastify";
 import moment from "moment";
 import _ from "lodash";
 import userService from "../../../services/userService";
+import RemedyModal from "./RemedyModal";
 class ManagePatient extends Component {
   constructor(props) {
     super(props);
@@ -19,6 +20,8 @@ class ManagePatient extends Component {
       currentDate: "",
       PatientBookedList: [],
       options: [],
+      dataModal: {},
+      isOpen: false,
     };
   }
   setLanguageSchedule = () => {
@@ -53,7 +56,26 @@ class ManagePatient extends Component {
       });
     }
   };
-
+  ConfirmPatient = (item) => {
+    // console.log(">>>", item);
+    // return;
+    let data = {
+      doctorId: item.doctorId,
+      patientId: item.patientId,
+      email: item.bookingData.email,
+      timeType: item.timeType,
+      name: item.bookingData.firstName,
+    };
+    this.setState({
+      dataModal: data,
+    });
+    this.handleOpenModal();
+  };
+  handleOpenModal = () => {
+    this.setState({
+      isOpen: !this.state.isOpen,
+    });
+  };
   async componentDidMount() {
     let arrDay = this.setLanguageSchedule();
     let res = await userService.PatientBooked(
@@ -73,7 +95,7 @@ class ManagePatient extends Component {
   }
 
   render() {
-    let { options, PatientBookedList } = this.state;
+    let { options, PatientBookedList, dataModal, isOpen } = this.state;
     let { language, userInfo } = this.props;
     // console.log("<><><>", userInfo);
 
@@ -130,17 +152,10 @@ class ManagePatient extends Component {
                             <div>
                               <button
                                 className="btn-update"
-                                // onClick={() => this.ShowModalUpdateUser(item.id)}
+                                onClick={() => this.ConfirmPatient(item)}
                               >
                                 <FormattedMessage id="system.user-manage.edit-user" />
                                 <i className="fas fa-user-edit"></i>
-                              </button>
-                              <button
-                                className="btn-Delete"
-                                // onClick={() => this.ShowModalDeleteUser(item.id)}
-                              >
-                                <FormattedMessage id="system.user-manage.del-user" />
-                                <i className="fas fa-user-times"></i>
                               </button>
                             </div>
                           </td>
@@ -152,6 +167,11 @@ class ManagePatient extends Component {
             </div>
           </div>
         </div>
+        <RemedyModal
+          dataModal={dataModal}
+          isOpen={isOpen}
+          handleOpenModal={this.handleOpenModal}
+        />
       </>
     );
   }

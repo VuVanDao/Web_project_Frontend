@@ -76,6 +76,9 @@ const GetDetailClinic = (id) => {
 const PatientBooked = (doctorId, date) => {
   return axios.get(`/api/get-patient-booked?doctorId=${doctorId}&date=${date}`);
 };
+let SendRemedy = (data) => {
+  return axios.post("/api/send-remedy", data);
+};
 export default {
   handleLogin,
   getAllUser,
@@ -101,4 +104,5 @@ export default {
   GetAllDoctorByClinic,
   GetDetailClinic,
   PatientBooked,
+  SendRemedy,
 };
