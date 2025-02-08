@@ -60,7 +60,7 @@ class MedicalFacility extends Component {
                     <div>
                       <img src={url} />
                     </div>
-                    <div>
+                    <div className="name">
                       <p>{item.name}</p>
                     </div>
                   </div>

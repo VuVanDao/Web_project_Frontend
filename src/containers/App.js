@@ -26,6 +26,7 @@ import detailSpecialty from "./HomePage/section/detailSpecialty";
 import Clinic from "../routes/Clinic";
 import detailClinic from "./HomePage/section/detailClinic";
 import HandBook from "../routes/HandBook";
+import detailHandBook from "./HomePage/section/detailHandBook";
 
 class App extends Component {
   handlePersistorState = () => {
@@ -79,6 +80,11 @@ class App extends Component {
                     path={"/Handbook/Handbook-manage"}
                     component={HandBook}
                   />
+                  <Route
+                    path={path.DETAIL_HANDBOOK}
+                    component={detailHandBook}
+                  />
+
                   <Route
                     path={path.MANAGE_SCHEDULE}
                     component={userIsAuthenticated(Doctor)}
