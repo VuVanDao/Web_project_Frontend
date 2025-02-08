@@ -227,5 +227,10 @@
     "title": "Quản lí bệnh nhân đặt lịch",
     "ChooseDoctor": "Chọn bác sĩ",
     "ChooseSchedule": "Chọn ngày"
+  },
+  "handBook": {
+    "title": "Quản lí cẩm nang",
+    "content": "Tiêu đề",
+    "Image": "Ảnh"
   }
 }

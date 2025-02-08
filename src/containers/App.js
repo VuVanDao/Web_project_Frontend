@@ -25,6 +25,7 @@ import Specialty from "../routes/Specialty";
 import detailSpecialty from "./HomePage/section/detailSpecialty";
 import Clinic from "../routes/Clinic";
 import detailClinic from "./HomePage/section/detailClinic";
+import HandBook from "../routes/HandBook";
 
 class App extends Component {
   handlePersistorState = () => {
@@ -74,6 +75,10 @@ class App extends Component {
                     component={Specialty}
                   />
                   <Route path={"/clinic/clinic-manage"} component={Clinic} />
+                  <Route
+                    path={"/Handbook/Handbook-manage"}
+                    component={HandBook}
+                  />
                   <Route
                     path={path.MANAGE_SCHEDULE}
                     component={userIsAuthenticated(Doctor)}

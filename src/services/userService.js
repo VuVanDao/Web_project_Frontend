@@ -79,6 +79,12 @@ const PatientBooked = (doctorId, date) => {
 let SendRemedy = (data) => {
   return axios.post("/api/send-remedy", data);
 };
+let createHandBook = (data) => {
+  return axios.post("/api/create-new-handBook", data);
+};
+let GetAllHandBook = () => {
+  return axios.get("/api/get-all-handBook");
+};
 export default {
   handleLogin,
   getAllUser,
@@ -105,4 +111,6 @@ export default {
   GetDetailClinic,
   PatientBooked,
   SendRemedy,
+  createHandBook,
+  GetAllHandBook,
 };

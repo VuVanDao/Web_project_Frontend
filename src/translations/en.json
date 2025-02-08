@@ -209,5 +209,10 @@
     "title": "Manage patient",
     "ChooseDoctor": "Choose doctor",
     "ChooseSchedule": "Choose schedule"
+  },
+  "handBook": {
+    "title": "Manage handBook",
+    "content": "Title",
+    "Image": "Image"
   }
 }

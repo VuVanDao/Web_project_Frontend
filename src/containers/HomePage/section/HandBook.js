@@ -6,14 +6,24 @@ import "./specialty.scss";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { userService } from "../../../services";
 
 class HandBook extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = { arrHandBook: [] };
   }
-
+  async componentDidMount() {
+    let res = await userService.GetAllHandBook();
+    if (res && res.errCode === 0) {
+      this.setState({
+        arrHandBook: res.data,
+      });
+    }
+  }
   render() {
+    console.log(">>>", this.state.arrHandBook);
+    let { arrHandBook } = this.state;
     return (
       <div className="HandBook-container">
         <div className="HandBook-title mb-3">
@@ -26,62 +36,24 @@ class HandBook extends Component {
         </div>
         <div>
           <Slider {...this.props.settings}>
-            <div className="div">
-              <div>
-                <img src="https://i.pinimg.com/originals/64/97/50/649750b6a1d69822a2a3f1e92429e69e.gif" />
-              </div>
-              <div>
-                <p>1sdasdasdasdasdasdas</p>
-              </div>
-            </div>
-            <div className="div">
-              <div>
-                <img src="https://i.pinimg.com/originals/64/97/50/649750b6a1d69822a2a3f1e92429e69e.gif" />
-              </div>
-              <div>
-                <p>1sdasdasdasdasdasdas</p>
-              </div>
-            </div>
-            <div className="div">
-              <div>
-                <img src="https://i.pinimg.com/originals/64/97/50/649750b6a1d69822a2a3f1e92429e69e.gif" />
-              </div>
-              <div>
-                <p>1sdasdasdasdasdasdas</p>
-              </div>
-            </div>
-            <div className="div">
-              <div>
-                <img src="https://i.pinimg.com/originals/64/97/50/649750b6a1d69822a2a3f1e92429e69e.gif" />
-              </div>
-              <div>
-                <p>1sdasdasdasdasdasdas</p>
-              </div>
-            </div>
-            <div className="div">
-              <div>
-                <img src="https://i.pinimg.com/originals/64/97/50/649750b6a1d69822a2a3f1e92429e69e.gif" />
-              </div>
-              <div>
-                <p>1sdasdasdasdasdasdas</p>
-              </div>
-            </div>
-            <div className="div">
-              <div>
-                <img src="https://i.pinimg.com/originals/64/97/50/649750b6a1d69822a2a3f1e92429e69e.gif" />
-              </div>
-              <div>
-                <p>1sdasdasdasdasdasdas</p>
-              </div>
-            </div>
-            <div className="div">
-              <div>
-                <img src="https://i.pinimg.com/originals/64/97/50/649750b6a1d69822a2a3f1e92429e69e.gif" />
-              </div>
-              <div>
-                <p>1sdasdasdasdasdasdas</p>
-              </div>
-            </div>
+            {arrHandBook &&
+              arrHandBook.length > 0 &&
+              arrHandBook.map((item, index) => {
+                let url = "";
+                if (item.image) {
+                  url = new Buffer(item.image, "base64").toString("binary");
+                }
+                return (
+                  <div className="div" key={`handBook-${index}`}>
+                    <div>
+                      <img src={url} />
+                    </div>
+                    <div>
+                      <p>{item.name}</p>
+                    </div>
+                  </div>
+                );
+              })}
           </Slider>
         </div>
       </div>
