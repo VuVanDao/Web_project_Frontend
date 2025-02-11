@@ -8,7 +8,7 @@ export const fetchGenderStart = () => {
       dispatch({
         type: actionTypes.FETCH_GENDER_START,
       });
-      let res = await userService.getAllCode("gender");
+      let res = await userService.getAllCode("GENDER");
       if (res && res.errCode === 0) {
         dispatch(fetchGenderSuccess(res.data));
       } else {
@@ -33,7 +33,7 @@ export const fetchPositionStart = () => {
       dispatch({
         type: actionTypes.FETCH_POSITION_START,
       });
-      let res = await userService.getAllCode("position");
+      let res = await userService.getAllCode("POSITION");
       if (res && res.errCode === 0) {
         dispatch(fetchPositionSuccess(res.data));
       } else {
@@ -58,7 +58,7 @@ export const fetchRoleStart = () => {
       dispatch({
         type: actionTypes.FETCH_ROLE_START,
       });
-      let res = await userService.getAllCode("role");
+      let res = await userService.getAllCode("ROLE");
       if (res && res.errCode === 0) {
         dispatch(fetchRoleSuccess(res.data));
       } else {
@@ -266,7 +266,7 @@ export const fetchPriceStart = () => {
       dispatch({
         type: actionTypes.FETCH_PRICE_START,
       });
-      let res = await userService.getAllCode("price");
+      let res = await userService.getAllCode("PRICE");
       if (res && res.errCode === 0) {
         dispatch(fetchPriceSuccess(res.data));
       } else {
@@ -291,7 +291,7 @@ export const fetchPaymentStart = () => {
       dispatch({
         type: actionTypes.FETCH_PAYMENT_START,
       });
-      let res = await userService.getAllCode("payment");
+      let res = await userService.getAllCode("PAYMENT");
       if (res && res.errCode === 0) {
         dispatch(fetchPaymentSuccess(res.data));
       } else {
@@ -316,7 +316,7 @@ export const fetchProvinceStart = () => {
       dispatch({
         type: actionTypes.FETCH_PROVINCE_START,
       });
-      let res = await userService.getAllCode("province");
+      let res = await userService.getAllCode("PROVINCE");
       if (res && res.errCode === 0) {
         dispatch(fetchProvinceSuccess(res.data));
       } else {

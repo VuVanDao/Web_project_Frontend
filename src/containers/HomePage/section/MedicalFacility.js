@@ -58,7 +58,7 @@ class MedicalFacility extends Component {
                     onClick={() => this.HandleDetailClinic(item)}
                   >
                     <div>
-                      <img src={url} />
+                      <img src={item.image} />
                     </div>
                     <div className="name">
                       <p>{item.name}</p>

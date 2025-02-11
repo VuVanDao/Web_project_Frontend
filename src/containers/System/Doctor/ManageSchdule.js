@@ -86,6 +86,7 @@ class ManageSchedule extends Component {
         }
         return value;
       });
+
       this.setState({
         rangeTime: result,
       });
@@ -114,6 +115,7 @@ class ManageSchedule extends Component {
   render() {
     let { options, rangeTime } = this.state;
     let { language } = this.props;
+    console.log(">>>>", rangeTime);
 
     return (
       <>
@@ -150,7 +152,7 @@ class ManageSchedule extends Component {
                       key={`time-item-${index}`}
                       onClick={() => this.handlePickSchedule(item)}
                     >
-                      {language === LANGUAGES.VI ? item.valueVI : item.valueEN}
+                      {language === LANGUAGES.VI ? item.valueVi : item.valueEn}
                     </div>
                   );
                 })}

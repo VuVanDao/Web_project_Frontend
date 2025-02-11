@@ -38,6 +38,7 @@ class DetailDoctor extends Component {
   render() {
     let { detailDoctor } = this.state;
     let { language } = this.props;
+    console.log(">>>", detailDoctor);
 
     return (
       <>

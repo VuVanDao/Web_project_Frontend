@@ -140,8 +140,8 @@ class ManagePatient extends Component {
                         <tr key={`item-${index}`}>
                           <td>
                             {language === LANGUAGES.VI
-                              ? item.timeData.valueVI
-                              : item.timeData.valueEN}
+                              ? item.timeData.valueVi
+                              : item.timeData.valueEn}
                           </td>
                           <td>{item.bookingData.firstName}</td>
                           <td>{item.bookingData.email}</td>
@@ -154,7 +154,7 @@ class ManagePatient extends Component {
                                 className="btn-update"
                                 onClick={() => this.ConfirmPatient(item)}
                               >
-                                <FormattedMessage id="system.user-manage.edit-user" />
+                                <FormattedMessage id="Patient.SendRemedy" />
                                 <i className="fas fa-user-edit"></i>
                               </button>
                             </div>

@@ -87,8 +87,6 @@ class ManageDoctor extends Component {
         selectedClinic: checkClinic,
       });
     } else {
-      console.log(">>error");
-
       let checkPrice = this.state.priceArr.find((item) => {
         return item.value === res.data.Doctor_info.priceId;
       });
@@ -155,8 +153,8 @@ class ManageDoctor extends Component {
             let object = {};
             object.label =
               language === LANGUAGES.VI
-                ? item.valueVI + " VND"
-                : item.valueEN + " USD";
+                ? item.valueVi + " VND"
+                : item.valueEn + " USD";
             object.value = item.keyMap;
             result.push(object);
           });
@@ -165,7 +163,7 @@ class ManageDoctor extends Component {
           data.map((item, index) => {
             let object = {};
             object.label =
-              language === LANGUAGES.VI ? item.valueVI : item.valueEN;
+              language === LANGUAGES.VI ? item.valueVi : item.valueEn;
             object.value = item.keyMap;
             result.push(object);
           });
@@ -174,7 +172,7 @@ class ManageDoctor extends Component {
           data.map((item, index) => {
             let object = {};
             object.label =
-              language === LANGUAGES.VI ? item.valueVI : item.valueEN;
+              language === LANGUAGES.VI ? item.valueVi : item.valueEn;
             object.value = item.keyMap;
             result.push(object);
           });

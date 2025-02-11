@@ -158,7 +158,7 @@ class UserRedux extends Component {
       ...data,
       action: "EDIT",
       image: "",
-      previewImageURL: url,
+      previewImageURL: data.image,
     });
   };
   render() {
@@ -311,7 +311,7 @@ class UserRedux extends Component {
                         genderArr.map((item, index) => {
                           return (
                             <option key={index} value={item.keyMap}>
-                              {language === "vi" ? item.valueVI : item.valueEN}
+                              {language === "vi" ? item.valueVi : item.valueEn}
                             </option>
                           );
                         })}
@@ -334,7 +334,7 @@ class UserRedux extends Component {
                         positionArr.map((item, index) => {
                           return (
                             <option key={index} value={item.keyMap}>
-                              {language === "vi" ? item.valueVI : item.valueEN}
+                              {language === "vi" ? item.valueVi : item.valueEn}
                             </option>
                           );
                         })}
@@ -357,7 +357,7 @@ class UserRedux extends Component {
                         roleArr.map((item, index) => {
                           return (
                             <option key={index} value={item.keyMap}>
-                              {language === "vi" ? item.valueVI : item.valueEN}
+                              {language === "vi" ? item.valueVi : item.valueEn}
                             </option>
                           );
                         })}

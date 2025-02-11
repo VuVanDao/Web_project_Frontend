@@ -244,7 +244,7 @@ class BookingModal extends Component {
                       genderArr.map((item, index) => {
                         return (
                           <option key={index} value={item.keyMap}>
-                            {language === "vi" ? item.valueVI : item.valueEN}
+                            {language === "vi" ? item.valueVi : item.valueEn}
                           </option>
                         );
                       })}

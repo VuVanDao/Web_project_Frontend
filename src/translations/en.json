@@ -208,7 +208,9 @@
   "Patient": {
     "title": "Manage patient",
     "ChooseDoctor": "Choose doctor",
-    "ChooseSchedule": "Choose schedule"
+    "ChooseSchedule": "Choose schedule",
+    "SendRemedy": "Send Remedy",
+    "Remedy": "Remedy"
   },
   "handBook": {
     "title": "Manage handBook",

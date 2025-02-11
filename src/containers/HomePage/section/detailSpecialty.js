@@ -48,8 +48,8 @@ class DetailSpecialty extends Component {
     provinceArr.map((item, index) => {
       let object = {};
       language === LANGUAGES.VI
-        ? (object.label = item.valueVI)
-        : (object.label = item.valueEN);
+        ? (object.label = item.valueVi)
+        : (object.label = item.valueEn);
       object.value = item.keyMap;
       provinceList.push(object);
     });
@@ -74,7 +74,7 @@ class DetailSpecialty extends Component {
       this.setState({
         arrDoctor: res.data,
       });
-      console.log(">>", this.state.arrDoctor);
+      // console.log(">>", this.state.arrDoctor);
     }
   };
   /* life cycle

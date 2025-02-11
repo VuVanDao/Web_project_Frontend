@@ -28,7 +28,6 @@ class HandBook extends Component {
     this.props.history.push(`/detail-handBook/${specialty.id}`);
   };
   render() {
-    console.log(">>>", this.state.arrHandBook);
     let { arrHandBook } = this.state;
     return (
       <div className="HandBook-container">
@@ -56,7 +55,7 @@ class HandBook extends Component {
                     onClick={() => this.HandleDetailHandBook(item)}
                   >
                     <div>
-                      <img src={url} />
+                      <img src={item.image} />
                     </div>
                     <div className="name">
                       <p>{item.name}</p>

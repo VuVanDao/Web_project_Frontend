@@ -51,8 +51,8 @@ class DetailSpecialty extends Component {
     provinceArr.map((item, index) => {
       let object = {};
       language === LANGUAGES.VI
-        ? (object.label = item.valueVI)
-        : (object.label = item.valueEN);
+        ? (object.label = item.valueVi)
+        : (object.label = item.valueEn);
       object.value = item.keyMap;
       provinceList.push(object);
     });

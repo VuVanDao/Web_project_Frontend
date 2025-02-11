@@ -100,7 +100,7 @@ class RemedyModal extends Component {
                 </div>
                 <div className="col-6">
                   <label htmlFor="password">
-                    <FormattedMessage id="system.user-manage.password" />:
+                    <FormattedMessage id="Patient.Remedy" />:
                   </label>
                   <input
                     type="file"

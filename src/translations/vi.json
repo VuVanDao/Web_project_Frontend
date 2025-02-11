@@ -226,7 +226,9 @@
   "Patient": {
     "title": "Quản lí bệnh nhân đặt lịch",
     "ChooseDoctor": "Chọn bác sĩ",
-    "ChooseSchedule": "Chọn ngày"
+    "ChooseSchedule": "Chọn ngày",
+    "SendRemedy": "Gửi hoá đơn",
+    "Remedy": "Hoá đơn"
   },
   "handBook": {
     "title": "Quản lí cẩm nang",

@@ -44,7 +44,7 @@ class OutstandingDoctor extends Component {
                     onClick={() => this.HandleDetailDoctor(item)}
                   >
                     <div>
-                      <img src={url} />
+                      <img src={item.image} />
                     </div>
                     <div>
                       <p>

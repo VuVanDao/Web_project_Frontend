@@ -58,7 +58,7 @@ class Specialties extends Component {
                     onClick={() => this.HandleDetailSpecialty(item)}
                   >
                     <div>
-                      <img src={url} />
+                      <img src={item.image} />
                     </div>
                     <div>
                       <p>{item.name}</p>
