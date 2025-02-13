@@ -85,6 +85,9 @@ let createHandBook = (data) => {
 let GetAllHandBook = () => {
   return axios.get("/api/get-all-handBook");
 };
+const getDetailHandBook = (id) => {
+  return axios.get(`/api/get-detail-handBook?id=${id}`);
+};
 export default {
   handleLogin,
   getAllUser,
@@ -113,4 +116,5 @@ export default {
   SendRemedy,
   createHandBook,
   GetAllHandBook,
+  getDetailHandBook,
 };

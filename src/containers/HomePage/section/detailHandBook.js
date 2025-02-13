@@ -2,20 +2,36 @@ import React, { Component } from "react";
 import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 import HomePageHeader from "../../HomePage/HomePageHeader";
-// import "./DetailHandBook.scss";
-import "./detailClinic.scss";
+import HomePageFooter from "../HomePageFooter";
+import "./DetailHandBook.scss";
 import userService from "../../../services/userService";
-import DoctorSchedule from "../../Patient/Doctor/Schedule";
-import DoctorExtraInfo from "../../Patient/Doctor/DoctorExtraInfo";
-import ProfileDoctor from "../../Patient/Doctor/ProfileDoctor/ProfileDoctor";
+
 import * as actions from "../../../store/actions";
 import { LANGUAGES } from "../../../utils";
+import { result, times } from "lodash";
 class DetailHandBook extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      title: "",
+      description: "",
+      image: "",
+    };
   }
-  async componentDidMount() {}
+  async componentDidMount() {
+    if (this.props.match.params.id) {
+      let result = await userService.getDetailHandBook(
+        this.props.match.params.id
+      );
+      if (result && result.errCode === 0) {
+        this.setState({
+          title: result.data.name,
+          description: result.data.descriptionHTML,
+          image: result.data.image,
+        });
+      }
+    }
+  }
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.language !== this.props.language) {
     }
@@ -29,13 +45,30 @@ class DetailHandBook extends Component {
    */
   render() {
     let { language } = this.props;
+    let { title, description, image } = this.state;
 
     // console.log(">>>", this.state.arrDoctor);
 
     return (
       <>
         <HomePageHeader />
-        <div style={{ marginTop: "100px" }}>hahaha</div>
+        <div className="container">
+          <div className="handbook-title">
+            <ul>
+              <li>{title}</li>
+            </ul>
+          </div>
+          <div className="image">
+            <img src={image} />
+          </div>
+          <div
+            className="detail-html-doctor-content"
+            dangerouslySetInnerHTML={{
+              __html: description,
+            }}
+          ></div>
+        </div>
+        <HomePageFooter />
       </>
     );
   }

@@ -11,6 +11,7 @@ import ProfileDoctor from "../../Patient/Doctor/ProfileDoctor/ProfileDoctor";
 import * as actions from "../../../store/actions";
 import { LANGUAGES } from "../../../utils";
 import { Link } from "react-router-dom";
+import HomePageFooter from "../HomePageFooter";
 class DetailSpecialty extends Component {
   constructor(props) {
     super(props);
@@ -138,6 +139,7 @@ class DetailSpecialty extends Component {
             })}
           </div>
         </div>
+        <HomePageFooter />
       </>
     );
   }
